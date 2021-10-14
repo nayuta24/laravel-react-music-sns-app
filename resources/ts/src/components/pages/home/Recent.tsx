@@ -10,18 +10,18 @@ import Posts from "../../../test_json/postsData.json";
 import { useApiPosts } from "../../../hooks/api/useApiPosts";
 
 export const Recent = memo(() => {
-  const setTopic = useSetRecoilState(homeState);
-  const { api_posts } = useApiPosts();
+    const setTopic = useSetRecoilState(homeState);
+    const { api_posts } = useApiPosts();
 
-  console.log(api_posts);
+    console.log(api_posts);
 
-  setTopic({ topic: "recent" });
-  return (
-    <Box>
-      {/* jsonを引っ張り、map関数でカードを繰り返し描画 */}
-      {Posts.map((obj) => (
-        <PostCard post={Object.assign(obj)} /> // Object.assign(オブジェクト)で、オブジェクトのスプレッドを実現
-      ))}
-    </Box>
-  );
+    setTopic({ topic: "recent" });
+    return (
+        <Box>
+            {/* jsonを引っ張り、map関数でカードを繰り返し描画 */}
+            {api_posts.map((obj) => (
+                <PostCard post={Object.assign(obj)} /> // Object.assign(オブジェクト)で、オブジェクトのスプレッドを実現
+            ))}
+        </Box>
+    );
 });
