@@ -32,7 +32,7 @@
     "dev": "react-scripts start",
     "heroku-postbuild": "npm run build",
     "start": "serve -s build",
-    "build": "react-scripts build && rm -rf ../../public/build && mv build ../public",
+    "build": "react-scripts build && rm -rf ../../public/build && mv build ../../public",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
