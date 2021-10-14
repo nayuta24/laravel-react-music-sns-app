@@ -11,6 +11,12 @@
 |
 */
 
-Route::get('/', function(){
-    return view('index');
+Route::get('/api/posts', 'PostController@posts');
+
+Route::get('/api/spo', function() {
+    return view('spotify');
 });
+
+Route::get('/{any}', function() {
+    return view('index');
+})->where('any', '.*');
