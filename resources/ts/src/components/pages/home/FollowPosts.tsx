@@ -3,8 +3,8 @@ import { useSetRecoilState } from "recoil";
 import { homeState } from "../../../store/homeState";
 
 export const FollowPosts = memo(() => {
-  const setTopic = useSetRecoilState(homeState);
-  setTopic({ topic: "follow_post" });
+    const setTopic = useSetRecoilState(homeState);
+    setTopic({ topic: "follow" });
 
-  return <div></div>;
+    return <div></div>;
 });
