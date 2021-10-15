@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/api/posts', 'PostController@posts');
+Route::get('/api/posts/follow', 'PostController@posts');
 
 Route::get('/api/spo', function() {
     return view('spotify');
