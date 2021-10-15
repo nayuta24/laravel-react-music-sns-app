@@ -1,9 +1,9 @@
 export type PostsDataType = {
-      id:string;
+      id:number;
     created_at:string;
     updated_at:string;
     user: {
-      id: string;
+      id: number;
       img: string;
       name: string;
         job: string;
