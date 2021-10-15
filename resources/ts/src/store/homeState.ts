@@ -3,7 +3,7 @@ import { atom } from "recoil";
 type HomeStateType = {
     key: "string",
     default: {
-        topic:"recent"|"follow_post"|"popular"|"detail"
+        topic:"recent"|"follow"|"popular"|"detail"
     }
 }
 

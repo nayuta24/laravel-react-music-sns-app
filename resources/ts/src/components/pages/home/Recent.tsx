@@ -6,21 +6,27 @@ import axios from "axios";
 import { homeState } from "../../../store/homeState";
 import { PostCard } from "../../organisms/Home/post/PostCard";
 import { PostsDataType } from "../../../type/api/PostsDataType";
-import Posts from "../../../test_json/postsData.json";
+import Posts from "../../../test_json/allPosts.json";
 import { useApiPosts } from "../../../hooks/api/useApiPosts";
 
 export const Recent = memo(() => {
+    // グローバルStateを変更、それをもとにヘッダーを変更とapiリクエストをする
     const setTopic = useSetRecoilState(homeState);
-    const { api_posts } = useApiPosts();
-
-    console.log(api_posts);
-
     setTopic({ topic: "recent" });
+    /* ↓本番環境用 */
+    // const { api_posts } = useApiPosts("recent");
+
+    /* ↓ローカル環境でのテスト用（test_jsonを使用） */
+    const api_posts: Array<PostsDataType> = Posts;
+
     return (
         <Box>
             {/* jsonを引っ張り、map関数でカードを繰り返し描画 */}
             {api_posts.map((obj) => (
-                <PostCard post={Object.assign(obj)} /> // Object.assign(オブジェクト)で、オブジェクトのスプレッドを実現
+                <Box key={obj.id}>
+                    {/* Object.assign(オブジェクト)で、オブジェクトのスプレッドを実現 */}
+                    <PostCard post={Object.assign(obj)} />
+                </Box>
             ))}
         </Box>
     );
