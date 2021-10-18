@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 
 use App\Post;
 use App\User;
-use Spotify;
 
 class PostController extends Controller
 {
@@ -56,5 +55,9 @@ class PostController extends Controller
         }
         
         return $posts_json;
+    }
+    
+    public function detail(Post $post){
+        
     }
 }
