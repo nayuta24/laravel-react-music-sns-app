@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/api/posts/follow', 'PostController@posts');
+Route::get('/api/posts/recent', 'PostController@posts');
 
 Route::get('/api/posts/{id}', 'PostController@detail');
 
