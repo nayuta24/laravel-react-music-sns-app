@@ -5,20 +5,18 @@ import { HomePostBox } from "../organisms/Home/HomePostBox";
 import { MenuBar } from "../organisms/Home/MenuBar";
 
 type Props = {
-  children: ReactNode;
+    children: ReactNode;
 };
 
 export const HomeLayout: VFC<Props> = memo((props) => {
-  const { children } = props;
-  const { isOpen, onOpen, onClose } = useDisclosure();
+    const { children } = props;
+    const { isOpen, onOpen, onClose } = useDisclosure();
 
-  return (
-    <Flex>
-      <Box mx="auto">
-        <MenuBar isOpen={isOpen} onClose={onClose}>
-          <HomePostBox onOpen={onOpen}>{children}</HomePostBox>
-        </MenuBar>
-      </Box>
-    </Flex>
-  );
+    return (
+        <Box w="100%">
+            <MenuBar isOpen={isOpen} onClose={onClose}>
+                <HomePostBox onOpen={onOpen}>{children}</HomePostBox>
+            </MenuBar>
+        </Box>
+    );
 });
