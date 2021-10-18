@@ -11,7 +11,7 @@ export const useApiPostDetail = ( id: string ) =>
     const [loading, setLoading] = useState(false)
     const history = useHistory();
 
-    const getPostDetail = () =>
+    const getPostDetail = useCallback(() =>
     {
         setLoading( true );
 
@@ -22,8 +22,7 @@ export const useApiPostDetail = ( id: string ) =>
         {
             history.push( "/home/page404" )
         } ).finally( ()=>setLoading(false));
-    }
-
+    },[api_postDetail])
 
     return { getPostDetail, api_postDetail, loading };
 };

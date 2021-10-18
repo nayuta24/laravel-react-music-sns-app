@@ -28,7 +28,7 @@ export const Recent = memo(() => {
                 <LoadingPageSpinner />
             ) : (
                 <Box>
-                    {/* jsonを引っ張り、map関数でカードを繰り返し描画 */}
+                    {/* apiからjsonを引っ張り、map関数でカードを繰り返し描画 */}
                     {api_posts.map((obj) => (
                         <Box key={obj.id}>
                             {/* Object.assign(オブジェクト)で、オブジェクトのスプレッドを実現 */}
