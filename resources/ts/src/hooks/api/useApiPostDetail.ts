@@ -18,7 +18,7 @@ export const useApiPostDetail = ( id: string ) =>
         axios
         .get<PostsDataType>( `/api/posts/${ id }` )
         .then( ( res ) => setApiPostDetail( res.data ) )
-        .catch( err =>
+        .catch( () =>
         {
             history.push( "/home/page404" )
         } ).finally( ()=>setLoading(false));
