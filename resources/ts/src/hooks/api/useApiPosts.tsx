@@ -14,7 +14,7 @@ export const useApiPosts = (sort: Sort) => {
     const getPosts = useCallback(() => {
         setLoading(true);
         axios
-            .get<Array<PostsDataType>>(`/api/posts/${sort}`)
+            .get<Array<PostsDataType>>(`/api/posts/recent`)
             .then((res) => setApiPosts(res.data))
             .catch(() => {
                 history.push("/home/page404");
