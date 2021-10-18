@@ -22,7 +22,7 @@ export const useApiPostDetail = ( id: string ) =>
         {
             history.push( "/home/page404" )
         } ).finally( ()=>setLoading(false));
-    },[api_postDetail])
+    },[])
 
     return { getPostDetail, api_postDetail, loading };
 };

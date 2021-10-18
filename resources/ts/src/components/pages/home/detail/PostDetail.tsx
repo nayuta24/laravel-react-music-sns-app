@@ -25,7 +25,7 @@ export const PostDetail: VFC<Props> = (props) => {
     const { id } = useParams<Param>();
     /* ↓本番環境用 */
     const { getPostDetail, api_postDetail, loading } = useApiPostDetail(id);
-    useEffect(() => getPostDetail(), [getPostDetail]);
+    useEffect(() => getPostDetail(), []);
 
     /* ローカルでのテスト用*/
     // const api_postDetail = json_postDetail;
