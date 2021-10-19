@@ -42,12 +42,12 @@ export const Recent = memo(() => {
         /* ↓ローカル開発用 */
         // <Box>
         //     {/* jsonを引っ張り、map関数でカードを繰り返し描画 */}
-        //     {api_posts.map((obj) =>
+        //     {api_posts.map((obj) => (
         //         <Box key={obj.id}>
         //             {/* Object.assign(オブジェクト)で、オブジェクトのスプレッドを実現 */}
         //             <PostCard post={Object.assign(obj)} />
         //         </Box>
-        //     )}
+        //     ))}
         // </Box>
     );
 });
