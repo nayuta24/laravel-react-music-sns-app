@@ -3,13 +3,15 @@ import { useCallback, useState } from "react";
 import { PostsDataType } from "../../type/api/PostsDataType";
 import failed from "../../test_json/postDetail.json";
 import { useHistory} from "react-router-dom" ;
+import { useMessage } from "../message/useMessage";
 
 
 export const useApiPostDetail = ( id: string ) =>
 {
     const [ api_postDetail, setApiPostDetail ] = useState<PostsDataType>( failed );
-    const [loading, setLoading] = useState(false)
+    const [ loading, setLoading ] = useState( false )
     const history = useHistory();
+    const {showMessage} = useMessage();
 
     const getPostDetail = useCallback(() =>
     {
@@ -20,7 +22,7 @@ export const useApiPostDetail = ( id: string ) =>
         .then( ( res ) => setApiPostDetail( res.data ) )
         .catch( () =>
         {
-            history.push( "/home/page404" )
+            showMessage( { title: "投稿が見つかりません", status: "error" } );
         } ).finally( ()=>setLoading(false));
     },[])
 
