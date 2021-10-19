@@ -1,6 +1,7 @@
 import { Flex, Box, IconButton } from "@chakra-ui/react";
 import { memo, ReactNode, VFC } from "react";
 import { ArrowBackIcon } from "@chakra-ui/icons";
+import { HiArrowNarrowLeft } from "react-icons/hi";
 import { useRecoilValue } from "recoil";
 
 import { HamburgerButton } from "../../atoms/button/HamburgerButton";
@@ -50,12 +51,14 @@ export const HomePostBox: VFC<Props> = memo((props) => {
                     ) : (
                         <Flex>
                             <IconButton
-                                icon={<ArrowBackIcon />}
+                                icon={<HiArrowNarrowLeft />}
                                 aria-label="Back home"
                                 bg="none"
                                 mr={2}
-                                fontSize="xl"
+                                fontSize="25px"
                                 onClick={onBackHome}
+                                mt="auto"
+                                boxSize={{ base: "29px", md: "36px" }}
                             />
                             <HomePostTitle>スレッド</HomePostTitle>
                         </Flex>
