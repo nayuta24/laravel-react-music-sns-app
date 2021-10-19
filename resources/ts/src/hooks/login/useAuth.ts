@@ -11,17 +11,17 @@ export const useAuth = () => {
 
     const login = useCallback( (mail: string, password: string ) =>
     {
-        // if ( mail === "yuta" && password === "123" )
-        // {
-        //     showMessage( { title: "ログインしました", status: "success" } );
-        //     history.push("/home")
-        // } else
-        // {
-        //     showMessage( { title: "ユーザーが見つかりません", status: "error" } );
-        // }
+        if ( mail === "yuta" && password === "123" )
+        {
+            showMessage( { title: "ログインしました", status: "success" } );
+            history.push("/home")
+        } else
+        {
+            showMessage( { title: "ユーザーが見つかりません", status: "error" } );
+        }
 
-        axios
-            .post("/api/login")
+        // axios
+        //     .post("/api/login")
     }, [] );
     return { login };
 }
