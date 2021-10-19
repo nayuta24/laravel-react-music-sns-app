@@ -66,6 +66,9 @@ class PostController extends Controller
         $post_detail = Post::find($id);
         $user = User::find($post_detail->user_id);
         
+        $track_id = $post_detail->track_id;
+        $track = $this->getTrack($track_id);
+        
         return [
                 "id"=>$post_detail->id,
                 "created_at"=>$post_detail->created_at,
@@ -77,12 +80,12 @@ class PostController extends Controller
                     "job"=>$user->job,
                 ],
                 "track" => [
-                    "id"=>"5ViZUsnQEwWw2bdFuW78y8",
-                    "img"=>"https://i.scdn.co/image/ab67616d00001e029259361b006ad3108801a541",
-                    "artist"=>"キリンジ",
-                    "title"=>"時間がない",
-                    "album"=>"愛があるだけ、すべて",
-                    "release"=>"2019/10/18"
+                    "id"=>$track_id,
+                    "img"=>$track['img'],
+                    "artist"=>$track['artist'],
+                    "title"=>$track['title'],
+                    "album"=>$track['album'],
+                    "release"=>$track['release']
                 ],
                 "review" => [
                     "star"=>$post_detail->rate,
