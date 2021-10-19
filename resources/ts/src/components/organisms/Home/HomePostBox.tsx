@@ -1,6 +1,5 @@
 import { Flex, Box, IconButton } from "@chakra-ui/react";
 import { memo, ReactNode, VFC } from "react";
-import { ArrowBackIcon } from "@chakra-ui/icons";
 import { HiArrowNarrowLeft } from "react-icons/hi";
 import { useRecoilValue } from "recoil";
 
