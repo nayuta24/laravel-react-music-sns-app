@@ -19,7 +19,7 @@ export const PostCard: VFC<Props> = memo((props) => {
     const { user, track, review, reaction, id } = post;
     const history = useHistory();
     const onClickCard = () => {
-        history.push(`/home/post/${id}`);
+        history.push(`/post/${id}`);
     };
 
     return (

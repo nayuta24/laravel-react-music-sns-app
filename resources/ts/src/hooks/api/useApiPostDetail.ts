@@ -2,7 +2,6 @@ import axios from "axios";
 import { useCallback, useState } from "react";
 import { PostsDataType } from "../../type/api/PostsDataType";
 import failed from "../../test_json/postDetail.json";
-import { useHistory} from "react-router-dom" ;
 import { useMessage } from "../message/useMessage";
 
 
@@ -10,7 +9,6 @@ export const useApiPostDetail = ( id: string ) =>
 {
     const [ api_postDetail, setApiPostDetail ] = useState<PostsDataType>( failed );
     const [ loading, setLoading ] = useState( false )
-    const history = useHistory();
     const {showMessage} = useMessage();
 
     const getPostDetail = useCallback(() =>
