@@ -27,4 +27,3 @@ Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('/users/me', 'UserController@show')->name('user');
 
-
