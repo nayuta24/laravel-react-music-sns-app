@@ -11,14 +11,8 @@
 |
 */
 
-Route::get('/api/posts/recent', 'PostController@posts');
 
-Route::get('/api/posts/{id}', 'PostController@detail');
 
-Route::get('/api/spo', function() {
-    return view('spotify');
-});
-
-Route::get('/{any}', function() {
+Route::get('/{any?}', function() {
     return view('index');
-})->where('any', '.*');
+})->where('any', '(?!api).+');

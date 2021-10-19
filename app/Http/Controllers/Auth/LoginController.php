@@ -37,4 +37,30 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+    
+    /**
+     * ログインAPI レスポンスカスタマイズ用メソッド
+     *
+     * @param Illuminate\Http\Request $request
+     * @param \App\User $user
+     * @return \App\User
+     */
+    protected function authenticated(Request $request, $user)
+    {
+        return $user;
+    }
+    
+    /**
+     * ログアウトAPI レスポンスカスタマイズ用メソッド
+     *
+     * @param Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    protected function loggedOut(Request $request)
+    {
+        // セッションを再生成する
+        $request->session()->regenerate();
+    
+        return response()->json();
+    }
 }
