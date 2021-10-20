@@ -9,17 +9,17 @@ import { UserInfoBox } from "./UserInfoBox";
 export const MenuContents = memo(() => {
     const history = useHistory();
     const onRecent = () => {
-        history.push("/");
+        history.push("/home");
     };
     const onFollowPost = () => {
-        history.push("/follow_post");
+        history.push("/home/follow_post");
     };
     const onPopular = () => {
-        history.push("/popular");
+        history.push("/home/popular");
     };
     return (
         <Flex flexFlow="column" ml="20px" alignItems="start" pr="80px">
-            <Link to="/">
+            <Link to="/home">
                 <Text
                     as="h1"
                     fontSize="40px"
@@ -42,11 +42,11 @@ export const MenuContents = memo(() => {
             <MenuButton w="100%" onClick={onPopular}>
                 人気の投稿
             </MenuButton>
-            <Flex mt="300px" ml="30px">
+            <Flex mt="25vh" ml="30px">
                 <PrimaryButton w="130px">投稿</PrimaryButton>
             </Flex>
 
-            <Box mt="200px" w="100%" ml="15%">
+            <Box mt="25vh" w="100%">
                 <UserInfoBox
                     img="https://source.unsplash.com/brFsZ7qszSY"
                     name="中村 優太"

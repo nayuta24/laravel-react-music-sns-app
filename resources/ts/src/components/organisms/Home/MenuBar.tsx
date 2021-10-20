@@ -20,7 +20,7 @@ export const MenuBar: VFC<Props> = memo((props) => {
                 <Flex mx="auto" w="100%">
                     <Box
                         w="15%"
-                        h="100vh"
+                        h="100%"
                         display={{ base: "none", md: "inline" }}
                         pr="auto"
                         ml="18%"
