@@ -17,7 +17,7 @@ export const Rating: VFC<Props> = (props) => {
     }
 
     return (
-        <Text fontSize="30px" color="orange">
+        <Text fontSize="25px" color="orange">
             {rating_stars}
         </Text>
     );
