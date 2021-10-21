@@ -24,7 +24,7 @@ export const useRegister = () => {
                 if ( res.status == 200 )
                 {
                     showMessage( { title: "新規登録に成功しました", status: "success" } );
-                    history.push( '/home' )
+                    history.push( '/' )
                 }
             } )
             .catch(  () =>

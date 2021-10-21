@@ -14,7 +14,7 @@ export const useLogin = () => {
         if ( mail === "yuta" && password === "123" )
         {
             showMessage( { title: "ログインしました", status: "success" } );
-            history.push("/home")
+            history.push("/")
         } else
         {
             showMessage( { title: "ユーザーが見つかりません", status: "error" } );
