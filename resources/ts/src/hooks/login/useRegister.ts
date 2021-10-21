@@ -14,7 +14,7 @@ export const useRegister = () => {
     {
         const data = {
             name: name,
-            mail: mail,
+            email: mail,
             password: password
         }
 
