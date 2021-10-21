@@ -20,7 +20,7 @@ export const useLogin = () => {
         //     showMessage( { title: "ユーザーが見つかりません", status: "error" } );
         // }
 
-        axios.get( 'sanctum/csrf-cookie' )
+        axios.get( 'sanctum/csrf-cookie', {withCredentials: true} )
             .then( res =>
             {
                 const url = "/api/login";
@@ -28,11 +28,11 @@ export const useLogin = () => {
                     email: mail,
                     password: password
                 }
-                axios.post( url, data )
+                axios.post( url, data, {withCredentials: true} )
                     .then( res =>
                     {
                         showMessage( { title: "ログインしました", status: "success" } );
-                        history.push( "/" );
+                        history.push( "/recent" );
                     } ).catch( error =>
                     {
                         showMessage( { title: "ユーザーが見つかりません", status: "error" } );

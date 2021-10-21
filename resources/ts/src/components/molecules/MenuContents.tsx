@@ -9,7 +9,7 @@ import { UserInfoBox } from "./UserInfoBox";
 export const MenuContents = memo(() => {
     const history = useHistory();
     const onRecent = () => {
-        history.push("/");
+        history.push("/recent");
     };
     const onFollowPost = () => {
         history.push("/follow_post");
@@ -19,7 +19,7 @@ export const MenuContents = memo(() => {
     };
     return (
         <Flex flexFlow="column" ml="20px" alignItems="start" pr="80px">
-            <Link to="/">
+            <Link to="/recent">
                 <Text
                     as="h1"
                     fontSize="40px"

@@ -7,7 +7,7 @@ import { Detail404 } from "../components/pages/home/detail/Detail404";
 
 export const homeRoutes = [
     {
-        path: "",
+        path: "recent",
         exact: true,
         children: <Recent />,
     },
