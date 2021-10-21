@@ -4,7 +4,7 @@ import { useHistory } from "react-router";
 import { useMessage} from "../message/useMessage";
 
 
-export const useAuth = () => {
+export const useLogin = () => {
     const { showMessage } = useMessage();
 
     const history = useHistory();
