@@ -9,17 +9,17 @@ import { UserInfoBox } from "./UserInfoBox";
 export const MenuContents = memo(() => {
     const history = useHistory();
     const onRecent = () => {
-        history.push("/home");
+        history.push("/");
     };
     const onFollowPost = () => {
-        history.push("/home/follow_post");
+        history.push("/follow_post");
     };
     const onPopular = () => {
-        history.push("/home/popular");
+        history.push("/popular");
     };
     return (
         <Flex flexFlow="column" ml="20px" alignItems="start" pr="80px">
-            <Link to="/home">
+            <Link to="/">
                 <Text
                     as="h1"
                     fontSize="40px"

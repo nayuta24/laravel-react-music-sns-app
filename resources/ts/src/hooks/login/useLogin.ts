@@ -11,17 +11,33 @@ export const useLogin = () => {
 
     const login = useCallback( (mail: string, password: string ) =>
     {
-        if ( mail === "yuta" && password === "123" )
-        {
-            showMessage( { title: "ログインしました", status: "success" } );
-            history.push("/")
-        } else
-        {
-            showMessage( { title: "ユーザーが見つかりません", status: "error" } );
-        }
+        // if ( mail === "yuta" && password === "123" )
+        // {
+        //     showMessage( { title: "ログインしました", status: "success" } );
+        //     history.push("/")
+        // } else
+        // {
+        //     showMessage( { title: "ユーザーが見つかりません", status: "error" } );
+        // }
 
-        // axios
-        //     .post("/api/login")
+        axios.get( 'sanctum/csrf-cookie' )
+            .then( res =>
+            {
+                const url = "/api/login";
+                const data = {
+                    email: mail,
+                    password: password
+                }
+                axios.post( url, data )
+                    .then( res =>
+                    {
+                        showMessage( { title: "ログインしました", status: "success" } );
+                        history.push( "/" );
+                    } ).catch( error =>
+                    {
+                        showMessage( { title: "ユーザーが見つかりません", status: "error" } );
+                    })
+            })
     }, [] );
     return { login };
 }
