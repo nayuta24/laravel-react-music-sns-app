@@ -10,24 +10,9 @@ export const useLogin = () => {
     const history = useHistory();
 
     const [ user, setUser ] = useState();
-    const [token, setToken] = useState();
-
-    type Response = {
-        result: boolean;
-        token: string;
-    }
 
     const login = useCallback( (mail: string, password: string ) =>
     {
-        // if ( mail === "yuta" && password === "123" )
-        // {
-        //     showMessage( { title: "ログインしました", status: "success" } );
-        //     history.push("/")
-        // } else
-        // {
-        //     showMessage( { title: "ユーザーが見つかりません", status: "error" } );
-        // }
-
         apiClient.get( 'sanctum/csrf-cookie', {withCredentials: true} )
             .then( res =>
             {
@@ -38,27 +23,12 @@ export const useLogin = () => {
                     .then( res =>
                     {
                         showMessage( { title: "ログインしました", status: "success" } );
-                        history.push( "/recent" );
+                        history.push( "/" );
                     } ).catch( error =>
                     {
                         showMessage( { title: "ユーザーが見つかりません", status: "error" } );
                     })
             })
-
-    //     axios.post( '/api/login', {
-    //         Headers: {
-    //             "Content-Type": "application/json",
-    //             email: mail,
-    //             password: password
-    //         }
-    //     }).then( res =>
-    //         {
-    //             showMessage( { title: "ログインしました", status: "success" } );
-    //             history.push( "/recent" );
-    //         } ).catch( error =>
-    //         {
-    //             showMessage( { title: "ユーザーが見つかりません", status: "error" } );
-    //         })
     }, [] );
     return { login };
 }
