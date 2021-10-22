@@ -5,6 +5,7 @@ import failed from "../../test_json/postDetail.json";
 import { useMessage } from "../message/useMessage";
 
 
+
 export const useApiPostDetail = ( id: string ) =>
 {
     const [ api_postDetail, setApiPostDetail ] = useState<PostsDataType>( failed );
