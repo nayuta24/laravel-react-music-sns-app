@@ -17,13 +17,17 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+// Route::group(['middleware' => ['auth:sanctum']], function () {
+//     Route::get('/me', MeController::class);
+// });
+
 Route::post('/register', 'RegisterUserController@register');
 
 Route::get('/posts/recent', 'PostController@posts');
 
 Route::get('/posts/{id}', 'PostController@detail');
 
-Route::post('/login', 'Auth\LoginController@login')->name('login');
+Route::post('/login', 'Auth\LoginController@authenticate');
 
 Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 
