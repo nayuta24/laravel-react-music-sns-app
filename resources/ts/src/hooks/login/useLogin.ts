@@ -13,13 +13,13 @@ export const useLogin = () => {
 
     const login = useCallback( (mail: string, password: string ) =>
     {
-        apiClient.get( 'sanctum/csrf-cookie', {withCredentials: true} )
+        apiClient.get( 'sanctum/csrf-cookie')
             .then( res =>
             {
                 apiClient.post( "/api/login", {
                     email: mail,
                     password: password
-                }, {withCredentials: true} )
+                })
                     .then( res =>
                     {
                         showMessage( { title: "ログインしました", status: "success" } );
