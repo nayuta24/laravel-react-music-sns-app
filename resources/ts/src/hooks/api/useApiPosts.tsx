@@ -1,5 +1,5 @@
-import axios from "axios";
 import { useState, useCallback } from "react";
+import { useHistory } from "react-router";
 import apiClient from "../../client/apiClient";
 
 import { PostsDataType } from "../../type/api/PostsDataType";
@@ -11,6 +11,7 @@ export const useApiPosts = (sort: Sort) => {
     const [api_posts, setApiPosts] = useState<Array<PostsDataType>>([]);
     const [loading, setLoading] = useState(false);
     const { showMessage } = useMessage();
+    const history = useHistory();
 
     const getPosts = useCallback(() => {
         setLoading(true);
@@ -18,10 +19,7 @@ export const useApiPosts = (sort: Sort) => {
             .get<Array<PostsDataType>>(`/api/posts/recent`)
             .then((res) => setApiPosts(res.data))
             .catch(() => {
-                showMessage({
-                    title: "データの読み込みに失敗しました",
-                    status: "error",
-                });
+                history.push("/login");
             })
             .finally(() => setLoading(false));
     }, []);
