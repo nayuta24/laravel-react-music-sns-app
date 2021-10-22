@@ -1,14 +1,11 @@
 import axios from "axios";
 import { useCallback } from "react"
-import { useHistory } from "react-router";
-import apiClient from "../../client/apiClient";
 import { useMessage} from "../message/useMessage";
 import { useLogin } from "./useLogin";
 
 
 export const useRegister = () => {
     const { showMessage } = useMessage();
-    const history = useHistory();
     const { login } = useLogin();
 
 
