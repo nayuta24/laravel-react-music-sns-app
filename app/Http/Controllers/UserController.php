@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Auth;
+use App\User;
 
 
 class UserController extends Controller
@@ -26,4 +29,7 @@ class UserController extends Controller
     {
         return Auth::user();
     }
+    
+    
+
 }
