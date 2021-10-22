@@ -42,10 +42,10 @@ export const MenuContents = memo(() => {
             <MenuButton w="100%" onClick={onRecent}>
                 最新の投稿
             </MenuButton>
-            <MenuButton w="100%" onClick={onFollowPost}>
+            <MenuButton w="100%" onClick={onFollowPost} disabled={true}>
                 フォロー
             </MenuButton>
-            <MenuButton w="100%" onClick={onPopular}>
+            <MenuButton w="100%" onClick={onPopular} disabled={true}>
                 人気の投稿
             </MenuButton>
             <Flex mt="25vh" ml="30px">

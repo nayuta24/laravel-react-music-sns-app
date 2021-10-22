@@ -1,9 +1,9 @@
-import axios from "axios";
 import { useCallback, useState } from "react";
 import { PostsDataType } from "../../type/api/PostsDataType";
 import failed from "../../test_json/postDetail.json";
 import { useMessage } from "../message/useMessage";
 import apiClient from "../../client/apiClient";
+import { useHistory } from "react-router";
 
 
 
@@ -11,7 +11,8 @@ export const useApiPostDetail = ( id: string ) =>
 {
     const [ api_postDetail, setApiPostDetail ] = useState<PostsDataType>( failed );
     const [ loading, setLoading ] = useState( false )
-    const {showMessage} = useMessage();
+    const { showMessage } = useMessage();
+    const history = useHistory();
 
     const getPostDetail = useCallback(() =>
     {
@@ -22,7 +23,8 @@ export const useApiPostDetail = ( id: string ) =>
         .then( ( res ) => setApiPostDetail( res.data ) )
         .catch( () =>
         {
-            showMessage( { title: "投稿が見つかりません", status: "error" } );
+            history.push( "/login" );
+
         } ).finally( ()=>setLoading(false));
     },[])
 
