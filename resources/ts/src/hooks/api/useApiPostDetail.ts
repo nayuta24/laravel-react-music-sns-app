@@ -3,6 +3,7 @@ import { useCallback, useState } from "react";
 import { PostsDataType } from "../../type/api/PostsDataType";
 import failed from "../../test_json/postDetail.json";
 import { useMessage } from "../message/useMessage";
+import apiClient from "../../client/apiClient";
 
 
 
@@ -16,7 +17,7 @@ export const useApiPostDetail = ( id: string ) =>
     {
         setLoading( true );
 
-        axios
+        apiClient
         .get<PostsDataType>( `/api/posts/${ id }` )
         .then( ( res ) => setApiPostDetail( res.data ) )
         .catch( () =>

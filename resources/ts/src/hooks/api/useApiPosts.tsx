@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState, useCallback } from "react";
+import apiClient from "../../client/apiClient";
 
 import { PostsDataType } from "../../type/api/PostsDataType";
 import { useMessage } from "../message/useMessage";
@@ -13,7 +14,7 @@ export const useApiPosts = (sort: Sort) => {
 
     const getPosts = useCallback(() => {
         setLoading(true);
-        axios
+        apiClient
             .get<Array<PostsDataType>>(`/api/posts/recent`)
             .then((res) => setApiPosts(res.data))
             .catch(() => {
