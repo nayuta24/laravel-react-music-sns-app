@@ -6,11 +6,24 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+use Webpatser\Uuid\Uuid;
 
 class User extends Authenticatable
 {
     use Notifiable;
 
+    // 自動でidにuuidを入れてくれる
+    public $incrementing = false;
+     
+    protected static function boot()
+    {
+        parent::boot();
+     
+        static::creating(function ($model) {
+            $model->{$model->getKeyName()} = Uuid::generate()->string;
+        });
+    }
+    
     /**
      * The attributes that are mass assignable.
      *

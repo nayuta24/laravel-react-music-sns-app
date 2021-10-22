@@ -18,7 +18,7 @@ class PostController extends Controller
         $posts_json = array();
 
         foreach($posts as $post){
-            $user = User::find($post->user_id);
+            // $user = User::find($post->user_id);
             // $post_user = User::with('posts')->get();
             
             //Spotify APIを叩く関数を呼び出す
@@ -31,10 +31,16 @@ class PostController extends Controller
                 "created_at"=>$post->created_at,
                 "updated_at"=>$post->updated_at,
                 "user" => [
-                    "id"=>$user->id,
-                    "img"=>$user->user_img,
-                    "name"=>$user->name,
-                    "job"=>$user->job,
+                    // "id"=>$user->id,
+                    // "img"=>$user->user_img,
+                    // "name"=>$user->name,
+                    // "job"=>$user->job,
+                    
+                    // 一旦ダミー
+                    "id"=>"1",
+                    "img"=>"https://images.unsplash.com/photo-1537151625747-768eb6cf92b2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MXwxfDB8MXxhbGx8fHx8fHx8fA&ixlib=rb-1.2.1&q=80&w=1080&utm_source=unsplash_source&utm_medium=referral&utm_campaign=api-credit",
+                    "name"=>"ダミー",
+                    "job"=>"学生",
                 ],
                 "track" => [
                     "id"=>$track_id,
@@ -64,7 +70,7 @@ class PostController extends Controller
     // 各投稿詳細ページAPI
     public function detail(Post $post, $id){
         $post_detail = Post::find($id);
-        $user = User::find($post_detail->user_id);
+        // $user = User::find($post_detail->user_id);
         
         $track_id = $post_detail->track_id;
         $track = $this->getTrack($track_id);
@@ -74,10 +80,15 @@ class PostController extends Controller
                 "created_at"=>$post_detail->created_at,
                 "updated_at"=>$post_detail->updated_at,
                 "user" => [
-                    "id"=>$user->id,
-                    "img"=>$user->user_img,
-                    "name"=>$user->name,
-                    "job"=>$user->job,
+                    // "id"=>$user->id,
+                    // "img"=>$user->user_img,
+                    // "name"=>$user->name,
+                    // "job"=>$user->job,
+                    
+                    "id"=>"1",
+                    "img"=>"https://images.unsplash.com/photo-1537151625747-768eb6cf92b2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MXwxfDB8MXxhbGx8fHx8fHx8fA&ixlib=rb-1.2.1&q=80&w=1080&utm_source=unsplash_source&utm_medium=referral&utm_campaign=api-credit",
+                    "name"=>"ダミー",
+                    "job"=>"学生",
                 ],
                 "track" => [
                     "id"=>$track_id,
