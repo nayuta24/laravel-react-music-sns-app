@@ -19,7 +19,7 @@ export const HomePostBox: VFC<Props> = memo((props) => {
     const history = useHistory();
 
     const onBackHome = () => {
-        history.push("/");
+        history.goBack();
     };
 
     return (
