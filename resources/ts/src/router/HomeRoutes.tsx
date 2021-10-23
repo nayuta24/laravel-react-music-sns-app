@@ -8,6 +8,11 @@ import { Login } from "../components/pages/Login";
 
 export const homeRoutes = [
     {
+        path: "",
+        exact: true,
+        children: <Recent />,
+    },
+    {
         path: "follow_post",
         exact: false,
         // children: <FollowPosts />,
