@@ -11,20 +11,20 @@ export const Router = () => {
     const { isLogin } = useRecoilValue(loginState);
     return (
         <Switch>
+            <Route exact path="/login">
+                {isLogin ? <Redirect to="/" /> : <Login />}
+            </Route>
             <Route
                 path="/"
                 render={({ match: { url } }) => (
                     <Switch>
-                        <Route exact path={`${url}login`}>
-                            <Login />
-                        </Route>
                         {homeRoutes.map((route) => (
                             <Route
                                 key={route.path}
                                 exact={route.exact}
                                 path={`${url}${route.path}`}
                             >
-                                <Login />
+                                <HomeLayout>{route.children}</HomeLayout>
                             </Route>
                         ))}
                     </Switch>
