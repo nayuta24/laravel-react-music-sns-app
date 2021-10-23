@@ -30,7 +30,6 @@ export const useApiMe = () =>
             .then( ( res ) =>
             {
                 setApiMe( res.data );
-                setIsLogin( { isLogin:true});
             }
             )
             .catch( () =>
@@ -38,7 +37,8 @@ export const useApiMe = () =>
                 /* どの画面でも必ず必要なユーザー情報が取得できない場合 = ログインしてない
                 なのでログイン画面へリダイレクト */
                 showMessage( { title: "ログインしていません", status: "error" } );
-                history.push("/login");
+                history.push( "/login" );
+                setIsLogin( { isLogin:false});
             })
             .finally(() => setLoading(false));
     }, []);
