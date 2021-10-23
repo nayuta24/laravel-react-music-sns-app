@@ -12,8 +12,12 @@ export const Router = () => {
     return (
         <Switch>
             <Route exact path="/login">
-                {/* ログインしていたらトップページへリダイレクトされる */}
-                {isLogin ? <Redirect to="/" /> : <Login />}
+                {/* Cookieが存在しない場合のみログインページに入れる */}
+                {localStorage.getItem("auth") === null ? (
+                    <Login />
+                ) : (
+                    <Redirect to="/" />
+                )}
             </Route>
             <Route
                 path="/"
