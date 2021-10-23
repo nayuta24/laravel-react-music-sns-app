@@ -11,18 +11,18 @@ export const Router = () => {
     const { isLogin } = useRecoilValue(loginState);
     return (
         <Switch>
-            <Route exact path="/login">
-                {/* Cookieが存在しない場合のみログインページに入れる */}
-                {localStorage.getItem("auth") === null ? (
-                    <Login />
-                ) : (
-                    <Redirect to="/" />
-                )}
-            </Route>
             <Route
                 path="/"
                 render={({ match: { url } }) => (
                     <Switch>
+                        <Route path={`${url}login`}>
+                            {/* Cookieが存在しない場合のみログインページに入れる */}
+                            {localStorage.getItem("auth") === null ? (
+                                <Login />
+                            ) : (
+                                <Redirect to="/" />
+                            )}
+                        </Route>
                         {homeRoutes.map((route) => (
                             <Route
                                 key={route.path}
