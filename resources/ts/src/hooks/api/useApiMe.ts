@@ -30,6 +30,7 @@ export const useApiMe = () =>
             .then( ( res ) =>
             {
                 setApiMe( res.data );
+                setIsLogin( { isLogin:true});
             }
             )
             .catch( () =>
