@@ -16,8 +16,8 @@ export const Router = () => {
                 render={({ match: { url } }) => (
                     <Switch>
                         <Route path={`${url}login`}>
-                            {/* Cookieが存在しない場合のみログインページに入れる */}
-                            {isLogin === true ? <Redirect to="/" /> : <Login />}
+                            {/* ユーザー情報取得に成功している場合、ログイン画面に入れない */}
+                            {isLogin ? <Redirect to="/" /> : <Login />}
                         </Route>
                         {homeRoutes.map((route) => (
                             <Route
@@ -25,7 +25,12 @@ export const Router = () => {
                                 exact={route.exact}
                                 path={`${url}${route.path}`}
                             >
-                                <HomeLayout>{route.children}</HomeLayout>
+                                {/* ユーザー情報取得に失敗した場合、ログイン画面に送られる */}
+                                {isLogin ? (
+                                    <HomeLayout>{route.children}</HomeLayout>
+                                ) : (
+                                    <Login />
+                                )}
                             </Route>
                         ))}
                     </Switch>
