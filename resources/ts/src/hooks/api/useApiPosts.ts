@@ -11,8 +11,6 @@ type Sort = "recent" | "follow" | "popular";
 export const useApiPosts = (sort: Sort) => {
     const [api_posts, setApiPosts] = useState<Array<PostsDataType>>([]);
     const [loading, setLoading] = useState(false);
-    const { showMessage } = useMessage();
-    const ErrorMessage = useErrorMessage();
 
     const getPosts = useCallback(() => {
         setLoading(true);
@@ -21,7 +19,6 @@ export const useApiPosts = (sort: Sort) => {
             .then((res) => setApiPosts(res.data))
             .catch( () =>
             {
-                ErrorMessage( "データの取得に失敗しました" );
             })
             .finally(() => setLoading(false));
     }, []);
