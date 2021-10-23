@@ -34,9 +34,6 @@ export const useApiMe = () =>
             )
             .catch( () =>
             {
-                /* どの画面でも必ず必要なユーザー情報が取得できない場合 = ログインしてない
-                なのでログイン画面へリダイレクト */
-                showMessage( { title: "ログインしていません", status: "error" } );
                 setIsLogin( { isLogin:false});
             })
             .finally(() => setLoading(false));
