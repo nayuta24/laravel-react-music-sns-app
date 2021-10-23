@@ -21,30 +21,43 @@ import { PrimaryButton } from "../atoms/button/PrimaryButton";
 import { useRegister } from "../../hooks/login/useRegister";
 
 export const Login = () => {
-    const [mailAddress, setMailAddress] = useState("");
-    const [password, setPassword] = useState("");
-    const [password_confirm, setPasswordConfirm] = useState("");
-    const [name, setName] = useState("");
+    // ログインフォーム用state
+    const [loginMailAddress, setLoginMailAddress] = useState("");
+    const [loginPassword, setLoginPassword] = useState("");
+    // 新規登録フォーム用state
+    const [regMailAddress, setRegMailAddress] = useState("");
+    const [regPassword, setRegPassword] = useState("");
+    const [regPasswordConfirm, setRegPasswordConfirm] = useState("");
+    const [regName, setRegName] = useState("");
 
-    const onChangeMailAddress = (e: ChangeEvent<HTMLInputElement>) =>
-        setMailAddress(e.target.value);
+    // ログインフォーム入力関数
+    const onChangeLoginMailAddress = (e: ChangeEvent<HTMLInputElement>) =>
+        setLoginMailAddress(e.target.value);
 
-    const onChangePassword = (e: ChangeEvent<HTMLInputElement>) =>
-        setPassword(e.target.value);
-    const onChangePasswordConfirm = (e: ChangeEvent<HTMLInputElement>) =>
-        setPasswordConfirm(e.target.value);
+    const onChangeLoginPassword = (e: ChangeEvent<HTMLInputElement>) =>
+        setLoginPassword(e.target.value);
 
-    const onChangeName = (e: ChangeEvent<HTMLInputElement>) =>
-        setName(e.target.value);
+    // ログインフォーム入力関数
+    const onChangeRegMailAddress = (e: ChangeEvent<HTMLInputElement>) =>
+        setRegMailAddress(e.target.value);
+
+    const onChangeRegPassword = (e: ChangeEvent<HTMLInputElement>) =>
+        setRegPassword(e.target.value);
+
+    const onChangeRegPasswordConfirm = (e: ChangeEvent<HTMLInputElement>) =>
+        setRegPasswordConfirm(e.target.value);
+
+    const onChangeRegName = (e: ChangeEvent<HTMLInputElement>) =>
+        setRegName(e.target.value);
 
     const { register } = useRegister();
     const onClickRegister = () => {
-        register(name, mailAddress, password);
+        register(regName, regMailAddress, regPassword);
     };
 
     const { login } = useLogin();
     const onClickLogin = () => {
-        login(mailAddress, password);
+        login(loginMailAddress, loginPassword);
     };
 
     return (
@@ -114,15 +127,15 @@ export const Login = () => {
                         <TabPanel>
                             <Flex flexDirection="column" w="100%" h="100%">
                                 <LoginForm
-                                    onChange={onChangeMailAddress}
-                                    value={mailAddress}
+                                    onChange={onChangeLoginMailAddress}
+                                    value={loginMailAddress}
                                     inputType="email"
                                 >
                                     メールアドレス
                                 </LoginForm>
                                 <LoginForm
-                                    onChange={onChangePassword}
-                                    value={password}
+                                    onChange={onChangeLoginPassword}
+                                    value={loginPassword}
                                     inputType="password"
                                 >
                                     パスワード
@@ -130,7 +143,8 @@ export const Login = () => {
                                 <PrimaryButton
                                     onClick={onClickLogin}
                                     disabled={
-                                        mailAddress === "" || password === ""
+                                        loginMailAddress === "" ||
+                                        loginPassword === ""
                                     }
                                     mt="15px"
                                 >
@@ -141,26 +155,29 @@ export const Login = () => {
                         {/* 新規登録用タブパネル */}
                         <TabPanel>
                             <Flex flexDirection="column" w="100%" h="100%">
-                                <LoginForm onChange={onChangeName} value={name}>
+                                <LoginForm
+                                    onChange={onChangeRegName}
+                                    value={regName}
+                                >
                                     ユーザー名
                                 </LoginForm>
                                 <LoginForm
-                                    onChange={onChangeMailAddress}
-                                    value={mailAddress}
+                                    onChange={onChangeRegMailAddress}
+                                    value={regMailAddress}
                                     inputType="email"
                                 >
                                     メールアドレス
                                 </LoginForm>
                                 <LoginForm
-                                    onChange={onChangePassword}
-                                    value={password}
+                                    onChange={onChangeRegPassword}
+                                    value={regPassword}
                                     inputType="password"
                                 >
                                     パスワード
                                 </LoginForm>
                                 <LoginForm
-                                    onChange={onChangePasswordConfirm}
-                                    value={password_confirm}
+                                    onChange={onChangeRegPasswordConfirm}
+                                    value={regPasswordConfirm}
                                     inputType="password"
                                 >
                                     パスワード（再入力）
@@ -168,11 +185,11 @@ export const Login = () => {
                                 <PrimaryButton
                                     onClick={onClickRegister}
                                     disabled={
-                                        mailAddress === "" ||
-                                        password === "" ||
-                                        password_confirm === "" ||
-                                        password !== password_confirm ||
-                                        name === ""
+                                        regMailAddress === "" ||
+                                        regPassword === "" ||
+                                        regPasswordConfirm === "" ||
+                                        regPassword !== regPasswordConfirm ||
+                                        regName === ""
                                     }
                                     mt="15px"
                                 >

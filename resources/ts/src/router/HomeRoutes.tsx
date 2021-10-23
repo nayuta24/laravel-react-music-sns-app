@@ -4,22 +4,25 @@ import { Popular } from "../components/pages/home/Popular";
 import { PostDetail } from "../components/pages/home/detail/PostDetail";
 import { HomePage404 } from "../components/pages/home/Home404";
 import { Detail404 } from "../components/pages/home/detail/Detail404";
+import { Login } from "../components/pages/Login";
 
 export const homeRoutes = [
     {
-        path: "recent",
+        path: "",
         exact: true,
         children: <Recent />,
     },
     {
         path: "follow_post",
         exact: false,
-        children: <FollowPosts />,
+        // children: <FollowPosts />,
+        children: <Recent />,
     },
     {
         path: "popular",
         exact: false,
-        children: <Popular />,
+        // children: <Popular />,
+        children: <Recent />,
     },
     {
         path: "post/:id",
@@ -34,6 +37,6 @@ export const homeRoutes = [
     {
         path: "*",
         exact: false,
-        children: <HomePage404 />,
+        children: <Recent />,
     },
 ];
