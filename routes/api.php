@@ -13,19 +13,15 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::get('/me', MeController::class);
+    
+    Route::get('/posts/recent', 'PostController@posts');
+
+    Route::get('/posts/{id}', 'PostController@detail');
 });
 
 Route::post('/register', 'RegisterUserController@register');
-
-Route::get('/posts/recent', 'PostController@posts');
-
-Route::get('/posts/{id}', 'PostController@detail');
-
-Route::post('/login', 'Auth\LoginController@login')->name('login');
-
-Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
-
-Route::get('/users/me', 'UserController@show')->name('user');
+Route::post('/login', 'MeController@login');
+Route::post('/logout', 'MeController@logout');
 

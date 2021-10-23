@@ -20,15 +20,11 @@ class RegisterUserController extends Controller
     public function register(Request $request)
     {
         /** @var Illuminate\Validation\Validator $validator */
-        $validator = Validator::make($request->all(), [
-            'name' => 'required',
+        $request->validate([
+            'name' => 'required|max:10',
             'email' => 'required|email',
-            'password' => 'required'
+            'password' => 'required|min:6|max:10'
         ]);
-
-        if ($validator->fails()) {
-            return response()->json($validator->messages(), Response::HTTP_UNPROCESSABLE_ENTITY);
-        }
 
         User::create([
             'name' =>  $request->name,
