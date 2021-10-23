@@ -4,6 +4,7 @@ import failed from "../../test_json/postDetail.json";
 import { useMessage } from "../message/useMessage";
 import apiClient from "../../client/apiClient";
 import { useHistory } from "react-router";
+import { useErrorMessage } from "../useErrorMessage";
 
 
 
@@ -12,7 +13,7 @@ export const useApiPostDetail = ( id: string ) =>
     const [ api_postDetail, setApiPostDetail ] = useState<PostsDataType>( failed );
     const [ loading, setLoading ] = useState( false )
     const { showMessage } = useMessage();
-
+    const ErrorMessage = useErrorMessage();
     const getPostDetail = useCallback(() =>
     {
         setLoading( true );
@@ -22,7 +23,7 @@ export const useApiPostDetail = ( id: string ) =>
         .then( ( res ) => setApiPostDetail( res.data ) )
         .catch( () =>
         {
-            showMessage( { title: "データの取得に失敗しました", status: "error" } );
+            ErrorMessage("データの取得に失敗しました")
         } ).finally( ()=>setLoading(false));
     },[])
 

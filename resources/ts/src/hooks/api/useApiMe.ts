@@ -18,10 +18,10 @@ export const useApiMe = () =>
 {
     const [ loading, setLoading ] = useState( false );
     const [ apiMe, setApiMe ] = useState<Me>(NullMe);
-    const history = useHistory();
-    const { showMessage } = useMessage();
     const setIsLogin = useSetRecoilState( loginState );
 
+    // ユーザーの情報を取得できない＝ログインしていないとみなし、
+    // その場合はログイン状態管理（isLogin）がfalseとなる
 
     const getMe = useCallback(() => {
         setLoading(true);

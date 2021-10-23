@@ -12,6 +12,7 @@ export const Router = () => {
     return (
         <Switch>
             <Route exact path="/login">
+                {/* ログインしている場合はトップページにリダイレクトされる */}
                 {isLogin ? <Redirect to="/" /> : <Login />}
             </Route>
             <Route
@@ -24,6 +25,7 @@ export const Router = () => {
                                 exact={route.exact}
                                 path={`${url}${route.path}`}
                             >
+                                {/* ログインしていない場合はログインページにリダイレクトされる */}
                                 {isLogin ? (
                                     <HomeLayout>{route.children}</HomeLayout>
                                 ) : (
