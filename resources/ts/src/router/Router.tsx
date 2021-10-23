@@ -24,7 +24,11 @@ export const Router = () => {
                                 exact={route.exact}
                                 path={`${url}${route.path}`}
                             >
-                                <HomeLayout>{route.children}</HomeLayout>
+                                {isLogin ? (
+                                    <HomeLayout>{route.children}</HomeLayout>
+                                ) : (
+                                    <Login />
+                                )}
                             </Route>
                         ))}
                     </Switch>
