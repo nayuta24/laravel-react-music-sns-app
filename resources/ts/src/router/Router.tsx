@@ -15,7 +15,7 @@ export const Router = () => {
                 path="/"
                 render={({ match: { url } }) => (
                     <Switch>
-                        <Route path={`${url}login`}>
+                        <Route exact path={`${url}login`}>
                             <Login />
                         </Route>
                         {homeRoutes.map((route) => (
