@@ -17,7 +17,7 @@ export const Router = () => {
                     <Switch>
                         <Route path={`${url}login`}>
                             {/* Cookieが存在しない場合のみログインページに入れる */}
-                            {isLogin ? <Redirect to="/" /> : <Login />}
+                            {isLogin === true ? <Redirect to="/" /> : <Login />}
                         </Route>
                         {homeRoutes.map((route) => (
                             <Route
