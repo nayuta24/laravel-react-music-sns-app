@@ -18,9 +18,9 @@ export const Router = () => {
                         <Route path={`${url}login`}>
                             {/* Cookieが存在しない場合のみログインページに入れる */}
                             {localStorage.getItem("auth") === null ? (
-                                <Login />
-                            ) : (
                                 <Redirect to="/aaa" />
+                            ) : (
+                                <Login />
                             )}
                         </Route>
                         {homeRoutes.map((route) => (
