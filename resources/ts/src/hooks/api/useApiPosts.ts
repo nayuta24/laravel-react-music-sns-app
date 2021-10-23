@@ -4,6 +4,7 @@ import apiClient from "../../client/apiClient";
 
 import { PostsDataType } from "../../type/api/PostsDataType";
 import { useMessage } from "../message/useMessage";
+import { useErrorMessage } from "../useErrorMessage";
 
 type Sort = "recent" | "follow" | "popular";
 
@@ -11,6 +12,7 @@ export const useApiPosts = (sort: Sort) => {
     const [api_posts, setApiPosts] = useState<Array<PostsDataType>>([]);
     const [loading, setLoading] = useState(false);
     const { showMessage } = useMessage();
+    const ErrorMessage = useErrorMessage();
 
     const getPosts = useCallback(() => {
         setLoading(true);
@@ -19,7 +21,7 @@ export const useApiPosts = (sort: Sort) => {
             .then((res) => setApiPosts(res.data))
             .catch( () =>
             {
-                showMessage( { title: "データの取得に失敗しました", status: "error" } );
+                ErrorMessage( "データの取得に失敗しました" );
             })
             .finally(() => setLoading(false));
     }, []);
