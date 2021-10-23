@@ -20,7 +20,7 @@ export const Router = () => {
                             {localStorage.getItem("auth") === null ? (
                                 <Login />
                             ) : (
-                                <Redirect to="/" />
+                                <Redirect to="/aaa" />
                             )}
                         </Route>
                         {homeRoutes.map((route) => (
