@@ -19,6 +19,8 @@ import { Link } from "react-router-dom";
 import { LoginForm } from "../molecules/LoginForm";
 import { PrimaryButton } from "../atoms/button/PrimaryButton";
 import { useRegister } from "../../hooks/login/useRegister";
+import { useRecoilValue } from "recoil";
+import { loginState } from "../../store/loginState";
 
 export const Login = () => {
     // ログインフォーム用state
@@ -60,7 +62,13 @@ export const Login = () => {
         login(loginMailAddress, loginPassword);
     };
 
+    const { isLogin } = useRecoilValue(loginState);
+    const history = useHistory();
+
     // ログイン済みだったら「最新の投稿」ページにリダイレクトされる
+    if (isLogin) {
+        history.push("/");
+    }
 
     return (
         <Box
