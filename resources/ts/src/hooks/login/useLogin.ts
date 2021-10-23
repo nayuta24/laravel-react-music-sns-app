@@ -12,7 +12,7 @@ export const useLogin = () => {
     const history = useHistory();
 
     const [ user, setUser ] = useState();
-        const setIsLogin = useSetRecoilState( loginState );
+    const setIsLogin = useSetRecoilState( loginState );
 
     const login = useCallback( (mail: string, password: string ) =>
     {
