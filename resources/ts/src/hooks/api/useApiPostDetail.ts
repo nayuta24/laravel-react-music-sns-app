@@ -12,7 +12,6 @@ export const useApiPostDetail = ( id: string ) =>
     const [ api_postDetail, setApiPostDetail ] = useState<PostsDataType>( failed );
     const [ loading, setLoading ] = useState( false )
     const { showMessage } = useMessage();
-    const history = useHistory();
 
     const getPostDetail = useCallback(() =>
     {
@@ -23,8 +22,7 @@ export const useApiPostDetail = ( id: string ) =>
         .then( ( res ) => setApiPostDetail( res.data ) )
         .catch( () =>
         {
-            history.push( "/login" );
-
+            showMessage( { title: "データの取得に失敗しました", status: "error" } );
         } ).finally( ()=>setLoading(false));
     },[])
 

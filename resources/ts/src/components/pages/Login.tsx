@@ -60,6 +60,8 @@ export const Login = () => {
         login(loginMailAddress, loginPassword);
     };
 
+    // ログイン済みだったら「最新の投稿」ページにリダイレクトされる
+
     return (
         <Box
             w="100%"

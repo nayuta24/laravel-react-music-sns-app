@@ -1,7 +1,8 @@
 import { Box, Button, Flex, Text } from "@chakra-ui/react";
-import { memo } from "react";
+import { memo, useEffect } from "react";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
+import { useApiMe } from "../../hooks/api/useApiMe";
 import { useLogout } from "../../hooks/login/useLogout";
 import { MenuButton } from "../atoms/button/MenuButton";
 import { PrimaryButton } from "../atoms/button/PrimaryButton";
@@ -9,7 +10,12 @@ import { UserInfoBox } from "./UserInfoBox";
 
 export const MenuContents = memo(() => {
     const history = useHistory();
+    // ユーザーの情報を取得
+    const { getMe, apiMe } = useApiMe();
     const { logout } = useLogout();
+
+    useEffect(() => getMe(), [getMe]);
+
     const onRecent = () => {
         history.push("/");
     };
@@ -55,7 +61,7 @@ export const MenuContents = memo(() => {
             <Box mt="25vh" w="100%" onClick={onClickLogout}>
                 <UserInfoBox
                     img="https://source.unsplash.com/brFsZ7qszSY"
-                    name="中村 優太"
+                    name={apiMe.name}
                     user_title="学生"
                     pl="30px"
                 />
