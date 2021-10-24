@@ -21,6 +21,9 @@ export const useLogout = () => {
                 setIsLogin( { isLogin:false});
                 history.push( "/login" );
                 showMessage( { title: "ログアウトしました", status: "success" } );
+            } ).catch( res =>
+            {
+                showMessage( { title: "ログアウトに失敗しました", status: "error" } );
             })
     }, [] );
     return { logout };

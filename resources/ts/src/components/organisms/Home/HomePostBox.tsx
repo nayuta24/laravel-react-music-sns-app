@@ -47,6 +47,8 @@ export const HomePostBox: VFC<Props> = memo((props) => {
                         <HomePostTitle>フォロー</HomePostTitle>
                     ) : topic === "popular" ? (
                         <HomePostTitle>人気の投稿</HomePostTitle>
+                    ) : topic === "post" ? (
+                        <HomePostTitle>投稿する</HomePostTitle>
                     ) : (
                         <Flex>
                             <IconButton

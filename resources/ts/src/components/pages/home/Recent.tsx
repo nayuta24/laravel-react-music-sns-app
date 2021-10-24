@@ -4,7 +4,7 @@ import { Box } from "@chakra-ui/react";
 import axios from "axios";
 
 import { homeState } from "../../../store/homeState";
-import { PostCard } from "../../organisms/Home/post/PostCard";
+import { PostCard } from "../../organisms/home/post/PostCard";
 import { PostsDataType } from "../../../type/api/PostsDataType";
 import Posts from "../../../test_json/allPosts.json";
 import { useApiPosts } from "../../../hooks/api/useApiPosts";

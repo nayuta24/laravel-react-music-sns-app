@@ -1,12 +1,7 @@
 import { useCallback, useState } from "react";
 import { PostsDataType } from "../../type/api/PostsDataType";
-import failed from "../../test_json/postDetail.json";
-import { useMessage } from "../message/useMessage";
+import failed from "../../test_json/failedDetail.json";
 import apiClient from "../../client/apiClient";
-import { useHistory } from "react-router";
-import { useErrorMessage } from "../useErrorMessage";
-
-
 
 export const useApiPostDetail = ( id: string ) =>
 {

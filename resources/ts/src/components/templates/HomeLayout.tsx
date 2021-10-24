@@ -1,8 +1,8 @@
 import { Box, Flex, useDisclosure } from "@chakra-ui/react";
 import { memo, ReactNode, VFC } from "react";
 
-import { HomePostBox } from "../organisms/Home/HomePostBox";
-import { MenuBar } from "../organisms/Home/MenuBar";
+import { HomePostBox } from "../organisms/home/HomePostBox";
+import { MenuBar } from "../organisms/home/MenuBar";
 
 type Props = {
     children: ReactNode;
