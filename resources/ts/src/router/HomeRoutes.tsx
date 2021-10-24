@@ -2,9 +2,8 @@ import { Recent } from "../components/pages/home/Recent";
 import { FollowPosts } from "../components/pages/home/FollowPosts";
 import { Popular } from "../components/pages/home/Popular";
 import { PostDetail } from "../components/pages/home/detail/PostDetail";
-import { HomePage404 } from "../components/pages/home/Home404";
 import { Detail404 } from "../components/pages/home/detail/Detail404";
-import { Login } from "../components/pages/Login";
+import { Create } from "../components/pages/create/Create";
 
 export const homeRoutes = [
     {
@@ -28,6 +27,11 @@ export const homeRoutes = [
         path: "post/:id",
         exact: false,
         children: <PostDetail />,
+    },
+    {
+        path: "create_post",
+        exact: false,
+        children: <Create />,
     },
     {
         path: "page404",

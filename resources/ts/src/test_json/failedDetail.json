@@ -1,0 +1,29 @@
+
+  {
+    "id":"",
+    "created_at":"",
+    "updated_at":"",
+    "user": {
+      "id": "",
+      "img": "",
+      "name": "",
+      "job": ""
+    },
+    "track": {
+      "id": "",
+      "img":"",
+      "artist":"",
+      "title": "",
+      "album": "",
+      "release": ""
+    },
+    "review": {
+      "star": 0,
+      "title": "",
+      "body": ""
+    },
+    "reaction": {
+      "comment_val": 0,
+      "like_val": 0
+    }
+  }

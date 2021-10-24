@@ -26,6 +26,10 @@ export const MenuContents = memo(() => {
         history.push("/popular");
     };
 
+    const onCreate = () => {
+        history.push("/create_post");
+    };
+
     const onClickLogout = () => {
         logout();
     };
@@ -55,7 +59,9 @@ export const MenuContents = memo(() => {
                 人気の投稿
             </MenuButton>
             <Flex mt="25vh" ml="30px">
-                <PrimaryButton w="130px">投稿</PrimaryButton>
+                <PrimaryButton w="130px" onClick={onCreate}>
+                    投稿
+                </PrimaryButton>
             </Flex>
 
             <Box mt="25vh" w="100%" onClick={onClickLogout}>
