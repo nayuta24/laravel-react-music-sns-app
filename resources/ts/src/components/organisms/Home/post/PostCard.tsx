@@ -23,7 +23,7 @@ export const PostCard: VFC<Props> = memo((props) => {
     };
 
     return (
-        <CardFrame mb="1.5%" onClick={onClickCard}>
+        <CardFrame mb="2%" onClick={onClickCard}>
             {/* 曲情報 */}
             <CardMusicBox
                 img={track.img}

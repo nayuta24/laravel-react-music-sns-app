@@ -47,7 +47,7 @@ export const HomePostBox: VFC<Props> = memo((props) => {
                         <HomePostTitle>フォロー</HomePostTitle>
                     ) : topic === "popular" ? (
                         <HomePostTitle>人気の投稿</HomePostTitle>
-                    ) : topic === "post" ? (
+                    ) : topic === "create" ? (
                         <HomePostTitle>投稿する</HomePostTitle>
                     ) : (
                         <Flex>
@@ -82,6 +82,7 @@ export const HomePostBox: VFC<Props> = memo((props) => {
                 flexDirection="column"
                 align="center"
                 pt="2%"
+                px={5}
             >
                 {children}
             </Box>

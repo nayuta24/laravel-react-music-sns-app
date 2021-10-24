@@ -35,9 +35,9 @@ export const PostDetail: VFC<Props> = (props) => {
             {loading ? (
                 <LoadingPageSpinner />
             ) : (
-                <Box px={5}>
+                <Box>
                     <MusicDetailBox
-                        id={`https://open.spotify.com/embed/track/${api_postDetail.track.id}`}
+                        id={api_postDetail.track.id}
                         title={api_postDetail.track.title}
                         album={api_postDetail.track.album}
                         artist={api_postDetail.track.artist}
