@@ -12,7 +12,7 @@ export const CardFrame: VFC<Props> = memo((props) => {
 
     return (
         <Flex
-            w="90%"
+            w="98%"
             h="33vh"
             bg="white"
             borderRadius="10px"
