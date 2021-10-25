@@ -12,7 +12,7 @@ import { useHistory } from "react-router";
 import { ChangeEvent, useState } from "react";
 
 import { useLogin } from "../../hooks/login/useLogin";
-import { LoginForm } from "../molecules/LoginForm";
+import { Form } from "../molecules/Form";
 import { PrimaryButton } from "../atoms/button/PrimaryButton";
 import { useRegister } from "../../hooks/login/useRegister";
 
@@ -122,20 +122,22 @@ export const Login = () => {
                         {/* ログイン用タブパネル */}
                         <TabPanel>
                             <Flex flexDirection="column" w="100%" h="100%">
-                                <LoginForm
+                                <Form
                                     onChange={onChangeLoginMailAddress}
                                     value={loginMailAddress}
                                     inputType="email"
                                 >
                                     メールアドレス
-                                </LoginForm>
-                                <LoginForm
+                                </Form>
+                                <Box h="10px" />
+                                <Form
                                     onChange={onChangeLoginPassword}
                                     value={loginPassword}
                                     inputType="password"
                                 >
                                     パスワード
-                                </LoginForm>
+                                </Form>
+                                <Box h="10px" />
                                 <PrimaryButton
                                     onClick={onClickLogin}
                                     disabled={
@@ -151,33 +153,37 @@ export const Login = () => {
                         {/* 新規登録用タブパネル */}
                         <TabPanel>
                             <Flex flexDirection="column" w="100%" h="100%">
-                                <LoginForm
+                                <Form
                                     onChange={onChangeRegName}
                                     value={regName}
                                 >
                                     ユーザー名
-                                </LoginForm>
-                                <LoginForm
+                                </Form>
+                                <Box h="10px" />
+                                <Form
                                     onChange={onChangeRegMailAddress}
                                     value={regMailAddress}
                                     inputType="email"
                                 >
                                     メールアドレス
-                                </LoginForm>
-                                <LoginForm
+                                </Form>
+                                <Box h="10px" />
+                                <Form
                                     onChange={onChangeRegPassword}
                                     value={regPassword}
                                     inputType="password"
                                 >
                                     パスワード
-                                </LoginForm>
-                                <LoginForm
+                                </Form>
+                                <Box h="10px" />
+                                <Form
                                     onChange={onChangeRegPasswordConfirm}
                                     value={regPasswordConfirm}
                                     inputType="password"
                                 >
                                     パスワード（再入力）
-                                </LoginForm>
+                                </Form>
+                                <Box h="10px" />
                                 <PrimaryButton
                                     onClick={onClickRegister}
                                     disabled={

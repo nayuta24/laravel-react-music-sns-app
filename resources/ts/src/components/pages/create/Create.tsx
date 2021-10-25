@@ -1,24 +1,20 @@
-import { memo, useState } from "react";
-import {
-    Box,
-    Breadcrumb,
-    BreadcrumbItem,
-    BreadcrumbLink,
-} from "@chakra-ui/react";
-import { ChevronRightIcon } from "@chakra-ui/icons";
+import { ChangeEvent, memo, useEffect, useState } from "react";
+import { Box } from "@chakra-ui/react";
+import { Prompt } from "react-router";
+import { useSetRecoilState } from "recoil";
 
 import { CreateBreadcrumb } from "../../molecules/create/CreateBreadcrumb";
 import { CreateTrackInfo } from "../../organisms/create/CreateTrackInfo";
 import { CreateRate } from "../../organisms/create/CreateRate";
 import { CreateCheck } from "../../organisms/create/CreateCheck";
-import { useSetRecoilState } from "recoil";
 import { homeState } from "../../../store/homeState";
-import { Prompt } from "react-router";
+import { TrackDataType } from "../../../type/api/TrackDataType";
 
 export const Create = memo(() => {
     const setTopic = useSetRecoilState(homeState);
     setTopic({ topic: "create" });
 
+    // 画面遷移のためのState
     const [step, setStep] = useState<"track" | "rate" | "check">("track");
     const goTrackInfo = () => {
         setStep("track");
@@ -30,6 +26,50 @@ export const Create = memo(() => {
         setStep("check");
     };
 
+    // 各種投稿内容を保存しておくためのState
+    const [trackUrl, setTrackUrl] = useState<string>("");
+    const [trackId, setTrackId] = useState<string>("");
+    const [rate, setRate] = useState<number>(0);
+    const [title, setTitle] = useState<string>("");
+    const [body, setBody] = useState<string>("");
+
+    const onChangeTrackURL = (e: ChangeEvent<HTMLInputElement>) =>
+        setTrackUrl(e.target.value);
+
+    const onChangeTitle = (e: ChangeEvent<HTMLInputElement>) =>
+        setTitle(e.target.value);
+
+    const onChangeBody = (e: ChangeEvent<HTMLTextAreaElement>) =>
+        setBody(e.target.value);
+
+    const onChangeRate = (val: number) => {
+        setRate(val);
+    };
+
+    const ChangeTrackId = (id: string) => {
+        setTrackId(id);
+    };
+
+    // TrackIdが空の場合はほかの画面への遷移をブロックする
+    const [blockTrack, setBlockTrack] = useState<boolean>(true);
+    useEffect(() => {
+        trackId === "" ? setBlockTrack(true) : setBlockTrack(false);
+    }, [trackId]);
+
+    // 評価が書かれていなければ確認画面への遷移をブロックする
+    const [blockRates, setBlockRates] = useState<boolean>(true);
+    useEffect(() => {
+        rate === 0.0 || title === "" || body === ""
+            ? setBlockRates(true)
+            : setBlockRates(false);
+    }, [rate, title, body]);
+
+    // 取得に成功した楽曲データを保持する
+    const [trackData, setTrackData] = useState<TrackDataType>();
+    const saveTrackData = (obj: TrackDataType) => {
+        setTrackData(obj);
+    };
+
     return (
         <Box textAlign="left">
             {/* react-routeの「Priompt」によって、ページを離れようとしたときに警告 */}
@@ -39,13 +79,40 @@ export const Create = memo(() => {
                 goTrackInfo={goTrackInfo}
                 goRate={goRate}
                 goCheck={goCheck}
+                blockTrack={blockTrack}
+                blockRates={blockRates}
             />
+
             {step === "track" ? (
-                <CreateTrackInfo goRate={goRate} />
+                <CreateTrackInfo
+                    goRate={goRate}
+                    onChangeTrackURL={onChangeTrackURL}
+                    trackUrl={trackUrl}
+                    trackId={trackId}
+                    setTrackId={ChangeTrackId}
+                    blockTrack={blockTrack}
+                    trackData={trackData}
+                    saveTrackData={saveTrackData}
+                />
             ) : step === "rate" ? (
-                <CreateRate goCheck={goCheck} goTrackInfo={goTrackInfo} />
+                <CreateRate
+                    goCheck={goCheck}
+                    goTrackInfo={goTrackInfo}
+                    onChangeRate={onChangeRate}
+                    rate={rate}
+                    onChangeTitle={onChangeTitle}
+                    title={title}
+                    onChangeBody={onChangeBody}
+                    body={body}
+                    blockRates={blockRates}
+                />
             ) : (
-                <CreateCheck />
+                <CreateCheck
+                    rate={rate}
+                    title={title}
+                    body={body}
+                    trackData={trackData}
+                />
             )}
         </Box>
     );

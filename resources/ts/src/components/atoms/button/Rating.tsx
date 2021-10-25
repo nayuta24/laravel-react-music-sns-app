@@ -1,24 +1,35 @@
-import { Text } from "@chakra-ui/react";
+import { Box, Flex, Text } from "@chakra-ui/react";
 import { VFC } from "react";
+import { BsStar, BsStarFill, BsStarHalf } from "react-icons/bs";
 
 type Props = {
     rating: number;
 };
-let rating_stars: string;
 
 export const Rating: VFC<Props> = (props) => {
     const { rating } = props;
-    rating_stars = "";
-
-    for (let i = 0; i < 5; i++) {
-        {
-            i < rating ? (rating_stars += "★") : (rating_stars += "☆");
-        }
-    }
-
+    const starSize = "25px";
+    const gap = "1px";
     return (
-        <Text fontSize="25px" color="orange">
-            {rating_stars}
-        </Text>
+        <Flex>
+            {[1, 2, 3, 4, 5].map((value) =>
+                rating >= value ? (
+                    <Box mx={gap}>
+                        <BsStarFill fontSize={starSize} color="orange" />
+                    </Box>
+                ) : rating >= value - 0.5 ? (
+                    <Box mx={gap}>
+                        <BsStarHalf fontSize={starSize} color="orange" />
+                    </Box>
+                ) : (
+                    <Box mx={gap}>
+                        <BsStar fontSize={starSize} color="orange" />
+                    </Box>
+                )
+            )}
+            <Text ml="10px" pt="2px" fontWeight="semibold" color="gray.600">
+                {rating.toFixed(1)}
+            </Text>
+        </Flex>
     );
 };

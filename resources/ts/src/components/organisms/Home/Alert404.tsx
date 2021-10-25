@@ -28,8 +28,8 @@ export const Alert404: VFC<Props> = memo((props) => {
             alignItems="center"
             textAlign="center"
             height="200px"
+            pt="40px"
         >
-            <CloseButton onClick={onClickPageBack} ml="auto" boxSize="30px" />
             <AlertIcon boxSize="40px" mr={0} />
             <AlertTitle mt={4} mb={1} fontSize="lg">
                 {title}
