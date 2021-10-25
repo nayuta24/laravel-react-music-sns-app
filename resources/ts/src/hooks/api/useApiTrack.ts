@@ -2,10 +2,13 @@ import { useCallback, useState } from "react";
 
 import apiClient from "../../client/apiClient";
 import { TrackDataType } from "../../type/api/TrackDataType";
+import {useMessage} from "../message/useMessage"
+
 
 export const useTrack = () =>
 {
-    const getTrack = useCallback( ( id: string | undefined ) =>
+    const { showMessage } = useMessage();
+    const getTrack = useCallback( ( id: string | undefined, saveTrack: (val:TrackDataType )=>void ) =>
     {
         var track: TrackDataType
 
@@ -13,16 +16,15 @@ export const useTrack = () =>
             .get<TrackDataType>(`/api/track/${id}`)
             .then( ( res ) =>
             {
-                track = res.data
-                console.log( track );
+                saveTrack(res.data)
             }
             )
             .catch( () =>
             {
-                track=undefined
+                saveTrack( undefined )
+                showMessage( {title: "楽曲を取得できませんでした",status: "error",});
             })
-        return track
     }, []);
 
-    return { getTrack};
+    return { getTrack };
 };
