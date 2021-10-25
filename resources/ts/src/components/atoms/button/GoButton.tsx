@@ -5,10 +5,11 @@ import { VFC } from "react";
 type Props = {
     onClick: () => void;
     mt?: string;
+    isDisabled?: boolean;
 };
 
 export const GoButton: VFC<Props> = (props) => {
-    const { onClick, mt = "none" } = props;
+    const { onClick, mt = "none", isDisabled = false } = props;
     return (
         <Button
             mt={mt}
@@ -19,6 +20,7 @@ export const GoButton: VFC<Props> = (props) => {
             color="white"
             onClick={onClick}
             fontSize="15px"
+            isDisabled={isDisabled}
         >
             次へ
         </Button>
