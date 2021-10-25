@@ -1,5 +1,5 @@
 import { Box, Button, Flex, Input, Text } from "@chakra-ui/react";
-import { useState, VFC } from "react";
+import { useEffect, useState, VFC } from "react";
 import { gradationGreen } from "../../atoms/color/gradationGreen";
 import { MusicDetailBox } from "../MusicDetailBox";
 import { GoButton } from "../../atoms/button/GoButton";
@@ -42,6 +42,12 @@ export const CreateTrackInfo: VFC<Props> = (props) => {
     const { getTrack } = useTrack();
     const { validateTrackURL } = useValidateTrackURL();
     const { showMessage } = useMessage();
+    const [track, setTrack] = useState<TrackDataType>();
+
+    // 一旦、このページ内の状態で楽曲データを預かる
+    const onceSaveTrackData = (val: TrackDataType) => {
+        setTrack(val);
+    };
 
     const checkTrack = () => {
         const trackId = validateTrackURL(trackUrl);
@@ -56,21 +62,21 @@ export const CreateTrackInfo: VFC<Props> = (props) => {
         }
         // バリデーションをクリアしたidで実際に楽曲を取得できるか判定
         else {
-            const track: TrackDataType = getTrack(trackId);
-            if (track === undefined) {
-                setIsExist(false);
-                showMessage({
-                    title: "楽曲を取得できませんでした",
-                    status: "error",
-                });
-                setTrackId("");
-            } else {
-                setIsExist(true);
-                setTrackId(trackId);
-                saveTrackData(track);
-            }
+            getTrack(trackId, onceSaveTrackData);
+            setTrackId(trackId);
         }
     };
+
+    // APIによって楽曲情報が取得できたタイミングで保存、表示
+    useEffect(() => {
+        if (track === undefined) {
+            setIsExist(false);
+            setTrackId("");
+        } else {
+            setIsExist(true);
+            saveTrackData(track);
+        }
+    }, [track]);
 
     return (
         <Box>
