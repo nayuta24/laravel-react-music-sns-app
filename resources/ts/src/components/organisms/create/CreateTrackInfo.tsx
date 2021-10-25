@@ -106,6 +106,7 @@ export const CreateTrackInfo: VFC<Props> = (props) => {
                         確認
                     </Button>
                 </Flex>
+                <Text>{}</Text>
                 <GoButton onClick={goRate} mt="30px" isDisabled={blockTrack} />
             </Flex>
         </Box>

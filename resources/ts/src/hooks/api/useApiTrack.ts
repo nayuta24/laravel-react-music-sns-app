@@ -14,6 +14,7 @@ export const useTrack = () =>
             .then( ( res ) =>
             {
                 track = res.data
+                console.log( track );
             }
             )
             .catch( () =>
