@@ -40,14 +40,8 @@ class PostController extends Controller
                 "updated_at"=>$post->updated_at,
                 "user" => [
                     "id"=>$user->id,
-                    // "img"=>$user->user_img,
                     "img"=>"https://images.unsplash.com/photo-1537151625747-768eb6cf92b2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MXwxfDB8MXxhbGx8fHx8fHx8fA&ixlib=rb-1.2.1&q=80&w=1080&utm_source=unsplash_source&utm_medium=referral&utm_campaign=api-credit",
                     "name"=>$user->name,
-                    // "job"=>$user->job,
-                    
-                    // // 一旦ダミー
-                    // "id"=>"1",
-                    // "name"=>"ダミー",
                     "job"=>"学生",
                 ],
                 "track" => [
@@ -89,13 +83,8 @@ class PostController extends Controller
                 "updated_at"=>$post_detail->updated_at,
                 "user" => [
                     "id"=>$user->id,
-                    // "img"=>$user->user_img,
                     "img"=>"https://images.unsplash.com/photo-1537151625747-768eb6cf92b2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MXwxfDB8MXxhbGx8fHx8fHx8fA&ixlib=rb-1.2.1&q=80&w=1080&utm_source=unsplash_source&utm_medium=referral&utm_campaign=api-credit",
                     "name"=>$user->name,
-                    // "job"=>$user->job,
-                    
-                    // "id"=>"1",
-                    // "name"=>"ダミー",
                     "job"=>"学生",
                 ],
                 "track" => [
@@ -115,6 +104,19 @@ class PostController extends Controller
                     "comment_val"=>0,
                     "like_val"=>11
                 ]
+            ];
+    }
+    
+    // 楽興情報取得api
+    public function track($id){
+        $track = $this->getTrack($id);
+        
+        return [
+                "id"=>$id,
+                "title"=>$track['title'],
+                "album"=>$track['album'],
+                "artist"=>$track['artist'],
+                "release"=>$track['release']
             ];
     }
     
