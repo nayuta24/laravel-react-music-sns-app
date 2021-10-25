@@ -16,8 +16,8 @@ class CreatePostsTable extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('title');
-            $table->string('body');
-            $table->integer('rate');
+            $table->text('body');
+            $table->float('rate', 3, 1);
             $table->string('track_id')->nullable;
             
             $table->uuid('user_id');
