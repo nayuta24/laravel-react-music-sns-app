@@ -4,7 +4,7 @@ import failed from "../../test_json/failedDetail.json";
 import apiClient from "../../client/apiClient";
 import { useHistory } from "react-router";
 
-export const useApiPostDetail = ( id: string ) =>
+export const useGetDetail = ( id: string ) =>
 {
     const [ api_postDetail, setApiPostDetail ] = useState<PostsDataType>( failed );
     const [ loading, setLoading ] = useState( false )

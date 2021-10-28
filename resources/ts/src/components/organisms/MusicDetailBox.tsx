@@ -36,9 +36,7 @@ export const MusicDetailBox: VFC<Props> = (props) => {
             </AspectRatio>
             <Flex alignItems="start" flexFlow="column" ml={5} mt="auto" mb="2%">
                 <Text fontWeight="bold" fontSize="25px" mb="2%">
-                    {title === undefined
-                        ? "楽曲情報が取得できていません"
-                        : title}
+                    {title === undefined ? "楽曲情報が取得できません" : title}
                 </Text>
                 <Text fontSize="sm">
                     収録アルバム： {album === undefined ? "???" : album}

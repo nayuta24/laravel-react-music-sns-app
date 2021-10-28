@@ -4,7 +4,7 @@ import { Box, Divider } from "@chakra-ui/react";
 import { useSetRecoilState } from "recoil";
 
 import { homeState } from "../../../../store/homeState";
-import { useApiPostDetail } from "../../../../hooks/api/useApiPostDetail";
+import { useGetDetail } from "../../../../hooks/api/useGetDetail";
 import json_postDetail from "../../../../test_json/postDetail.json";
 import { LoadingCard } from "../../../organisms/home/post/LoadingCard";
 import { LoadingPageSpinner } from "../../../organisms/LoadingPageSpinner";
@@ -23,7 +23,7 @@ export const PostDetail: VFC<Props> = (props) => {
     setTopic({ topic: "detail" });
     const { id } = useParams<Param>();
     /* ↓本番環境用 */
-    const { getPostDetail, api_postDetail, loading } = useApiPostDetail(id);
+    const { getPostDetail, api_postDetail, loading } = useGetDetail(id);
     useEffect(() => getPostDetail(), []);
 
     /* ローカルでのテスト用*/

@@ -12,15 +12,15 @@ type Props = {
     goTrackInfo: () => void;
     goRate: () => void;
     goCheck: () => void;
-    blockTrack: boolean;
-    blockRates: boolean;
+    isTrackNull: boolean;
+    isRatesNull: boolean;
 };
 
 type Weight = "normal" | "bold";
 type Color = "black" | "gray.500";
 
 export const CreateBreadcrumb: VFC<Props> = memo((props) => {
-    const { step, goTrackInfo, goRate, goCheck, blockTrack, blockRates } =
+    const { step, goTrackInfo, goRate, goCheck, isTrackNull, isRatesNull } =
         props;
 
     const [trackColor, setTrackColor] = useState<Color>("gray.500");
@@ -52,19 +52,19 @@ export const CreateBreadcrumb: VFC<Props> = memo((props) => {
 
     // 楽曲情報が入力されていなければ評価画面に行けない
     // 評価が入力されていなければ内容確認画面に行けない
-    var canMoveRate: "auto" | "none" = blockTrack ? "none" : "auto";
+    var canMoveRate: "auto" | "none" = isTrackNull ? "none" : "auto";
     var canMoveCheck: "auto" | "none" =
-        blockTrack || blockRates ? "none" : "auto";
+        isTrackNull || isRatesNull ? "none" : "auto";
 
     useEffect(() => {
-        blockTrack ? (canMoveRate = "none") : (canMoveRate = "auto");
-    }, [blockTrack]);
+        isTrackNull ? (canMoveRate = "none") : (canMoveRate = "auto");
+    }, [isTrackNull]);
 
     useEffect(() => {
-        blockTrack && blockRates
+        isTrackNull && isRatesNull
             ? (canMoveCheck = "none")
             : (canMoveCheck = "auto");
-    }, [blockTrack]);
+    }, [isTrackNull]);
 
     return (
         <Breadcrumb

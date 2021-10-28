@@ -1,26 +1,30 @@
 import { Button } from "@chakra-ui/button";
-import { ChevronLeftIcon } from "@chakra-ui/icons";
+import { ChevronRightIcon } from "@chakra-ui/icons";
 import { VFC } from "react";
 
 type Props = {
     onClick: () => void;
     mt?: string;
+    isDisabled?: boolean;
+    text: string;
 };
 
-export const BackButton: VFC<Props> = (props) => {
-    const { onClick, mt = "none" } = props;
+export const CreateTransButton: VFC<Props> = (props) => {
+    const { onClick, mt = "none", isDisabled = false, text } = props;
     return (
         <Button
             mt={mt}
-            w="50px"
+            w="auto"
             h="30px"
             ml="auto"
             bg="orange.300"
             color="white"
             onClick={onClick}
             fontSize="15px"
+            _focus={{ outline: "none" }}
+            isDisabled={isDisabled}
         >
-            戻る
+            {text}
         </Button>
     );
 };

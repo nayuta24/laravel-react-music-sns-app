@@ -5,7 +5,7 @@ import { TrackDataType } from "../../type/api/TrackDataType";
 import {useMessage} from "../message/useMessage"
 
 
-export const useTrack = () =>
+export const useGetTrack = () =>
 {
     const { showMessage } = useMessage();
     const getTrack = useCallback( ( id: string | undefined, saveTrack: (val:TrackDataType )=>void ) =>

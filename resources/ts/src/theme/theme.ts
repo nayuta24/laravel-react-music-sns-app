@@ -7,6 +7,13 @@ const theme = extendTheme({
         backgroundColor: "gray.50",
         color: "gray.800"
       }
+    },
+    components: {
+      Button: {
+        baseStyle: {
+          _focus: { outline: "none" }
+        }
+      }
     }
   }
 });

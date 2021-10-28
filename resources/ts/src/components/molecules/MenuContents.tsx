@@ -2,7 +2,7 @@ import { Box, Button, Flex, Text } from "@chakra-ui/react";
 import { memo, useEffect } from "react";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
-import { useApiMe } from "../../hooks/api/useApiMe";
+import { useGetMe } from "../../hooks/api/useGetMe";
 import { useLogout } from "../../hooks/login/useLogout";
 import { MenuButton } from "../atoms/button/MenuButton";
 import { PrimaryButton } from "../atoms/button/PrimaryButton";
@@ -11,7 +11,7 @@ import { UserInfoBox } from "./UserInfoBox";
 export const MenuContents = memo(() => {
     const history = useHistory();
     // ユーザーの情報を取得
-    const { getMe, apiMe } = useApiMe();
+    const { getMe, apiMe } = useGetMe();
     const { logout } = useLogout();
 
     useEffect(() => getMe(), [getMe]);
@@ -64,11 +64,11 @@ export const MenuContents = memo(() => {
                 </PrimaryButton>
             </Flex>
 
-            <Box mt="25vh" w="100%" onClick={onClickLogout}>
+            <Box mt="25vh" w="100%">
                 <UserInfoBox
                     img="https://source.unsplash.com/brFsZ7qszSY"
                     name={apiMe.name}
-                    user_title="学生"
+                    user_title=""
                     pl="30px"
                 />
                 <Button
@@ -77,6 +77,8 @@ export const MenuContents = memo(() => {
                     h="25px"
                     colorScheme="red"
                     mt="15px"
+                    _focus={{ outline: "none" }}
+                    onClick={onClickLogout}
                 >
                     ログアウト
                 </Button>

@@ -8,7 +8,7 @@ import { useErrorMessage } from "../useErrorMessage";
 
 type Sort = "recent" | "follow" | "popular";
 
-export const useApiPosts = (sort: Sort) => {
+export const useGetPosts = (sort: Sort) => {
     const [api_posts, setApiPosts] = useState<Array<PostsDataType>>([]);
     const [loading, setLoading] = useState(false);
 

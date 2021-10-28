@@ -18,6 +18,7 @@ export const HamburgerButton: VFC<Props> = memo((props) => {
             color="white"
             aria-label="Open menu"
             icon={<HamburgerIcon />}
+            _focus={{ outline: "none" }}
             size={size}
             ml={ml}
             my={my}

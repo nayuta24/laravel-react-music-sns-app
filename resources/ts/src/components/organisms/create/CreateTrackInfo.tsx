@@ -3,9 +3,9 @@ import { useEffect, useState, VFC } from "react";
 
 import { gradationGreen } from "../../atoms/color/gradationGreen";
 import { MusicDetailBox } from "../MusicDetailBox";
-import { GoButton } from "../../atoms/button/GoButton";
+import { CreateTransButton } from "../../atoms/button/CreateTransButton";
 import { Form } from "../../molecules/Form";
-import { useTrack } from "../../../hooks/api/useApiTrack";
+import { useGetTrack } from "../../../hooks/api/useGetTrack";
 import { useValidateTrackURL } from "../../../hooks/useValidateTrackURL";
 import { useMessage } from "../../../hooks/message/useMessage";
 import { TrackDataType } from "../../../type/api/TrackDataType";
@@ -18,7 +18,7 @@ type Props = {
     setTrackId: (id: string | undefined) => void;
     trackData: TrackDataType;
     saveTrackData: (obj: TrackDataType) => void;
-    blockTrack: boolean;
+    isTrackNull: boolean;
 };
 
 export const CreateTrackInfo: VFC<Props> = (props) => {
@@ -28,11 +28,11 @@ export const CreateTrackInfo: VFC<Props> = (props) => {
         trackUrl,
         trackId,
         setTrackId,
-        blockTrack,
+        isTrackNull,
         trackData,
         saveTrackData,
     } = props;
-    const { getTrack } = useTrack();
+    const { getTrack } = useGetTrack();
     const { validateTrackURL } = useValidateTrackURL();
     const { showMessage } = useMessage();
 
@@ -102,8 +102,12 @@ export const CreateTrackInfo: VFC<Props> = (props) => {
                         確認
                     </Button>
                 </Flex>
-                <Text>{}</Text>
-                <GoButton onClick={goRate} mt="30px" isDisabled={blockTrack} />
+                <CreateTransButton
+                    onClick={goRate}
+                    mt="30px"
+                    isDisabled={isTrackNull}
+                    text="次へ"
+                />
             </Flex>
         </Box>
     );

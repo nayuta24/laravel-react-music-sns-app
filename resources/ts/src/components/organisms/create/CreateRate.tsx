@@ -1,7 +1,6 @@
 import { Box, Flex, Input, Text, Textarea } from "@chakra-ui/react";
 import { VFC } from "react";
-import { GoButton } from "../../atoms/button/GoButton";
-import { BackButton } from "../../atoms/button/BackButton";
+import { CreateTransButton } from "../../atoms/button/CreateTransButton";
 import { FiveStarButton } from "../../molecules/create/FiveStarButton";
 
 type Props = {
@@ -13,7 +12,7 @@ type Props = {
     rate: number;
     title: string;
     body: string;
-    blockRates: boolean;
+    isRatesNull: boolean;
 };
 
 export const CreateRate: VFC<Props> = (props) => {
@@ -26,7 +25,7 @@ export const CreateRate: VFC<Props> = (props) => {
         rate,
         title,
         body,
-        blockRates,
+        isRatesNull,
     } = props;
 
     return (
@@ -45,14 +44,19 @@ export const CreateRate: VFC<Props> = (props) => {
                 </Box>
             </Flex>
             <Box mt="30px">
-                <Text
-                    fontSize="lg"
-                    ml="10px"
-                    fontWeight="semibold"
-                    color="gray.700"
-                >
-                    ① タイトル（30字以内）
-                </Text>
+                <Flex>
+                    <Text
+                        fontSize="lg"
+                        ml="10px"
+                        fontWeight="semibold"
+                        color="gray.700"
+                    >
+                        ① タイトル（30字以内）
+                    </Text>
+                    {title.length >= 30 && (
+                        <Text color="red">※30字を超えています</Text>
+                    )}
+                </Flex>
                 <Input
                     type="text"
                     w="100%"
@@ -62,15 +66,20 @@ export const CreateRate: VFC<Props> = (props) => {
                 />
             </Box>
             <Box mt="30px">
-                <Text
-                    fontSize="lg"
-                    ml="10px"
-                    h="auto"
-                    fontWeight="semibold"
-                    color="gray.700"
-                >
-                    ① 本文（500字以内）
-                </Text>
+                <Flex>
+                    <Text
+                        fontSize="lg"
+                        ml="10px"
+                        h="auto"
+                        fontWeight="semibold"
+                        color="gray.700"
+                    >
+                        ① 本文（500字以内）
+                    </Text>
+                    {body.length >= 500 && (
+                        <Text color="red">※500字を超えています</Text>
+                    )}
+                </Flex>
                 <Textarea
                     type="text"
                     w="100%"
@@ -82,14 +91,19 @@ export const CreateRate: VFC<Props> = (props) => {
             </Box>
             <Flex ml="auto">
                 <Box>
-                    <BackButton onClick={goTrackInfo} mt="30px" />
+                    <CreateTransButton
+                        onClick={goTrackInfo}
+                        mt="30px"
+                        text="戻る"
+                    />
                 </Box>
                 <Box w="30px" />
                 <Box>
-                    <GoButton
+                    <CreateTransButton
                         onClick={goCheck}
                         mt="30px"
-                        isDisabled={blockRates}
+                        isDisabled={isRatesNull}
+                        text="次へ"
                     />
                 </Box>
             </Flex>

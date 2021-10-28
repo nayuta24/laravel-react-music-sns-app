@@ -14,7 +14,7 @@ type Me = {
 
 const NullMe:Me = {id:"", name:"", email:""}
 
-export const useApiMe = () =>
+export const useGetMe = () =>
 {
     const [ loading, setLoading ] = useState( false );
     const [ apiMe, setApiMe ] = useState<Me>(NullMe);
