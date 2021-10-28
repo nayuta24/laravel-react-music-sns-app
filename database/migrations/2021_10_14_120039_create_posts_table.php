@@ -19,12 +19,11 @@ class CreatePostsTable extends Migration
             $table->text('body');
             $table->float('rate', 3, 1);
             $table->string('track_id')->nullable;
-            
             $table->uuid('user_id');
-            $table->foreign('user_id')->reference('id')->on('users')->onDelete('cascade');
-            
             $table->timestamps();
             $table->dateTime('deleted_at', 0)->nullable();
+            
+            $table->foreign('user_id')->reference('id')->on('users')->onUpdate('CASCADE')->onDelete('cascade');
         });
     }
 
