@@ -21,6 +21,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/posts/{id}', 'PostController@detail');
     
     Route::get('/track/{id}', 'PostController@track');
+    
+    Route::post('/create', 'PostController@create');
 });
 
 Route::post('/register', 'RegisterUserController@register');

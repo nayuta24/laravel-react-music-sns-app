@@ -83,7 +83,7 @@ class PostController extends Controller
                 "updated_at"=>$post_detail->updated_at,
                 "user" => [
                     "id"=>$user->id,
-                    "img"=>"https://images.unsplash.com/photo-1537151625747-768eb6cf92b2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MXwxfDB8MXxhbGx8fHx8fHx8fA&ixlib=rb-1.2.1&q=80&w=1080&utm_source=unsplash_source&utm_medium=referral&utm_campaign=api-credit",
+                    "img"=>"",
                     "name"=>$user->name,
                     "job"=>"学生",
                 ],
@@ -107,7 +107,7 @@ class PostController extends Controller
             ];
     }
     
-    // 楽興情報取得api
+    // 楽曲情報取得api
     public function track($id){
         $track = $this->getTrack($id);
         
@@ -118,6 +118,26 @@ class PostController extends Controller
                 "artist"=>$track['artist'],
                 "release"=>$track['release']
             ];
+    }
+    
+    // 新規投稿api  
+    public function create(Request $request){
+        $user = $request->user();
+        
+        $request->validate([
+            'title' => 'required|max:30',
+            'body' => 'required|max:50',
+            'rate' => 'required',
+            'trackId'=>'required|size:22'
+        ]);
+        
+        Post::create([
+            'title' =>  $request->title,
+            'body' => $request->body,
+            'rate' => $request->rate,
+            'track_id'=>$request->trackId,
+            'user_id' => $user->id
+        ]);
     }
     
     
