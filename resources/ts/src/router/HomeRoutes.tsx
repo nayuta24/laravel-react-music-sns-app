@@ -3,7 +3,7 @@ import { FollowPosts } from "../components/pages/home/FollowPosts";
 import { Popular } from "../components/pages/home/Popular";
 import { PostDetail } from "../components/pages/home/detail/PostDetail";
 import { Detail404 } from "../components/pages/home/detail/Detail404";
-import { Create } from "../components/pages/create/Create";
+import { Create } from "../components/pages/Create";
 
 export const homeRoutes = [
     {
