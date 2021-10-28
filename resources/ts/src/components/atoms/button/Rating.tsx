@@ -10,6 +10,13 @@ export const Rating: VFC<Props> = (props) => {
     const { rating } = props;
     const starSize = "25px";
     const gap = "1px";
+
+
+    let fixedRating = rating.toString();
+    if (fixedRating.length === 1) {
+        fixedRating = fixedRating + ".0";
+    }
+
     return (
         <Flex>
             {[1, 2, 3, 4, 5].map((value) =>
