@@ -11,6 +11,7 @@ export const Rating: VFC<Props> = (props) => {
     const starSize = "25px";
     const gap = "1px";
 
+
     let fixedRating = rating.toString();
     if (fixedRating.length === 1) {
         fixedRating = fixedRating + ".0";
@@ -34,7 +35,7 @@ export const Rating: VFC<Props> = (props) => {
                 )
             )}
             <Text ml="10px" pt="2px" fontWeight="semibold" color="gray.600">
-                {fixedRating}
+                {rating.toFixed(1)}
             </Text>
         </Flex>
     );

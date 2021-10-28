@@ -14,6 +14,7 @@ class User extends Authenticatable
 
     // 自動でidにuuidを入れてくれる
     public $incrementing = false;
+    protected $keyType = 'string';
      
     protected static function boot()
     {
