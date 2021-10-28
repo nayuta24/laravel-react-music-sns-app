@@ -23,14 +23,6 @@ type Props = {
     setIsExist: (bool: boolean) => void;
 };
 
-const NullTrack = {
-    id: "",
-    img: "",
-    title: "",
-    album: "",
-    release: "",
-};
-
 export const CreateTrackInfo: VFC<Props> = (props) => {
     const {
         goRate,
@@ -48,43 +40,43 @@ export const CreateTrackInfo: VFC<Props> = (props) => {
     const { showMessage } = useMessage();
 
     // 一旦、このページ内の状態で楽曲データを預かる
-    const [track, setTrack] = useState<TrackDataType>();
-    const onceSaveTrackData = (val: TrackDataType) => {
-        setTrack(val);
+    // データが取得でき次第、正式にcreateページのグローバルstateで保持させる
+    const [onceTrack, setOnceTrack] = useState<TrackDataType>();
+    const saveOnceTrackData = (val: TrackDataType) => {
+        setOnceTrack(val);
     };
 
     const checkTrack = () => {
-        const trackId = validateTrackURL(trackUrl);
+        const validatedTrackId = validateTrackURL(trackUrl);
         // バリデーションを行う
-        if (trackId === undefined) {
+        if (validatedTrackId === undefined) {
             setIsExist(false);
             showMessage({
                 title: "正しいURLを入力してください",
                 status: "error",
             });
-            setTrackId(undefined);
         }
         // バリデーションをクリアしたidで実際に楽曲を取得できるか判定
         else {
-            getTrack(trackId, onceSaveTrackData);
-            setTrackId(trackId);
+            getTrack(validatedTrackId, saveOnceTrackData);
         }
     };
 
     // APIで楽曲情報が確認できたタイミングで保存、表示
+    // ちゃんと取得できていたら、一旦保存しておいた楽曲情報を正式にグローバルで保存
     useEffect(() => {
-        if (track === undefined) {
+        if (onceTrack === undefined) {
             setIsExist(false);
             setTrackId(undefined);
         } else {
             setIsExist(true);
-            saveTrackData(track);
+            saveTrackData(onceTrack);
         }
-    }, [track]);
+    }, [onceTrack]);
 
     return (
         <Box>
-            {/* 入力された共有URIから楽曲が取得できたらその情報を表示 */}
+            {/* 入力された共有URIから楽曲が取得できたら表示 */}
             {isExist && (
                 <MusicDetailBox
                     id={trackData?.id}
