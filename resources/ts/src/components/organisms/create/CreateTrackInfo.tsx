@@ -19,8 +19,6 @@ type Props = {
     trackData: TrackDataType;
     saveTrackData: (obj: TrackDataType) => void;
     blockTrack: boolean;
-    isExist: boolean;
-    setIsExist: (bool: boolean) => void;
 };
 
 export const CreateTrackInfo: VFC<Props> = (props) => {
@@ -28,19 +26,19 @@ export const CreateTrackInfo: VFC<Props> = (props) => {
         goRate,
         onChangeTrackURL,
         trackUrl,
+        trackId,
         setTrackId,
         blockTrack,
         trackData,
         saveTrackData,
-        isExist,
-        setIsExist,
     } = props;
     const { getTrack } = useTrack();
     const { validateTrackURL } = useValidateTrackURL();
     const { showMessage } = useMessage();
 
-    // 一旦、このページ内の状態で楽曲データを預かる
-    // データが取得でき次第、正式にcreateページのグローバルstateで保持させる
+    // checkTrackとuseEffect内の楽曲登録作業の橋渡しをするstateを準備したい
+    // 一旦、このページ内の状態で楽曲データを預かるためのstate
+    // これを使って楽曲有無の確認をするapiを叩き、確認できたら正式にcreateグローバルstateに登録
     const [onceTrack, setOnceTrack] = useState<TrackDataType>();
     const saveOnceTrackData = (val: TrackDataType) => {
         setOnceTrack(val);
@@ -50,7 +48,6 @@ export const CreateTrackInfo: VFC<Props> = (props) => {
         const validatedTrackId = validateTrackURL(trackUrl);
         // バリデーションを行う
         if (validatedTrackId === undefined) {
-            setIsExist(false);
             showMessage({
                 title: "正しいURLを入力してください",
                 status: "error",
@@ -62,14 +59,10 @@ export const CreateTrackInfo: VFC<Props> = (props) => {
         }
     };
 
-    // APIで楽曲情報が確認できたタイミングで保存、表示
+    // APIで楽曲情報が確認できたタイミングで保存
     // ちゃんと取得できていたら、一旦保存しておいた楽曲情報を正式にグローバルで保存
     useEffect(() => {
-        if (onceTrack === undefined) {
-            setIsExist(false);
-            setTrackId(undefined);
-        } else {
-            setIsExist(true);
+        if (onceTrack !== undefined) {
             setTrackId(onceTrack.id);
             saveTrackData(onceTrack);
         }
@@ -77,8 +70,8 @@ export const CreateTrackInfo: VFC<Props> = (props) => {
 
     return (
         <Box>
-            {/* 入力された共有URIから楽曲が取得できたら表示 */}
-            {isExist && (
+            {/* 入力された共有URIから楽曲が取得できていたら表示 */}
+            {trackId !== undefined && (
                 <MusicDetailBox
                     id={trackData?.id}
                     title={trackData?.title}

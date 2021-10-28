@@ -70,15 +70,9 @@ export const Create = memo(() => {
         setTrackData(obj);
     };
 
-    // 楽曲情報入力画面で、MusicDetailを表示するかの状態を保持
-    const [isExist, setIsExist] = useState<boolean>(false);
-    const saveIsExist = (bool: boolean) => {
-        setIsExist(bool);
-    };
-
     return (
         <Box textAlign="left">
-            {/* react-routeの「Priompt」によって、ページを離れようとしたときに警告 */}
+            {/* react-routeの「Prompt」によって、ページを離れようとしたときに警告 */}
             <Prompt message="ページを離れると入力した内容が失われます" />
             <CreateBreadcrumb
                 step={step}
@@ -99,8 +93,6 @@ export const Create = memo(() => {
                     blockTrack={blockTrack}
                     trackData={trackData}
                     saveTrackData={saveTrackData}
-                    isExist={isExist}
-                    setIsExist={saveIsExist}
                 />
             ) : step === "rate" ? (
                 <CreateRate
