@@ -1,5 +1,6 @@
 import { Box, Divider, Flex } from "@chakra-ui/react";
 import { VFC } from "react";
+import { usePostCreate } from "../../../hooks/api/usePostCreate";
 import { TrackDataType } from "../../../type/api/TrackDataType";
 import { CreateTransButton } from "../../atoms/button/CreateTransButton";
 import { DetailBox } from "../detail/DetailBox";
@@ -10,14 +11,20 @@ type Props = {
     rate: number;
     title: string;
     body: string;
+    trackId: string | undefined;
     goRate: () => void;
+    setTransAlert: (bool: boolean) => void;
 };
 
 export const CreateCheck: VFC<Props> = (props) => {
-    const { trackData, rate, title, body, goRate } = props;
+    const { trackData, rate, title, body, goRate, trackId, setTransAlert } =
+        props;
 
     // 現在の内容で確定して投稿する
-    const onConfirm = () => {};
+    const { postCreate } = usePostCreate();
+    const onConfirm = () => {
+        postCreate(title, body, rate, trackId, setTransAlert);
+    };
 
     return (
         <Flex flexDirection="column" mt="30px">

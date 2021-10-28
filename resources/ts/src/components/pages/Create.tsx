@@ -29,8 +29,8 @@ export const Create = memo(() => {
     // 各種投稿内容を保存しておくためのState
     // trackIdは楽曲情報表示や「次へ」ボタンが押せるかなどの判定に使われる
     const [trackUrl, setTrackUrl] = useState<string>("");
-    // const [trackId, setTrackId] = useState<string | undefined>(undefined);
-    const [trackId, setTrackId] = useState<string | undefined>("");
+    const [trackId, setTrackId] = useState<string | undefined>(undefined);
+    // const [trackId, setTrackId] = useState<string | undefined>("");
     const [rate, setRate] = useState<number>(0);
     const [title, setTitle] = useState<string>("");
     const [body, setBody] = useState<string>("");
@@ -58,10 +58,14 @@ export const Create = memo(() => {
         trackId === undefined ? setIsTrackNull(true) : setIsTrackNull(false);
     }, [trackId]);
 
-    // 評価が書かれていなければ確認画面への遷移をブロックする
+    // 評価が書かれていないor字数制限よりも多い場合は確認画面への遷移をブロックする
     const [isRatesNull, setIsRatesNull] = useState<boolean>(true);
     useEffect(() => {
-        rate === 0.0 || title === "" || body === ""
+        rate === 0.0 ||
+        title === "" ||
+        title.length >= 30 ||
+        body === "" ||
+        body.length >= 500
             ? setIsRatesNull(true)
             : setIsRatesNull(false);
     }, [rate, title, body]);
@@ -72,10 +76,18 @@ export const Create = memo(() => {
         setTrackData(obj);
     };
 
+    const [transAlert, setTransAlert] = useState<boolean>(true);
+    const passTransAlert = (bool: boolean) => {
+        setTransAlert(bool);
+    };
+
     return (
         <Box textAlign="left">
-            {/* react-routeの「Prompt」によって、ページを離れようとしたときに警告 */}
-            <Prompt message="ページを離れると入力した内容が失われます" />
+            {/* react-routeの「Prompt」によって、ページを離れようとしたときに警告
+            (投稿確定時のリダイレクトでは無効) */}
+            {transAlert && (
+                <Prompt message="ページを離れると入力した内容が失われます" />
+            )}
             <CreateBreadcrumb
                 step={step}
                 goTrackInfo={goTrackInfo}
@@ -114,7 +126,9 @@ export const Create = memo(() => {
                     title={title}
                     body={body}
                     trackData={trackData}
+                    trackId={trackId}
                     goRate={goRate}
+                    setTransAlert={passTransAlert}
                 />
             )}
         </Box>

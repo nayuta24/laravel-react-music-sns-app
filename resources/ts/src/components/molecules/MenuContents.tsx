@@ -2,7 +2,7 @@ import { Box, Button, Flex, Text } from "@chakra-ui/react";
 import { memo, useEffect } from "react";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
-import { useApiMe } from "../../hooks/api/useApiMe";
+import { useGetMe } from "../../hooks/api/useGetMe";
 import { useLogout } from "../../hooks/login/useLogout";
 import { MenuButton } from "../atoms/button/MenuButton";
 import { PrimaryButton } from "../atoms/button/PrimaryButton";
@@ -11,7 +11,7 @@ import { UserInfoBox } from "./UserInfoBox";
 export const MenuContents = memo(() => {
     const history = useHistory();
     // ユーザーの情報を取得
-    const { getMe, apiMe } = useApiMe();
+    const { getMe, apiMe } = useGetMe();
     const { logout } = useLogout();
 
     useEffect(() => getMe(), [getMe]);

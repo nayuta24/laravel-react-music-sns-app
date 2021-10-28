@@ -7,7 +7,7 @@ import { homeState } from "../../../store/homeState";
 import { PostCard } from "../../organisms/home/post/PostCard";
 import { PostsDataType } from "../../../type/api/PostsDataType";
 import Posts from "../../../test_json/allPosts.json";
-import { useApiPosts } from "../../../hooks/api/useApiPosts";
+import { useGetPosts } from "../../../hooks/api/useGetPosts";
 import { LoadingPageSpinner } from "../../organisms/LoadingPageSpinner";
 
 export const Recent = memo(() => {
@@ -15,7 +15,7 @@ export const Recent = memo(() => {
     const setTopic = useSetRecoilState(homeState);
     setTopic({ topic: "recent" });
     /* ↓本番環境用 */
-    const { getPosts, api_posts, loading } = useApiPosts("recent");
+    const { getPosts, api_posts, loading } = useGetPosts("recent");
     useEffect(() => getPosts(), [getPosts]);
 
     /* ↓ローカル環境でのテスト用（test_jsonを使用） */

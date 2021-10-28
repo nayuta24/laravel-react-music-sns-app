@@ -5,7 +5,7 @@ import { gradationGreen } from "../../atoms/color/gradationGreen";
 import { MusicDetailBox } from "../MusicDetailBox";
 import { CreateTransButton } from "../../atoms/button/CreateTransButton";
 import { Form } from "../../molecules/Form";
-import { useTrack } from "../../../hooks/api/useApiTrack";
+import { useGetTrack } from "../../../hooks/api/useGetTrack";
 import { useValidateTrackURL } from "../../../hooks/useValidateTrackURL";
 import { useMessage } from "../../../hooks/message/useMessage";
 import { TrackDataType } from "../../../type/api/TrackDataType";
@@ -32,7 +32,7 @@ export const CreateTrackInfo: VFC<Props> = (props) => {
         trackData,
         saveTrackData,
     } = props;
-    const { getTrack } = useTrack();
+    const { getTrack } = useGetTrack();
     const { validateTrackURL } = useValidateTrackURL();
     const { showMessage } = useMessage();
 

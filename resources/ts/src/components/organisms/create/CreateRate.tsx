@@ -44,14 +44,19 @@ export const CreateRate: VFC<Props> = (props) => {
                 </Box>
             </Flex>
             <Box mt="30px">
-                <Text
-                    fontSize="lg"
-                    ml="10px"
-                    fontWeight="semibold"
-                    color="gray.700"
-                >
-                    ① タイトル（30字以内）
-                </Text>
+                <Flex>
+                    <Text
+                        fontSize="lg"
+                        ml="10px"
+                        fontWeight="semibold"
+                        color="gray.700"
+                    >
+                        ① タイトル（30字以内）
+                    </Text>
+                    {title.length >= 30 && (
+                        <Text color="red">※30字を超えています</Text>
+                    )}
+                </Flex>
                 <Input
                     type="text"
                     w="100%"
@@ -61,15 +66,20 @@ export const CreateRate: VFC<Props> = (props) => {
                 />
             </Box>
             <Box mt="30px">
-                <Text
-                    fontSize="lg"
-                    ml="10px"
-                    h="auto"
-                    fontWeight="semibold"
-                    color="gray.700"
-                >
-                    ① 本文（500字以内）
-                </Text>
+                <Flex>
+                    <Text
+                        fontSize="lg"
+                        ml="10px"
+                        h="auto"
+                        fontWeight="semibold"
+                        color="gray.700"
+                    >
+                        ① 本文（500字以内）
+                    </Text>
+                    {body.length >= 500 && (
+                        <Text color="red">※500字を超えています</Text>
+                    )}
+                </Flex>
                 <Textarea
                     type="text"
                     w="100%"
