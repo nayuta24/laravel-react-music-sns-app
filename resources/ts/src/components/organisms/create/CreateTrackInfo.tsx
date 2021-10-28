@@ -70,6 +70,7 @@ export const CreateTrackInfo: VFC<Props> = (props) => {
             setTrackId(undefined);
         } else {
             setIsExist(true);
+            setTrackId(onceTrack.id);
             saveTrackData(onceTrack);
         }
     }, [onceTrack]);
