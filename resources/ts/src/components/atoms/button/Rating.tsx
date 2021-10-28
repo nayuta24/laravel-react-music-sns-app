@@ -10,6 +10,9 @@ export const Rating: VFC<Props> = (props) => {
     const { rating } = props;
     const starSize = "25px";
     const gap = "1px";
+    // 小数点第一位をつける
+    const fixedRating = rating.toFixed(1);
+
     return (
         <Flex>
             {[1, 2, 3, 4, 5].map((value) =>
@@ -28,7 +31,7 @@ export const Rating: VFC<Props> = (props) => {
                 )
             )}
             <Text ml="10px" pt="2px" fontWeight="semibold" color="gray.600">
-                {rating.toFixed(1)}
+                {fixedRating}
             </Text>
         </Flex>
     );
