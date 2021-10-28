@@ -40,9 +40,9 @@ class PostController extends Controller
                 "updated_at"=>$post->updated_at,
                 "user" => [
                     "id"=>$user->id,
-                    "img"=>"https://images.unsplash.com/photo-1537151625747-768eb6cf92b2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MXwxfDB8MXxhbGx8fHx8fHx8fA&ixlib=rb-1.2.1&q=80&w=1080&utm_source=unsplash_source&utm_medium=referral&utm_campaign=api-credit",
+                    "img"=>"",
                     "name"=>$user->name,
-                    "job"=>"学生",
+                    "job"=>"",
                 ],
                 "track" => [
                     "id"=>$track_id,
@@ -85,7 +85,7 @@ class PostController extends Controller
                     "id"=>$user->id,
                     "img"=>"",
                     "name"=>$user->name,
-                    "job"=>"学生",
+                    "job"=>"",
                 ],
                 "track" => [
                     "id"=>$track_id,
