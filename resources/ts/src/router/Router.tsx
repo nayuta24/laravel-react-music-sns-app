@@ -17,28 +17,28 @@ export const Router = () => {
                 {isLogin ? <Redirect to="/" /> : <Login />}
             </Route>
             {/* 未ログインの場合は「AuthGuard」によってログイン画面へリダイレクトされる */}
-            <AuthGuard>
-                <HomeLayout>
-                    <Switch>
-                        <Route
-                            path="/"
-                            render={({ match: { url } }) => (
-                                <Switch>
-                                    {homeRoutes.map((route) => (
-                                        <Route
-                                            key={route.path}
-                                            exact={route.exact}
-                                            path={`${url}${route.path}`}
-                                        >
-                                            {route.children}
-                                        </Route>
-                                    ))}
-                                </Switch>
-                            )}
-                        />
-                    </Switch>
-                </HomeLayout>
-            </AuthGuard>
+            {/* <AuthGuard> */}
+            <HomeLayout>
+                <Switch>
+                    <Route
+                        path="/"
+                        render={({ match: { url } }) => (
+                            <Switch>
+                                {homeRoutes.map((route) => (
+                                    <Route
+                                        key={route.path}
+                                        exact={route.exact}
+                                        path={`${url}${route.path}`}
+                                    >
+                                        {route.children}
+                                    </Route>
+                                ))}
+                            </Switch>
+                        )}
+                    />
+                </Switch>
+            </HomeLayout>
+            {/* </AuthGuard> */}
             <Route path="*">
                 <Page404 />
             </Route>

@@ -46,14 +46,14 @@ export const Create = memo(() => {
         setRate(val);
     };
 
-    const ChangeTrackId = (id: string | undefined) => {
+    const changeTrackId = (id: string | undefined) => {
         setTrackId(id);
     };
 
     // TrackIdが空の場合はほかの画面への遷移をブロックする
     const [blockTrack, setBlockTrack] = useState<boolean>(true);
     useEffect(() => {
-        trackId === undefined ? setBlockTrack(false) : setBlockTrack(true);
+        trackId === undefined ? setBlockTrack(true) : setBlockTrack(false);
     }, [trackId]);
 
     // 評価が書かれていなければ確認画面への遷移をブロックする
@@ -95,7 +95,7 @@ export const Create = memo(() => {
                     onChangeTrackURL={onChangeTrackURL}
                     trackUrl={trackUrl}
                     trackId={trackId}
-                    setTrackId={ChangeTrackId}
+                    setTrackId={changeTrackId}
                     blockTrack={blockTrack}
                     trackData={trackData}
                     saveTrackData={saveTrackData}
