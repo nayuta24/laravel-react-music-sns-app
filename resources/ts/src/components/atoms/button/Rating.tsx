@@ -10,8 +10,11 @@ export const Rating: VFC<Props> = (props) => {
     const { rating } = props;
     const starSize = "25px";
     const gap = "1px";
-    // 小数点第一位をつける
-    const fixedRating = rating.toFixed(1);
+
+    let fixedRating = rating.toString();
+    if (fixedRating.length === 1) {
+        fixedRating = fixedRating + ".0";
+    }
 
     return (
         <Flex>
