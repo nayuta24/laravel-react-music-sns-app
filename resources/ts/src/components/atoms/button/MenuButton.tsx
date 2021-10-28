@@ -17,7 +17,7 @@ export const MenuButton: VFC<Props> = memo((props) => {
             solid="none"
             w="w"
             _hover={{ cursor: "pointer" }}
-            _focus={{ boxShadow: "none" }}
+            _focus={{ boxShadow: "none", outline: "none" }}
             onClick={onClick}
             disabled={disabled}
         >

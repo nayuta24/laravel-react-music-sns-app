@@ -16,9 +16,10 @@ export const PrimaryButton: VFC<Props> = (props) => {
             onClick={onClick}
             color="white"
             bgGradient="linear(to-tl, green, #c4de71)"
-            w={w}
+            _focus={{ outline: "none" }}
             _hover={{ opacity: 0.8, cursor: "pointer" }}
             disabled={disabled}
+            w={w}
             mt={mt}
         >
             {children}

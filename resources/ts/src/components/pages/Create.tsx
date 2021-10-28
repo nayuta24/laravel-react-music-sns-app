@@ -27,8 +27,10 @@ export const Create = memo(() => {
     };
 
     // 各種投稿内容を保存しておくためのState
+    // trackIdは楽曲情報表示や「次へ」ボタンが押せるかなどの判定に使われる
     const [trackUrl, setTrackUrl] = useState<string>("");
-    const [trackId, setTrackId] = useState<string | undefined>(undefined);
+    // const [trackId, setTrackId] = useState<string | undefined>(undefined);
+    const [trackId, setTrackId] = useState<string | undefined>("");
     const [rate, setRate] = useState<number>(0);
     const [title, setTitle] = useState<string>("");
     const [body, setBody] = useState<string>("");
@@ -51,17 +53,17 @@ export const Create = memo(() => {
     };
 
     // TrackIdが空の場合はほかの画面への遷移をブロックする
-    const [blockTrack, setBlockTrack] = useState<boolean>(true);
+    const [isTrackNull, setIsTrackNull] = useState<boolean>(true);
     useEffect(() => {
-        trackId === undefined ? setBlockTrack(true) : setBlockTrack(false);
+        trackId === undefined ? setIsTrackNull(true) : setIsTrackNull(false);
     }, [trackId]);
 
     // 評価が書かれていなければ確認画面への遷移をブロックする
-    const [blockRates, setBlockRates] = useState<boolean>(true);
+    const [isRatesNull, setIsRatesNull] = useState<boolean>(true);
     useEffect(() => {
         rate === 0.0 || title === "" || body === ""
-            ? setBlockRates(true)
-            : setBlockRates(false);
+            ? setIsRatesNull(true)
+            : setIsRatesNull(false);
     }, [rate, title, body]);
 
     // 取得に成功した楽曲データを保持する
@@ -79,8 +81,8 @@ export const Create = memo(() => {
                 goTrackInfo={goTrackInfo}
                 goRate={goRate}
                 goCheck={goCheck}
-                blockTrack={blockTrack}
-                blockRates={blockRates}
+                isTrackNull={isTrackNull}
+                isRatesNull={isRatesNull}
             />
 
             {step === "track" ? (
@@ -90,7 +92,7 @@ export const Create = memo(() => {
                     trackUrl={trackUrl}
                     trackId={trackId}
                     setTrackId={changeTrackId}
-                    blockTrack={blockTrack}
+                    isTrackNull={isTrackNull}
                     trackData={trackData}
                     saveTrackData={saveTrackData}
                 />
@@ -104,7 +106,7 @@ export const Create = memo(() => {
                     title={title}
                     onChangeBody={onChangeBody}
                     body={body}
-                    blockRates={blockRates}
+                    isRatesNull={isRatesNull}
                 />
             ) : (
                 <CreateCheck
@@ -112,6 +114,7 @@ export const Create = memo(() => {
                     title={title}
                     body={body}
                     trackData={trackData}
+                    goRate={goRate}
                 />
             )}
         </Box>
