@@ -1,5 +1,6 @@
-import { Box, Button, Flex, Input, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Text } from "@chakra-ui/react";
 import { useEffect, useState, VFC } from "react";
+
 import { gradationGreen } from "../../atoms/color/gradationGreen";
 import { MusicDetailBox } from "../MusicDetailBox";
 import { GoButton } from "../../atoms/button/GoButton";
@@ -13,11 +14,13 @@ type Props = {
     goRate: () => void;
     onChangeTrackURL: (event: React.ChangeEvent<HTMLInputElement>) => void;
     trackUrl: string;
-    trackId: string;
-    setTrackId: (id: string) => void;
+    trackId: string | undefined;
+    setTrackId: (id: string | undefined) => void;
     trackData: TrackDataType;
     saveTrackData: (obj: TrackDataType) => void;
     blockTrack: boolean;
+    isExist: boolean;
+    setIsExist: (bool: boolean) => void;
 };
 
 const NullTrack = {
@@ -37,14 +40,15 @@ export const CreateTrackInfo: VFC<Props> = (props) => {
         blockTrack,
         trackData,
         saveTrackData,
+        isExist,
+        setIsExist,
     } = props;
-    const [isExist, setIsExist] = useState<boolean>(false);
     const { getTrack } = useTrack();
     const { validateTrackURL } = useValidateTrackURL();
     const { showMessage } = useMessage();
-    const [track, setTrack] = useState<TrackDataType>();
 
     // 一旦、このページ内の状態で楽曲データを預かる
+    const [track, setTrack] = useState<TrackDataType>();
     const onceSaveTrackData = (val: TrackDataType) => {
         setTrack(val);
     };
@@ -58,7 +62,7 @@ export const CreateTrackInfo: VFC<Props> = (props) => {
                 title: "正しいURLを入力してください",
                 status: "error",
             });
-            setTrackId("");
+            setTrackId(undefined);
         }
         // バリデーションをクリアしたidで実際に楽曲を取得できるか判定
         else {
@@ -67,11 +71,11 @@ export const CreateTrackInfo: VFC<Props> = (props) => {
         }
     };
 
-    // APIによって楽曲情報が取得できたタイミングで保存、表示
+    // APIで楽曲情報が確認できたタイミングで保存、表示
     useEffect(() => {
         if (track === undefined) {
             setIsExist(false);
-            setTrackId("");
+            setTrackId(undefined);
         } else {
             setIsExist(true);
             saveTrackData(track);

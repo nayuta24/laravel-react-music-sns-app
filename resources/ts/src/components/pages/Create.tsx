@@ -3,12 +3,12 @@ import { Box } from "@chakra-ui/react";
 import { Prompt } from "react-router";
 import { useSetRecoilState } from "recoil";
 
-import { CreateBreadcrumb } from "../../molecules/create/CreateBreadcrumb";
-import { CreateTrackInfo } from "../../organisms/create/CreateTrackInfo";
-import { CreateRate } from "../../organisms/create/CreateRate";
-import { CreateCheck } from "../../organisms/create/CreateCheck";
-import { homeState } from "../../../store/homeState";
-import { TrackDataType } from "../../../type/api/TrackDataType";
+import { CreateBreadcrumb } from "../molecules/create/CreateBreadcrumb";
+import { CreateTrackInfo } from "../organisms/create/CreateTrackInfo";
+import { CreateRate } from "../organisms/create/CreateRate";
+import { CreateCheck } from "../organisms/create/CreateCheck";
+import { homeState } from "../../store/homeState";
+import { TrackDataType } from "../../type/api/TrackDataType";
 
 export const Create = memo(() => {
     const setTopic = useSetRecoilState(homeState);
@@ -28,7 +28,7 @@ export const Create = memo(() => {
 
     // 各種投稿内容を保存しておくためのState
     const [trackUrl, setTrackUrl] = useState<string>("");
-    const [trackId, setTrackId] = useState<string>("");
+    const [trackId, setTrackId] = useState<string | undefined>(undefined);
     const [rate, setRate] = useState<number>(0);
     const [title, setTitle] = useState<string>("");
     const [body, setBody] = useState<string>("");
@@ -46,14 +46,14 @@ export const Create = memo(() => {
         setRate(val);
     };
 
-    const ChangeTrackId = (id: string) => {
+    const ChangeTrackId = (id: string | undefined) => {
         setTrackId(id);
     };
 
     // TrackIdが空の場合はほかの画面への遷移をブロックする
     const [blockTrack, setBlockTrack] = useState<boolean>(true);
     useEffect(() => {
-        trackId === "" ? setBlockTrack(true) : setBlockTrack(false);
+        trackId === undefined ? setBlockTrack(false) : setBlockTrack(true);
     }, [trackId]);
 
     // 評価が書かれていなければ確認画面への遷移をブロックする
@@ -68,6 +68,12 @@ export const Create = memo(() => {
     const [trackData, setTrackData] = useState<TrackDataType>();
     const saveTrackData = (obj: TrackDataType) => {
         setTrackData(obj);
+    };
+
+    // 楽曲情報入力画面で、MusicDetailを表示するかの状態を保持
+    const [isExist, setIsExist] = useState<boolean>(false);
+    const saveIsExist = (bool: boolean) => {
+        setIsExist(bool);
     };
 
     return (
@@ -93,6 +99,8 @@ export const Create = memo(() => {
                     blockTrack={blockTrack}
                     trackData={trackData}
                     saveTrackData={saveTrackData}
+                    isExist={isExist}
+                    setIsExist={saveIsExist}
                 />
             ) : step === "rate" ? (
                 <CreateRate
