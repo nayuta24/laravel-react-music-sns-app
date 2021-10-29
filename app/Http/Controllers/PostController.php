@@ -126,7 +126,7 @@ class PostController extends Controller
         
         $request->validate([
             'title' => 'required|max:30',
-            'body' => 'required|max:50',
+            'body' => 'required|max:500',
             'rate' => 'required',
             'trackId'=>'required|size:22'
         ]);
