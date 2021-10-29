@@ -6,13 +6,14 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserCreateRequest;
 use App\Providers\RouteServiceProvider;
-use App\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use \Symfony\Component\HttpFoundation\Response;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Auth;
+
+use App\User;
 
 class RegisterUserController extends Controller
 {

@@ -16,15 +16,15 @@ class CreatePostsTable extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('title');
-            $table->string('body');
-            $table->integer('rate');
+            $table->text('body');
+            $table->float('rate', 3, 1);
             $table->string('track_id')->nullable;
-            
             $table->uuid('user_id');
-            $table->foreign('user_id')->reference('id')->on('users')->onDelete('cascade');
-            
             $table->timestamps();
             $table->dateTime('deleted_at', 0)->nullable();
+            
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+
         });
     }
 

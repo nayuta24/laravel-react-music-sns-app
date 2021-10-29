@@ -12,6 +12,7 @@ export const Rating: VFC<Props> = (props) => {
     const starSize = "23px";
     const gap = "1px";
 
+
     let fixedRating = rating.toString();
     if (fixedRating.length === 1) {
         fixedRating = fixedRating + ".0";
