@@ -157,7 +157,7 @@ export const Login = () => {
                                     onChange={onChangeRegName}
                                     value={regName}
                                 >
-                                    ユーザー名
+                                    ユーザー名（10字以内）
                                 </Form>
                                 <Box h="10px" />
                                 <Form
@@ -173,7 +173,7 @@ export const Login = () => {
                                     value={regPassword}
                                     inputType="password"
                                 >
-                                    パスワード
+                                    パスワード（6~10字）
                                 </Form>
                                 <Box h="10px" />
                                 <Form

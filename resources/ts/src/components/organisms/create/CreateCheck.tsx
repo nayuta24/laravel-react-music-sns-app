@@ -37,8 +37,8 @@ export const CreateCheck: VFC<Props> = (props) => {
             />
             <Divider orientation="horizontal" w="100%" mt={5} mb="5" />
             <DetailBox
-                userName="ゆうた"
-                userTitle="学生"
+                userName=""
+                userTitle=""
                 userImg=""
                 rating={rate}
                 title={title}

@@ -10,7 +10,6 @@ type Props = {
 
 export const StarButton: VFC<Props> = (props) => {
     const { num, rate, setRate } = props;
-    const [shape, setShape] = useState<"null" | "half" | "fill">("null");
 
     const onClickHalf = () => {
         setRate(num - 0.5);

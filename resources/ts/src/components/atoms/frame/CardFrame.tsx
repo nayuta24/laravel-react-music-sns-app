@@ -13,15 +13,16 @@ export const CardFrame: VFC<Props> = memo((props) => {
     return (
         <Flex
             w="98%"
-            h="33vh"
+            h={{ sm: "33vh", base: "90vh" }}
             bg="white"
             borderRadius="10px"
-            px="30px"
-            py="15px"
+            px={{ sm: "30px", base: "25px" }}
+            py={{ sm: "15px", base: "5px" }}
             shadow="md"
             mb={mb}
             _hover={{ cursor: "pointer", opacity: 0.8 }}
             onClick={onClick}
+            flexDirection={{ sm: "row", base: "column" }}
         >
             {children}
         </Flex>

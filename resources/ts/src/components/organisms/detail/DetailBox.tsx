@@ -43,7 +43,7 @@ export const DetailBox: VFC<Props> = (props) => {
                 <Text fontSize="lg" fontWeight="bold">
                     {title}
                 </Text>
-                <Text fontSize="sm" pr={10} mt={2}>
+                <Text fontSize="sm" pr={{ sm: "10px", base: "none" }} mt={2}>
                     {body}
                 </Text>
             </Box>

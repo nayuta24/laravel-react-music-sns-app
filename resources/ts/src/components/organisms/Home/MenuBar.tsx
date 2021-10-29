@@ -14,21 +14,12 @@ export const MenuBar: VFC<Props> = memo((props) => {
 
     return (
         <Box>
-            {/* 要素を横並びに */}
-            <Flex spacing="none">
-                {/* メニューバー */}
-                <Flex mx="auto" w="100%">
-                    <Box
-                        w="15%"
-                        h="100%"
-                        display={{ base: "none", md: "inline" }}
-                        pr="auto"
-                        ml="18%"
-                    >
-                        <MenuContents />
-                    </Box>
-                    {children}
-                </Flex>
+            {/* メニューバー */}
+            <Flex mx="auto" w="100%" justifyContent="center">
+                <Box h="100vh" pr="3%" display={{ base: "none", md: "inline" }}>
+                    <MenuContents />
+                </Box>
+                {children}
             </Flex>
             <MenuDrawer isOpen={isOpen} onClose={onClose} />
         </Box>

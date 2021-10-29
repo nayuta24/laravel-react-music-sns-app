@@ -5,24 +5,28 @@ import { ShareButton } from "../../atoms/button/ShareButton";
 import { CommentButton } from "../../atoms/button/CommentButton";
 
 type Props = {
-  comment_val: number;
-  like_val: number;
+    comment_val: number;
+    like_val: number;
 };
 
 export const CardReactionButtons: VFC<Props> = memo((props) => {
-  const { comment_val, like_val } = props;
+    const { comment_val, like_val } = props;
 
-  return (
-    <Flex mt="2%">
-      <Flex w="30%" mr="auto">
-        <CommentButton value={comment_val} />
-      </Flex>
-      <Flex w="30%" mr="auto">
-        <LikeButton value={like_val} />
-      </Flex>
-      <Flex w="30%" ml="auto">
-        <ShareButton />
-      </Flex>
-    </Flex>
-  );
+    return (
+        <Flex
+            mt="5%"
+            w={{ sm: "none", base: "70%" }}
+            mx={{ sm: "0", base: "auto" }}
+        >
+            <Flex w="33%" mr="auto">
+                <CommentButton value={comment_val} />
+            </Flex>
+            <Flex w="auto" mr="auto">
+                <LikeButton value={like_val} />
+            </Flex>
+            <Flex w="auto" ml="auto">
+                <ShareButton />
+            </Flex>
+        </Flex>
+    );
 });
