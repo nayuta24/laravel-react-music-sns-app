@@ -1,4 +1,4 @@
-import { Box, Flex, useDisclosure } from "@chakra-ui/react";
+import { Box, useDisclosure } from "@chakra-ui/react";
 import { memo, ReactNode, VFC } from "react";
 
 import { HomePostBox } from "../organisms/home/HomePostBox";

@@ -4,14 +4,12 @@ import { BsStar, BsStarFill, BsStarHalf } from "react-icons/bs";
 
 type Props = {
     rating: number;
-    isRateDisable?: boolean;
 };
 
-export const Rating: VFC<Props> = (props) => {
-    const { rating, isRateDisable = false } = props;
-    const starSize = "23px";
+export const SmRating: VFC<Props> = (props) => {
+    const { rating } = props;
+    const starSize = "22px";
     const gap = "1px";
-
 
     let fixedRating = rating.toString();
     if (fixedRating.length === 1) {
@@ -34,11 +32,6 @@ export const Rating: VFC<Props> = (props) => {
                         <BsStar fontSize={starSize} color="orange" />
                     </Box>
                 )
-            )}
-            {isRateDisable || (
-                <Text ml="10px" pt="2px" fontWeight="semibold" color="gray.600">
-                    {fixedRating}
-                </Text>
             )}
         </Flex>
     );

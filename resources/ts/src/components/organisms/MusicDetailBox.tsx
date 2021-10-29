@@ -2,6 +2,7 @@ import { AspectRatio, Box, Flex, Text } from "@chakra-ui/react";
 import { VFC } from "react";
 import { gradationGreen } from "../atoms/color/gradationGreen";
 import { BsQuestionCircle } from "react-icons/bs";
+import { ShortText } from "../atoms/typography/ShortText";
 
 type Props = {
     id: string | undefined;
@@ -20,8 +21,14 @@ export const MusicDetailBox: VFC<Props> = (props) => {
         release = undefined,
     } = props;
     return (
-        <Flex>
-            <AspectRatio ratio={1 / 1} boxSize="40%">
+        <Flex flexDirection={{ sm: "row", base: "column" }}>
+            <AspectRatio
+                ratio={1 / 1}
+                boxSize={{ sm: "60%", base: "0" }}
+                w={{ sm: "0", base: "100%" }}
+                h={{ sm: "0", base: "40vh" }}
+                mx={{ sm: "0", base: "auto" }}
+            >
                 {id === undefined ? (
                     <Box bgGradient={gradationGreen}>
                         <BsQuestionCircle color="gray" fontSize="13vh" />
@@ -34,20 +41,32 @@ export const MusicDetailBox: VFC<Props> = (props) => {
                     />
                 )}
             </AspectRatio>
-            <Flex alignItems="start" flexFlow="column" ml={5} mt="auto" mb="2%">
-                <Text fontWeight="bold" fontSize="25px" mb="2%">
+            <Flex
+                alignItems="start"
+                flexFlow="column"
+                ml={5}
+                mt={{ sm: "auto", base: "3vh" }}
+                mb="2%"
+                overflow="hidden"
+                w={{ sm: "65%", base: "100%" }}
+            >
+                <ShortText
+                    fontWeight="bold"
+                    fontSize={{ sm: "25px", base: "lg" }}
+                    mb="1vh"
+                >
                     {title === undefined ? "楽曲情報が取得できません" : title}
-                </Text>
-                <Text fontSize="sm">
+                </ShortText>
+                <ShortText fontSize="sm">
                     収録アルバム： {album === undefined ? "???" : album}
-                </Text>
-                <Text fontSize="sm">
+                </ShortText>
+                <ShortText fontSize="sm">
                     アーティスト：
                     {artist === undefined ? "???" : artist}
-                </Text>
-                <Text fontSize="sm">
+                </ShortText>
+                <ShortText fontSize="sm">
                     リリース： {release === undefined ? "???" : release}
-                </Text>
+                </ShortText>
             </Flex>
         </Flex>
     );

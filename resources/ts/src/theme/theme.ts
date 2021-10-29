@@ -13,6 +13,11 @@ const theme = extendTheme({
         baseStyle: {
           _focus: { outline: "none" }
         }
+      },
+      Text: {
+        baseStyle: {
+          color:"gray.700"
+        }
       }
     }
   }

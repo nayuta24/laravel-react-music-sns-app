@@ -4,11 +4,12 @@ import { Box } from "@chakra-ui/react";
 import axios from "axios";
 
 import { homeState } from "../../../store/homeState";
-import { PostCard } from "../../organisms/home/post/PostCard";
+import { LgPostCard } from "../../organisms/home/post/LgPostCard";
 import { PostsDataType } from "../../../type/api/PostsDataType";
 import Posts from "../../../test_json/allPosts.json";
 import { useGetPosts } from "../../../hooks/api/useGetPosts";
 import { LoadingPageSpinner } from "../../organisms/LoadingPageSpinner";
+import { SmPostCard } from "../../organisms/home/post/SmPostCard";
 
 export const Recent = memo(() => {
     // グローバルStateを変更、それをもとにヘッダーを変更とapiリクエストをする
@@ -32,7 +33,8 @@ export const Recent = memo(() => {
                     {api_posts.map((obj) => (
                         <Box key={obj.id}>
                             {/* Object.assign(オブジェクト)で、オブジェクトのスプレッドを実現 */}
-                            <PostCard post={Object.assign(obj)} />
+                            <LgPostCard post={Object.assign(obj)} />
+                            <SmPostCard post={Object.assign(obj)} />
                         </Box>
                     ))}
                 </Box>
@@ -45,7 +47,8 @@ export const Recent = memo(() => {
         //     {api_posts.map((obj) => (
         //         <Box key={obj.id}>
         //             {/* Object.assign(オブジェクト)で、オブジェクトのスプレッドを実現 */}
-        //             <PostCard post={Object.assign(obj)} />
+        //             <LgPostCard post={Object.assign(obj)} />
+        //             <SmPostCard post={Object.assign(obj)} />
         //         </Box>
         //     ))}
         // </Box>
