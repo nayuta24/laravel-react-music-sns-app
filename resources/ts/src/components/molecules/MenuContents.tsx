@@ -77,8 +77,7 @@ export const MenuContents: VFC<Props> = memo((props) => {
                 </PrimaryButton>
             </Box>
             <Box mt="auto" mb="15%" textAlign="left">
-                {/* <UserInfoBox img="" name={apiMe.name} user_title="" pl="30px" /> */}
-                <UserInfoBox img="" name={"ビルド前に直せ"} user_title="" />
+                <UserInfoBox img="" name={apiMe.name} user_title="" pl="30px" />
                 <Button
                     fontSize={5}
                     w="70px"
