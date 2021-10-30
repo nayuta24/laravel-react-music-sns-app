@@ -26,7 +26,7 @@ export const SmPostCard: VFC<Props> = memo((props) => {
     return (
         <Box display={{ sm: "none", base: "inline" }}>
             <Flex position="relative" w="100%" h="100%">
-                <CardFrame mb="2%" onClick={onClickCard}>
+                <CardFrame mb="4%" onClick={onClickCard}>
                     {/* 曲情報 */}
                     <CardMusicBox
                         img={track.img}
@@ -58,7 +58,7 @@ export const SmPostCard: VFC<Props> = memo((props) => {
                     mt="75vh"
                 >
                     {/* 投稿へのコメント、いいねなど */}
-                    <Flex mx="auto">
+                    <Flex ml="auto">
                         <UserInfoBox
                             img={user.img}
                             name={user.name}
