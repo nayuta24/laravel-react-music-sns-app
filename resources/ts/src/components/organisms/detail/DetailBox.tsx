@@ -5,9 +5,9 @@ import { ReactionButtons } from "../../molecules/post_detail/ReactionButtons";
 import { UserInfoBox } from "../../molecules/UserInfoBox";
 
 type Props = {
-    userName: string;
-    userTitle: string;
-    userImg: string;
+    userName: string | undefined;
+    userTitle: string | undefined;
+    userImg: string | undefined;
     rating?: number;
     title: string;
     body: string;

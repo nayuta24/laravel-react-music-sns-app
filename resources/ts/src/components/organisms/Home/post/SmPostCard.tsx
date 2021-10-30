@@ -58,7 +58,7 @@ export const SmPostCard: VFC<Props> = memo((props) => {
                     mt="75vh"
                 >
                     {/* 投稿へのコメント、いいねなど */}
-                    <Flex ml="auto" mr="3%">
+                    <Flex mx="auto">
                         <UserInfoBox
                             img={user.img}
                             name={user.name}

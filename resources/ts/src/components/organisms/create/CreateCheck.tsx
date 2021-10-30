@@ -1,6 +1,8 @@
 import { Box, Divider, Flex } from "@chakra-ui/react";
 import { VFC } from "react";
+import { useRecoilValue } from "recoil";
 import { usePostCreate } from "../../../hooks/api/usePostCreate";
+import { meState } from "../../../store/meState";
 import { TrackDataType } from "../../../type/api/TrackDataType";
 import { CreateTransButton } from "../../atoms/button/CreateTransButton";
 import { DetailBox } from "../detail/DetailBox";
@@ -20,6 +22,9 @@ export const CreateCheck: VFC<Props> = (props) => {
     const { trackData, rate, title, body, goRate, trackId, setTransAlert } =
         props;
 
+    // ユーザー情報を取得
+    const me = useRecoilValue(meState);
+
     // 現在の内容で確定して投稿する
     const { postCreate } = usePostCreate();
     const onConfirm = () => {
@@ -37,7 +42,7 @@ export const CreateCheck: VFC<Props> = (props) => {
             />
             <Divider orientation="horizontal" w="100%" mt={5} mb="5" />
             <DetailBox
-                userName=""
+                userName={me.name}
                 userTitle=""
                 userImg=""
                 rating={rate}
