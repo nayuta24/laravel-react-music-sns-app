@@ -7,7 +7,7 @@
 </br>
 
 ## 開発環境
-![icons](https://user-images.githubusercontent.com/62182265/139533207-2035a77f-f7ff-47d1-aedb-5df43e3584fa.png)
+![icons](https://user-images.githubusercontent.com/62182265/139539545-584a6835-96e4-49ac-95ac-da546810860c.png)
 ### フロントエンド
 * React(vesion: 17.0.2)</br>
 * TypeScript(version: 4.1.2)</br>
