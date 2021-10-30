@@ -4,12 +4,11 @@ import { Box, Flex } from "@chakra-ui/react";
 
 import { CardMusicBox } from "../../../molecules/post_card/CardMusicBox";
 import { CardComment } from "../../../molecules/post_card/CardComment";
-import { Rating } from "../../../atoms/button/Rating";
+import { SmRating } from "../../../atoms/button/SmRating";
 import { UserInfoBox } from "../../../molecules/UserInfoBox";
 import { CardFrame } from "../../../atoms/frame/CardFrame";
 import { PostsDataType } from "../../../../type/api/PostsDataType";
 import { CardReactionButtons } from "../../../molecules/post_card/CardReactionButtons";
-import { SmRating } from "../../../atoms/button/SmRating";
 
 type Props = {
     post: PostsDataType;
@@ -35,7 +34,7 @@ export const SmPostCard: VFC<Props> = memo((props) => {
                         artist={track.artist}
                     />
                     <Box mx="auto">
-                        {/* <Rating rating={review.star} isRateDisable={true} /> */}
+                        {/* <SmRating rating={review.star} isRateDisable={true} /> */}
                         <SmRating rating={review.star} />
                     </Box>
                     <Flex

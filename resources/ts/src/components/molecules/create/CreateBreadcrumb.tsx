@@ -1,9 +1,4 @@
-import {
-    Breadcrumb,
-    BreadcrumbItem,
-    BreadcrumbLink,
-    Text,
-} from "@chakra-ui/react";
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "@chakra-ui/react";
 import { ChevronRightIcon } from "@chakra-ui/icons";
 import { memo, useEffect, useState, VFC } from "react";
 
@@ -68,15 +63,20 @@ export const CreateBreadcrumb: VFC<Props> = memo((props) => {
 
     return (
         <Breadcrumb
-            spacing="20px"
+            spacing={{ sm: "20px", base: "10px" }}
             ml="0px"
-            separator={<ChevronRightIcon color="gray.500" fontSize="30px" />}
+            separator={
+                <ChevronRightIcon
+                    color="gray.500"
+                    fontSize={{ sm: "30px", base: "20px" }}
+                />
+            }
             textAlign="left"
-            mb="30px"
+            mb={{ sm: "30px", base: "15px" }}
         >
             <BreadcrumbItem isCurrentPage={step === "track"}>
                 <BreadcrumbLink
-                    fontSize="20px"
+                    fontSize={{ sm: "20px", base: "15px" }}
                     color={trackColor}
                     fontWeight={trackWeight}
                     onClick={goTrackInfo}
@@ -89,7 +89,7 @@ export const CreateBreadcrumb: VFC<Props> = memo((props) => {
                 pointerEvents={canMoveRate}
             >
                 <BreadcrumbLink
-                    fontSize="20px"
+                    fontSize={{ sm: "20px", base: "15px" }}
                     color={rateColor}
                     fontWeight={rateWeight}
                     onClick={goRate}
@@ -102,7 +102,7 @@ export const CreateBreadcrumb: VFC<Props> = memo((props) => {
                 pointerEvents={canMoveCheck}
             >
                 <BreadcrumbLink
-                    fontSize="20px"
+                    fontSize={{ sm: "20px", base: "15px" }}
                     color={checkColor}
                     fontWeight={checkWeight}
                     onClick={goCheck}

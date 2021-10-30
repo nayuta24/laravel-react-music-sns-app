@@ -4,7 +4,7 @@ import { VFC } from "react";
 
 type Props = {
     onClick: () => void;
-    mt?: string;
+    mt?: string | { md?: string; sm?: string; base?: string };
     isDisabled?: boolean;
     text: string;
 };
@@ -15,12 +15,12 @@ export const CreateTransButton: VFC<Props> = (props) => {
         <Button
             mt={mt}
             w="auto"
-            h="30px"
+            h={{ sm: "30px", base: "25px" }}
             ml="auto"
             bg="orange.300"
             color="white"
             onClick={onClick}
-            fontSize="15px"
+            fontSize={{ sm: "15px", base: "12px" }}
             _focus={{ outline: "none" }}
             isDisabled={isDisabled}
         >

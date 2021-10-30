@@ -27,7 +27,7 @@ export const CreateCheck: VFC<Props> = (props) => {
     };
 
     return (
-        <Flex flexDirection="column" mt="30px">
+        <Flex flexDirection="column">
             <MusicDetailBox
                 id={trackData?.id}
                 title={trackData?.title}

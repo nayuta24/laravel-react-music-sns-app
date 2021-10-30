@@ -82,7 +82,7 @@ export const Create = memo(() => {
     };
 
     return (
-        <Box textAlign="left">
+        <Box textAlign="left" py="10px">
             {/* react-routeの「Prompt」によって、ページを離れようとしたときに警告
             (投稿確定時のリダイレクトでは無効) */}
             {transAlert && (

@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Input, Text } from "@chakra-ui/react";
 import { useEffect, useState, VFC } from "react";
 
 import { gradationGreen } from "../../atoms/color/gradationGreen";
@@ -81,30 +81,33 @@ export const CreateTrackInfo: VFC<Props> = (props) => {
                 />
             )}
             <Flex flexDirection="column" mt="30px">
-                <Flex mt="10px">
-                    <Form
-                        onChange={onChangeTrackURL}
-                        value={trackUrl}
-                        fontSize="lg"
+                <Box>
+                    <Text
+                        ml={1}
+                        mb={2}
+                        fontSize={{ sm: "lg", base: "13px" }}
                         fontWeight="semibold"
+                        color="gray.700"
                     >
                         Spotifyの楽曲シェア用URLを入力してください
-                    </Form>
-                    <Button
-                        ml="2%"
-                        w="20%"
-                        bgGradient={gradationGreen}
-                        color="white"
-                        fontSize="lg"
-                        mt="auto"
-                        onClick={checkTrack}
-                    >
-                        確認
-                    </Button>
-                </Flex>
+                    </Text>
+                    <Flex>
+                        <Input onChange={onChangeTrackURL} value={trackUrl} />
+                        <Button
+                            ml="2%"
+                            bgGradient={gradationGreen}
+                            color="white"
+                            fontSize={{ sm: "lg", base: "sm" }}
+                            mt="auto"
+                            onClick={checkTrack}
+                        >
+                            確認
+                        </Button>
+                    </Flex>
+                </Box>
                 <CreateTransButton
                     onClick={goRate}
-                    mt="30px"
+                    mt={{ sm: "30px", base: "20px" }}
                     isDisabled={isTrackNull}
                     text="次へ"
                 />
