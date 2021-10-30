@@ -1,6 +1,6 @@
 import { useState, VFC } from "react";
 import { BsStar, BsStarFill, BsStarHalf } from "react-icons/bs";
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Flex, useBreakpointValue } from "@chakra-ui/react";
 
 type Props = {
     num: number;
@@ -18,8 +18,8 @@ export const StarButton: VFC<Props> = (props) => {
         setRate(num);
     };
 
-    const StarSize = "50px";
-    const starGap = "60px";
+    const StarSize = useBreakpointValue({ sm: "50px", base: "40px" });
+    const starGap = useBreakpointValue({ sm: "60px", base: "45px" });
 
     return (
         <Box>

@@ -29,10 +29,10 @@ export const CreateRate: VFC<Props> = (props) => {
     } = props;
 
     return (
-        <Flex flexDirection="column" mt="30px">
+        <Flex flexDirection="column">
             <Flex flexDirection="column">
                 <Text
-                    fontSize="lg"
+                    fontSize={{ sm: "lg", base: "md" }}
                     ml="10px"
                     fontWeight="semibold"
                     color="gray.700"
@@ -46,7 +46,7 @@ export const CreateRate: VFC<Props> = (props) => {
             <Box mt="30px">
                 <Flex>
                     <Text
-                        fontSize="lg"
+                        fontSize={{ sm: "lg", base: "md" }}
                         ml="10px"
                         fontWeight="semibold"
                         color="gray.700"
@@ -68,7 +68,7 @@ export const CreateRate: VFC<Props> = (props) => {
             <Box mt="30px">
                 <Flex>
                     <Text
-                        fontSize="lg"
+                        fontSize={{ sm: "lg", base: "md" }}
                         ml="10px"
                         h="auto"
                         fontWeight="semibold"

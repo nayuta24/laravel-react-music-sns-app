@@ -6,7 +6,7 @@ type Props = {
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
     value: string;
     inputType?: string;
-    fontSize?: string;
+    fontSize?: string | { md?: string; sm?: string; base?: string };
     fontWeight?: string;
 };
 
