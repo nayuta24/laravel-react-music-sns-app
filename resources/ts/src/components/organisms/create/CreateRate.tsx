@@ -39,7 +39,7 @@ export const CreateRate: VFC<Props> = (props) => {
                 >
                     ① 評価
                 </Text>
-                <Box textAlign="center">
+                <Box textAlign="center" position="relative">
                     <FiveStarButton rate={rate} setRate={onChangeRate} />
                 </Box>
             </Flex>
