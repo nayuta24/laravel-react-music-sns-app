@@ -3,9 +3,9 @@ import { Flex, Avatar, Text } from "@chakra-ui/react";
 import { ShortText } from "../atoms/typography/ShortText";
 
 type Props = {
-    img: string;
-    name: string;
-    user_title: string;
+    img: string | undefined;
+    name: string | undefined;
+    user_title: string | undefined;
     pl?: string;
     m?: string;
 };

@@ -1,5 +1,6 @@
 import { Box, useDisclosure } from "@chakra-ui/react";
-import { memo, ReactNode, VFC } from "react";
+import { memo, ReactNode, useEffect, VFC } from "react";
+import { useGetMe } from "../../hooks/api/useGetMe";
 
 import { HomePostBox } from "../organisms/home/HomePostBox";
 import { MenuBar } from "../organisms/home/MenuBar";
@@ -11,6 +12,9 @@ type Props = {
 export const HomeLayout: VFC<Props> = memo((props) => {
     const { children } = props;
     const { isOpen, onOpen, onClose } = useDisclosure();
+    // ログインしたユーザーの情報を取得してグローバルStateで保持
+    const { getMe } = useGetMe();
+    useEffect(() => getMe(), [getMe]);
 
     return (
         <Box w="100%">

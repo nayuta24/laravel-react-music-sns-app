@@ -2,11 +2,12 @@ import { memo, useEffect, VFC } from "react";
 import { Box, Button, Flex, Text } from "@chakra-ui/react";
 import { useHistory } from "react-router";
 
-import { useGetMe } from "../../hooks/api/useGetMe";
 import { useLogout } from "../../hooks/login/useLogout";
 import { MenuButton } from "../atoms/button/MenuButton";
 import { PrimaryButton } from "../atoms/button/PrimaryButton";
 import { UserInfoBox } from "./UserInfoBox";
+import { useRecoilValue } from "recoil";
+import { meState } from "../../store/meState";
 
 type Props = {
     onClose?: () => void | undefined;
@@ -17,10 +18,8 @@ export const MenuContents: VFC<Props> = memo((props) => {
 
     const history = useHistory();
     // ユーザーの情報を取得
-    const { getMe, apiMe } = useGetMe();
+    const me = useRecoilValue(meState);
     const { logout } = useLogout();
-
-    useEffect(() => getMe(), [getMe]);
 
     // 画面遷移(＋Drawerが開いてたら閉める)
     const transTo = (
@@ -77,11 +76,11 @@ export const MenuContents: VFC<Props> = memo((props) => {
                 </PrimaryButton>
             </Box>
             <Box mt="auto" mb="15%" textAlign="left">
-                <UserInfoBox img="" name={apiMe.name} user_title="" pl="30px" />
+                <UserInfoBox img="" name={me.name} user_title="" pl="30px" />
                 <Button
-                    fontSize={5}
-                    w="70px"
-                    h="25px"
+                    fontSize={{ sm: "10px", base: "5px" }}
+                    w="auto"
+                    h="40%"
                     colorScheme="red"
                     mt="5px"
                     _focus={{ outline: "none" }}
