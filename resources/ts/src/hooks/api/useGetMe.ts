@@ -29,6 +29,7 @@ export const useGetMe = () =>
             )
             .catch( () =>
             {
+                setMe( {id:"1", name:"ああ", email:"aaa"} );
                 setIsLogin( { isLogin:false});
             })
     }, []);

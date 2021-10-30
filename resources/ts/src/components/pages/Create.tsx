@@ -29,8 +29,8 @@ export const Create = memo(() => {
     // 各種投稿内容を保存しておくためのState
     // trackIdは楽曲情報表示や「次へ」ボタンが押せるかなどの判定に使われる
     const [trackUrl, setTrackUrl] = useState<string>("");
-    // const [trackId, setTrackId] = useState<string | undefined>(undefined);
-    const [trackId, setTrackId] = useState<string | undefined>("");
+    const [trackId, setTrackId] = useState<string | undefined>(undefined);
+    // const [trackId, setTrackId] = useState<string | undefined>("");
     const [rate, setRate] = useState<number>(0);
     const [title, setTitle] = useState<string>("");
     const [body, setBody] = useState<string>("");
