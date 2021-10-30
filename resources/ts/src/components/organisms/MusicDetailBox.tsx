@@ -24,9 +24,8 @@ export const MusicDetailBox: VFC<Props> = (props) => {
         <Flex flexDirection={{ sm: "row", base: "column" }}>
             <AspectRatio
                 ratio={1 / 1}
-                boxSize={{ sm: "60%", base: "0" }}
-                w={{ sm: "0", base: "100%" }}
-                h={{ sm: "0", base: "40vh" }}
+                w={{ sm: "50%", base: "100%" }}
+                h={{ sm: "50%", base: "40vh" }}
                 mx={{ sm: "0", base: "auto" }}
             >
                 {id === undefined ? (
