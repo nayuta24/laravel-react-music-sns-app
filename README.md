@@ -1,8 +1,8 @@
-# 楽曲共有SNS「Bebop」
+# 楽曲共有SNS「Bebop!」
 「音楽が好きだけど、趣味が同じ友達が見つからない」、「コロナ禍で音楽仲間と集まる機会が減ってしまった」</br>
 そのような悩みを持つ人々が、気軽に音楽に対する熱い想いを発信できるSNSを作りたいと考えました。
 ### デプロイ
-[Bebop!](https://be-bop.herokuapp.com/home)
+[楽曲共有SNS「Bebop!」](https://be-bop.herokuapp.com/home)
 
 </br>
 
