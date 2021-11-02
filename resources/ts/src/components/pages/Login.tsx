@@ -7,14 +7,16 @@ import {
     TabList,
     TabPanels,
     TabPanel,
+    Button,
+    Image,
 } from "@chakra-ui/react";
-import { useHistory } from "react-router";
 import { ChangeEvent, useState } from "react";
 
 import { useLogin } from "../../hooks/login/useLogin";
 import { Form } from "../molecules/Form";
 import { PrimaryButton } from "../atoms/button/PrimaryButton";
 import { useRegister } from "../../hooks/login/useRegister";
+import { gradationGreen } from "../atoms/color/gradationGreen";
 
 export const Login = () => {
     // ログインフォーム用state
@@ -62,19 +64,19 @@ export const Login = () => {
             h="100vh"
             textAlign="center"
             pt={{ base: "none", sm: "10vh" }}
+            position="relative"
         >
             {/* 画面サイズが大きいときはカードの外に「Bebop！を表示」 */}
             <Text
                 display={{ base: "none", sm: "inline" }}
                 as="h1"
                 fontSize="60px"
-                bgGradient="linear(to-tl, green, #c4de71)"
+                bgGradient={gradationGreen}
                 bgClip="text"
                 fontWeight="bold"
             >
                 Bebop!
             </Text>
-            {/* 以下、カード内 */}
             <Flex
                 bg="white"
                 borderRadius={{ base: "none", sm: "10px" }}
@@ -82,9 +84,9 @@ export const Login = () => {
                 shadow={{ base: "none", sm: "md" }}
                 w={{ base: "100%", sm: "400px" }}
                 h={{ base: "100%", sm: "500px" }}
+                mx="auto"
                 textAlign="center"
                 flexDirection="column"
-                mx="auto"
                 mt={{ base: "none", sm: "2vh" }}
             >
                 <Text
@@ -138,16 +140,22 @@ export const Login = () => {
                                     パスワード
                                 </Form>
                                 <Box h="10px" />
-                                <PrimaryButton
+                                <Button
+                                    bgGradient={gradationGreen}
+                                    color="white"
+                                    borderRadius="1000px"
                                     onClick={onClickLogin}
                                     disabled={
                                         loginMailAddress === "" ||
-                                        loginPassword === ""
+                                        loginPassword === "" ||
+                                        loginPassword.length < 6
                                     }
+                                    w="100%"
                                     mt="15px"
+                                    mx="auto"
                                 >
                                     ログイン
-                                </PrimaryButton>
+                                </Button>
                             </Flex>
                         </TabPanel>
                         {/* 新規登録用タブパネル */}
@@ -184,7 +192,13 @@ export const Login = () => {
                                     パスワード（再入力）
                                 </Form>
                                 <Box h="10px" />
-                                <PrimaryButton
+                                <Button
+                                    bgGradient={gradationGreen}
+                                    color="white"
+                                    borderRadius="1000px"
+                                    w="100%"
+                                    mt="15px"
+                                    mx="auto"
                                     onClick={onClickRegister}
                                     disabled={
                                         regMailAddress === "" ||
@@ -193,10 +207,9 @@ export const Login = () => {
                                         regPassword !== regPasswordConfirm ||
                                         regName === ""
                                     }
-                                    mt="15px"
                                 >
                                     新規登録
-                                </PrimaryButton>
+                                </Button>
                             </Flex>
                         </TabPanel>
                     </TabPanels>

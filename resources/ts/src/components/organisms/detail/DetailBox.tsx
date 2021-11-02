@@ -1,7 +1,7 @@
 import { Box, Flex, Text } from "@chakra-ui/react";
 import { VFC } from "react";
 import { Rating } from "../../atoms/button/Rating";
-import { ReactionButtons } from "../../molecules/post_detail/ReactionButtons";
+import { ReactionButtons } from "../../molecules/detail/ReactionButtons";
 import { UserInfoBox } from "../../molecules/UserInfoBox";
 
 type Props = {

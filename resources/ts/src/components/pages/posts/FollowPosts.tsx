@@ -3,7 +3,7 @@ import { useSetRecoilState } from "recoil";
 
 import { homeState } from "../../../store/homeState";
 import { LoadingPageSpinner } from "../../organisms/LoadingPageSpinner";
-import { HomePage404 } from "./Home404";
+import { Page404 } from "../Page404";
 
 export const FollowPosts = memo(() => {
     const setTopic = useSetRecoilState(homeState);

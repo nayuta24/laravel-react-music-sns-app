@@ -1,9 +1,9 @@
-import { Recent } from "../components/pages/home/Recent";
-import { FollowPosts } from "../components/pages/home/FollowPosts";
-import { Popular } from "../components/pages/home/Popular";
-import { Detail404 } from "../components/pages/home/detail/Detail404";
-import { PostDetail } from "../components/pages/home/detail/PostDetail";
+import { Recent } from "../components/pages/posts/Recent";
+import { FollowPosts } from "../components/pages/posts/FollowPosts";
+import { Popular } from "../components/pages/posts/Popular";
+import { PostDetail } from "../components/pages/Detail";
 import { Create } from "../components/pages/Create";
+import { Page404 } from "../components/pages/Page404";
 
 export const homeRoutes = [
     {
@@ -36,7 +36,7 @@ export const homeRoutes = [
     {
         path: "page404",
         exact: false,
-        children: <Detail404 />,
+        children: <Page404 />,
     },
     {
         path: "*",
