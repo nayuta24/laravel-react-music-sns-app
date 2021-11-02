@@ -2,7 +2,6 @@ import { AspectRatio, Box, Flex, Text } from "@chakra-ui/react";
 import { VFC } from "react";
 import { gradationGreen } from "../atoms/color/gradationGreen";
 import { BsQuestionCircle } from "react-icons/bs";
-import { ShortText } from "../atoms/typography/ShortText";
 
 type Props = {
     id: string | undefined;
@@ -45,28 +44,45 @@ export const MusicDetailBox: VFC<Props> = (props) => {
                 flexFlow="column"
                 ml={5}
                 mt={{ sm: "auto", base: "3vh" }}
-                mb="2%"
                 overflow="hidden"
                 w={{ sm: "65%", base: "100%" }}
+                h="100%"
+                position="relative"
+                textAlign="left"
             >
-                <ShortText
-                    fontWeight="bold"
+                <Text
                     fontSize={{ sm: "25px", base: "lg" }}
+                    fontWeight="bold"
                     mb="1vh"
                 >
                     {title === undefined ? "楽曲情報が取得できません" : title}
-                </ShortText>
-                <ShortText fontSize="sm">
-                    収録アルバム： {album === undefined ? "???" : album}
-                </ShortText>
-                <ShortText fontSize="sm">
-                    アーティスト：
-                    {artist === undefined ? "???" : artist}
-                </ShortText>
-                <ShortText fontSize="sm">
-                    リリース： {release === undefined ? "???" : release}
-                </ShortText>
+                </Text>
+                <MusicDetailTopics title="収録アルバム" content={album} />
+                <MusicDetailTopics title="アーティスト" content={artist} />
+                <MusicDetailTopics title="リリース" content={release} />
             </Flex>
         </Flex>
+    );
+};
+
+// 内部的に使用するコンポーネント
+// 曲の各詳細情報をコンポーネント化
+type MusicDetailTopicsType = {
+    title: string;
+    content: string | undefined;
+};
+
+const MusicDetailTopics: VFC<MusicDetailTopicsType> = (props) => {
+    const { title, content } = props;
+
+    return (
+        <>
+            <Text fontSize="md" fontWeight="bold" color="gray.600">
+                {title}
+            </Text>
+            <Text fontSize="sm" mb="1vh" color="gray.600">
+                {content === undefined ? "???" : content}
+            </Text>
+        </>
     );
 };

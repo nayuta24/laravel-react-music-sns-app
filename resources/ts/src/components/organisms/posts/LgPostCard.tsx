@@ -2,19 +2,19 @@ import { memo, VFC } from "react";
 import { useHistory } from "react-router";
 import { Box, Flex } from "@chakra-ui/react";
 
-import { CardMusicBox } from "../../../molecules/post_card/CardMusicBox";
-import { CardComment } from "../../../molecules/post_card/CardComment";
-import { SmRating } from "../../../atoms/button/SmRating";
-import { UserInfoBox } from "../../../molecules/UserInfoBox";
-import { CardFrame } from "../../../atoms/frame/CardFrame";
-import { PostsDataType } from "../../../../type/api/PostsDataType";
-import { CardReactionButtons } from "../../../molecules/post_card/CardReactionButtons";
+import { CardMusicBox } from "../../molecules/postCard/CardMusicBox";
+import { CardComment } from "../../molecules/postCard/CardComment";
+import { Rating } from "../../atoms/button/Rating";
+import { UserInfoBox } from "../../molecules/UserInfoBox";
+import { CardFrame } from "../../atoms/frame/CardFrame";
+import { PostsDataType } from "../../../type/api/PostsDataType";
+import { CardReactionButtons } from "../../molecules/postCard/CardReactionButtons";
 
 type Props = {
     post: PostsDataType;
 };
 
-export const SmPostCard: VFC<Props> = memo((props) => {
+export const LgPostCard: VFC<Props> = memo((props) => {
     const { post } = props;
     const { user, track, review, reaction, id } = post;
     const { comment_val, like_val } = reaction;
@@ -24,25 +24,20 @@ export const SmPostCard: VFC<Props> = memo((props) => {
     };
 
     return (
-        <Box display={{ sm: "none", base: "inline" }}>
+        <Box display={{ sm: "inline", base: "none" }}>
             <Flex position="relative" w="100%" h="100%">
-                <CardFrame mb="4%" onClick={onClickCard}>
+                <CardFrame mb="2%" onClick={onClickCard}>
                     {/* 曲情報 */}
                     <CardMusicBox
                         img={track.img}
                         title={track.title}
                         artist={track.artist}
                     />
-                    <Box mx="auto">
-                        {/* <SmRating rating={review.star} isRateDisable={true} /> */}
-                        <SmRating rating={review.star} />
-                    </Box>
                     <Flex
-                        w="100%"
+                        w="70%"
                         h="30vh"
+                        pb="8vh"
                         mr="auto"
-                        mb="1%"
-                        mt="5%"
                         flexFlow="column"
                         textAlign="left"
                     >
@@ -51,14 +46,18 @@ export const SmPostCard: VFC<Props> = memo((props) => {
                     </Flex>
                 </CardFrame>
                 {/* 上からいいねボタン等を重ねる */}
-                <Flex
-                    flexDirection="column"
-                    position="absolute"
-                    w="100%"
-                    mt="75vh"
-                >
-                    {/* 投稿へのコメント、いいねなど */}
-                    <Flex ml="auto">
+                <Flex position="absolute" w="60%" ml="32%" mt="23.5vh">
+                    <Flex flexDirection="column" w="100%">
+                        {/* 評価 */}
+                        <Rating rating={review.star} />
+                        {/* 投稿へのコメント、いいねなど */}
+                        <CardReactionButtons
+                            comment_val={comment_val}
+                            like_val={like_val}
+                        />
+                    </Flex>
+                    {/* コメントしたユーザー */}
+                    <Flex w="25%">
                         <UserInfoBox
                             img={user.img}
                             name={user.name}
@@ -67,10 +66,6 @@ export const SmPostCard: VFC<Props> = memo((props) => {
                             m="auto"
                         />
                     </Flex>
-                    <CardReactionButtons
-                        comment_val={comment_val}
-                        like_val={like_val}
-                    />
                 </Flex>
             </Flex>
         </Box>

@@ -6,7 +6,6 @@ import { useSetRecoilState } from "recoil";
 import { homeState } from "../../store/homeState";
 import { useGetDetail } from "../../hooks/api/useGetDetail";
 import json_postDetail from "../../test_json/postDetail.json";
-import { LoadingCard } from "../organisms/home/post/LoadingCard";
 import { LoadingPageSpinner } from "../organisms/LoadingPageSpinner";
 import { MusicDetailBox } from "../organisms/MusicDetailBox";
 import { DetailBox } from "../organisms/detail/DetailBox";

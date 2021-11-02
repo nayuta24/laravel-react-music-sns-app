@@ -1,7 +1,7 @@
 import { Recent } from "../components/pages/posts/Recent";
 import { FollowPosts } from "../components/pages/posts/FollowPosts";
 import { Popular } from "../components/pages/posts/Popular";
-import { PostDetail } from "../components/pages/PostDetail";
+import { PostDetail } from "../components/pages/Detail";
 import { Create } from "../components/pages/Create";
 import { Page404 } from "../components/pages/Page404";
 
