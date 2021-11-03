@@ -60,10 +60,12 @@ export const SmPostCard: VFC<Props> = memo((props) => {
                     {/* 投稿へのコメント、いいねなど */}
                     <Flex ml="auto">
                         <UserInfoBox
-                            img={user.img}
-                            name={user.name}
-                            user_title={user.job}
-                            pl="8%"
+                            user={{
+                                id: user.id,
+                                name: user.name,
+                                title: user.job,
+                                image: user.img,
+                            }}
                             m="auto"
                         />
                     </Flex>

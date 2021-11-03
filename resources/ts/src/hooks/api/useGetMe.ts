@@ -3,13 +3,8 @@ import { useSetRecoilState } from "recoil";
 
 import apiClient from "../../client/apiClient";
 import { loginState } from "../../store/loginState";
-import { meState} from "../../store/meState"
-
-type Me = {
-    id: string;
-    name: string;
-    email: string;
-}
+import { meState } from "../../store/meState"
+import { UserData } from "../../type/api/UserDataType"
 
 export const useGetMe = () =>
 {
@@ -20,17 +15,17 @@ export const useGetMe = () =>
     // その場合はログイン状態管理（isLogin）がfalseとなる
     const getMe = useCallback(() => {
         apiClient
-            .get<Me>(`/api/me`)
+            .get<UserData>(`/api/user/me`)
             .then( ( res ) =>
             {
                 setMe( res.data );
-                setIsLogin( { isLogin:true});
+                setIsLogin( { isLogin:true } );
             }
             )
             .catch( () =>
             {
-                setMe( {id:"", name:"ゲスト", email:""} );
-                setIsLogin( { isLogin:false});
+                setMe( {id:"", name:"ゲスト", email:"", title:"", image: "", body:""} );
+                setIsLogin( { isLogin:false } );
             })
     }, []);
 

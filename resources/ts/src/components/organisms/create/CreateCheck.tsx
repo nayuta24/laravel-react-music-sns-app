@@ -42,9 +42,10 @@ export const CreateCheck: VFC<Props> = (props) => {
             />
             <Divider orientation="horizontal" w="100%" mt={5} mb="5" />
             <DetailBox
+                userId={me.id}
                 userName={me.name}
-                userTitle=""
-                userImg=""
+                userTitle={me.title}
+                userImg={me.image}
                 rating={rate}
                 title={title}
                 body={body}

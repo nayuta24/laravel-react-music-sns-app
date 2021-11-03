@@ -77,10 +77,18 @@ const MusicDetailTopics: VFC<MusicDetailTopicsType> = (props) => {
 
     return (
         <>
-            <Text fontSize="md" fontWeight="bold" color="gray.600">
+            <Text
+                fontSize={{ sm: "md", base: "xs" }}
+                fontWeight="bold"
+                color="gray.600"
+            >
                 {title}
             </Text>
-            <Text fontSize="sm" mb="1vh" color="gray.600">
+            <Text
+                fontSize={{ sm: "sm", base: "12px" }}
+                mb="1vh"
+                color="gray.600"
+            >
                 {content === undefined ? "???" : content}
             </Text>
         </>

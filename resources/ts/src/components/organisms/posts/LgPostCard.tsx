@@ -59,10 +59,12 @@ export const LgPostCard: VFC<Props> = memo((props) => {
                     {/* コメントしたユーザー */}
                     <Flex w="25%">
                         <UserInfoBox
-                            img={user.img}
-                            name={user.name}
-                            user_title={user.job}
-                            pl="8%"
+                            user={{
+                                id: user.id,
+                                name: user.name,
+                                title: user.job,
+                                image: user.img,
+                            }}
                             m="auto"
                         />
                     </Flex>

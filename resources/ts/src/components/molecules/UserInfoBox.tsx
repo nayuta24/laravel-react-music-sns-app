@@ -1,25 +1,37 @@
 import { memo, VFC } from "react";
-import { Flex, Avatar, Text } from "@chakra-ui/react";
+import { Flex, Avatar, useDisclosure } from "@chakra-ui/react";
+
 import { ShortText } from "../atoms/typography/ShortText";
+import { UserData } from "../../type/api/UserDataType";
+import { ProfileModal } from "../organisms/ProfileModal";
 
 type Props = {
-    img: string | undefined;
-    name: string | undefined;
-    user_title: string | undefined;
-    pl?: string;
+    user: UserData;
     m?: string;
 };
 
 export const UserInfoBox: VFC<Props> = memo((props) => {
-    const { img, name, user_title, pl = "0", m } = props;
+    const { user, m } = props;
+    const { id, name, image, title } = user;
+
+    const { isOpen, onOpen, onClose } = useDisclosure();
+
     return (
-        <Flex h="70%" mt="auto" ml="auto" m={m}>
+        <Flex
+            h={{ sm: "40px", base: "30px" }}
+            mt="auto"
+            ml="auto"
+            m={m}
+            onClick={onOpen}
+            cursor="pointer"
+            _hover={{ bg: "gray.200" }}
+        >
             <Avatar
                 bg="gray.400"
                 size="sm"
                 mr="10px"
                 my="auto"
-                src={img}
+                src={image}
             ></Avatar>
             <Flex
                 flexDirection="column"
@@ -33,9 +45,10 @@ export const UserInfoBox: VFC<Props> = memo((props) => {
                     {name}
                 </ShortText>
                 <ShortText fontSize="13px" color="gray">
-                    {user_title}
+                    {title}
                 </ShortText>
             </Flex>
+            <ProfileModal isOpen={isOpen} onClose={onClose} id={id} />
         </Flex>
     );
 });
