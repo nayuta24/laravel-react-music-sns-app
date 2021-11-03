@@ -4,10 +4,11 @@ import { ReactNode, VFC } from "react";
 type Props = {
     children: ReactNode;
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-    value: string;
+    value: string | undefined;
     inputType?: string;
     fontSize?: string | { md?: string; sm?: string; base?: string };
     fontWeight?: string;
+    readOnly?: boolean;
 };
 
 export const Form: VFC<Props> = (props) => {
@@ -18,6 +19,7 @@ export const Form: VFC<Props> = (props) => {
         inputType = "text",
         fontSize = "sm",
         fontWeight = "normal",
+        readOnly = true,
     } = props;
 
     return (
@@ -31,7 +33,12 @@ export const Form: VFC<Props> = (props) => {
             >
                 {children}
             </Text>
-            <Input type={inputType} onChange={onChange} value={value} />
+            <Input
+                type={inputType}
+                onChange={onChange}
+                value={value}
+                readOnly={readOnly}
+            />
         </Box>
     );
 };

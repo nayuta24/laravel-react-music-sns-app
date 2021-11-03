@@ -76,12 +76,12 @@ export const MenuContents: VFC<Props> = memo((props) => {
                 </PrimaryButton>
             </Box>
             <Box mt="auto" mb="15%" textAlign="left">
-                <UserInfoBox img="" name={me.name} user_title="" pl="30px" />
+                <UserInfoBox user={me} />
                 <Button
                     fontSize={{ sm: "10px", base: "5px" }}
-                    w="auto"
-                    h="40%"
                     colorScheme="red"
+                    size="xs"
+                    px="12px"
                     mt="5px"
                     _focus={{ outline: "none" }}
                     onClick={onClickLogout}

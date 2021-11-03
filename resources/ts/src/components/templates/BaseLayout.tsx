@@ -2,8 +2,8 @@ import { Box, useDisclosure } from "@chakra-ui/react";
 import { memo, ReactNode, useEffect, VFC } from "react";
 import { useGetMe } from "../../hooks/api/useGetMe";
 
-import { HomePostBox } from "../organisms/home/HomePostBox";
-import { MenuBar } from "../organisms/home/MenuBar";
+import { HomePostBox } from "../organisms/base/HomePostBox";
+import { MenuBar } from "../organisms/base/MenuBar";
 
 type Props = {
     children: ReactNode;

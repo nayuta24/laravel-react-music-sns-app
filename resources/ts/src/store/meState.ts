@@ -1,7 +1,7 @@
 import { atom } from "recoil";
-import { MeData } from "../type/api/MeDataType";
+import { UserData } from "../type/api/UserDataType";
 
-export const meState = atom<MeData>( {
+export const meState = atom<UserData>( {
     key: "meState",
-    default: { id:undefined, name:undefined, email:undefined }
+    default: { id:undefined, name:undefined, email:undefined, title:undefined, image: undefined, body: undefined }
 } );

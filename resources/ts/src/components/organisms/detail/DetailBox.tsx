@@ -3,11 +3,13 @@ import { VFC } from "react";
 import { Rating } from "../../atoms/button/Rating";
 import { ReactionButtons } from "../../molecules/detail/ReactionButtons";
 import { UserInfoBox } from "../../molecules/UserInfoBox";
+import { UserData } from "../../../type/api/UserDataType";
 
 type Props = {
     userName: string | undefined;
     userTitle: string | undefined;
     userImg: string | undefined;
+    userId: string | undefined;
     rating?: number;
     title: string;
     body: string;
@@ -20,21 +22,26 @@ export const DetailBox: VFC<Props> = (props) => {
         userName = "",
         userTitle = "",
         userImg = "",
+        userId = "",
         rating,
         title = "",
         body = "",
         commentVal,
         likeVal,
     } = props;
+
+    const user: UserData = {
+        id: userId,
+        name: userName,
+        title: userTitle,
+        image: userImg,
+    };
+
     return (
         <Box>
             <Flex textAlign="left">
                 <Box mr={2}>
-                    <UserInfoBox
-                        name={userName}
-                        user_title={userTitle}
-                        img={userImg}
-                    />
+                    <UserInfoBox user={user} />
                 </Box>
                 {/* コメントのときは評価の星を表示しない */}
                 {rating === undefined ? <div /> : <Rating rating={rating} />}
