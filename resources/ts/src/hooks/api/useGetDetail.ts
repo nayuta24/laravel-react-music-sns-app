@@ -6,7 +6,7 @@ import { useHistory } from "react-router";
 
 export const useGetDetail = ( id: string ) =>
 {
-    const [ api_postDetail, setApiPostDetail ] = useState<PostsDataType>( failed );
+    const [ detail, setDetail ] = useState<PostsDataType>( failed );
     const [ loading, setLoading ] = useState( false )
     const history = useHistory()
     const getPostDetail = useCallback(() =>
@@ -15,7 +15,7 @@ export const useGetDetail = ( id: string ) =>
 
         apiClient
         .get<PostsDataType>( `/api/posts/${ id }` )
-        .then( ( res ) => setApiPostDetail( res.data ) )
+        .then( ( res ) => setDetail( res.data ) )
         .catch( () =>
         {
             history.push("/page404")
@@ -23,5 +23,5 @@ export const useGetDetail = ( id: string ) =>
         ).finally( () => setLoading( false ) );
     },[])
 
-    return { getPostDetail, api_postDetail, loading };
+    return { getPostDetail, detail, loading };
 };

@@ -22,11 +22,11 @@ export const PostDetail: VFC<Props> = (props) => {
     setTopic({ topic: "detail" });
     const { id } = useParams<Param>();
     /* ↓本番環境用 */
-    const { getPostDetail, api_postDetail, loading } = useGetDetail(id);
+    const { getPostDetail, detail, loading } = useGetDetail(id);
     useEffect(() => getPostDetail(), []);
 
     /* ローカルでのテスト用*/
-    // const api_postDetail = json_postDetail;
+    // const detail = json_postDetail;
 
     return (
         /* ↓本番環境用 */
@@ -36,23 +36,23 @@ export const PostDetail: VFC<Props> = (props) => {
             ) : (
                 <Box>
                     <MusicDetailBox
-                        id={api_postDetail.track.id}
-                        title={api_postDetail.track.title}
-                        album={api_postDetail.track.album}
-                        artist={api_postDetail.track.artist}
-                        release={api_postDetail.track.release}
+                        id={detail.track.id}
+                        title={detail.track.title}
+                        album={detail.track.album}
+                        artist={detail.track.artist}
+                        release={detail.track.release}
                     />
                     <Divider orientation="horizontal" w="100%" mt={5} mb="5" />
                     <DetailBox
-                        userName={api_postDetail.user.name}
-                        userTitle={api_postDetail.user.job}
-                        userImg={api_postDetail.user.img}
-                        userId={api_postDetail.user.id}
-                        rating={api_postDetail.review.star}
-                        title={api_postDetail.review.title}
-                        body={api_postDetail.review.body}
-                        commentVal={api_postDetail.reaction.comment_val}
-                        likeVal={api_postDetail.reaction.like_val}
+                        userName={detail.user.name}
+                        userTitle={detail.user.job}
+                        userImg={detail.user.img}
+                        userId={detail.user.id}
+                        rating={detail.review.star}
+                        title={detail.review.title}
+                        body={detail.review.body}
+                        commentVal={detail.reaction.comment_val}
+                        likeVal={detail.reaction.like_val}
                     />
                     <Divider orientation="horizontal" w="100%" mt={5} mb="5" />
                 </Box>
@@ -62,23 +62,23 @@ export const PostDetail: VFC<Props> = (props) => {
         /* ローカルでのテスト用*/
         // <Box mx={5}>
         //     <MusicDetailBox
-        //         id={`https://open.spotify.com/embed/track/${api_postDetail.track.id}`}
-        //         title={api_postDetail.track.title}
-        //         album={api_postDetail.track.album}
-        //         artist={api_postDetail.track.artist}
-        //         release={api_postDetail.track.release}
+        //         id={`https://open.spotify.com/embed/track/${detail.track.id}`}
+        //         title={detail.track.title}
+        //         album={detail.track.album}
+        //         artist={detail.track.artist}
+        //         release={detail.track.release}
         //     />
         //     <Divider orientation="horizontal" w="100%" mt={5} mb="5" />
         //     <DetailBox
-        //         userName={api_postDetail.user.name}
-        //         userTitle={api_postDetail.user.job}
-        //         userImg={api_postDetail.user.img}
-        //         userId={api_postDetail.user.id}
-        //         rating={api_postDetail.review.star}
-        //         title={api_postDetail.review.title}
-        //         body={api_postDetail.review.body}
-        //         commentVal={api_postDetail.reaction.comment_val}
-        //         likeVal={api_postDetail.reaction.like_val}
+        //         userName={detail.user.name}
+        //         userTitle={detail.user.job}
+        //         userImg={detail.user.img}
+        //         userId={detail.user.id}
+        //         rating={detail.review.star}
+        //         title={detail.review.title}
+        //         body={detail.review.body}
+        //         commentVal={detail.reaction.comment_val}
+        //         likeVal={detail.reaction.like_val}
         //     />
         //     <Divider orientation="horizontal" w="100%" mt={5} mb="5" />
         // </Box>
