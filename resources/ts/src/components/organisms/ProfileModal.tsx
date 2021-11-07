@@ -90,118 +90,127 @@ export const ProfileModal: VFC<Props> = (props) => {
         setBody(e.target.value);
 
     return (
-        <Modal isOpen={isOpen} onClose={onClose}>
-            <ModalOverlay />
-            <ModalContent h="600px" borderRadius="20px">
-                <ModalHeader
-                    mx="auto"
-                    textAlign="center"
-                    w="100%"
-                    bgGradient={gradationGreen}
-                    py="15px"
-                    borderRadius="20px 20px 0 0"
-                    boxShadow="xs"
-                >
-                    <Flex h="130px">
-                        {/* ユーザーアイコン＋フォローボタン */}
-                        <Box w="140px" my="auto">
-                            <Avatar bg="gray.400" size="xl" src={""} mb="5px" />
-                            <Button
-                                size="xs"
-                                colorScheme="whiteAlpha"
-                                display={canFollow}
-                            >
-                                フォローする
-                            </Button>
-                        </Box>
-                        {/* フォロー関係の値表示部分 */}
-                        <Flex my="auto">
-                            <Box ml="30px" mt="10px">
-                                <Text color="white" fontSize="25px">
-                                    999
-                                </Text>
-                                <Text color="white" fontSize="20px">
-                                    follows
-                                </Text>
-                            </Box>
-                            <Box ml="60px" mt="10px">
-                                <Text color="white" fontSize="25px">
-                                    999
-                                </Text>
-                                <Text color="white" fontSize="20px">
-                                    follower
-                                </Text>
-                            </Box>
-                        </Flex>
-                    </Flex>
-                </ModalHeader>
-                {/* 各プロフィール情報 */}
-                <ModalBody>
-                    <Box h="10px" />
-                    <Form
-                        value={name}
-                        fontWeight="semibold"
-                        onChange={onChangeName}
-                        readOnly={readOnly}
-                    >
-                        名前
-                    </Form>
-                    <Box h="20px" />
-                    <Form
-                        value={job}
-                        fontWeight="semibold"
-                        onChange={onChangeJob}
-                        readOnly={readOnly}
-                    >
-                        職業・肩書
-                    </Form>
-                    <Box h="20px" />
-                    <Box>
-                        <Flex>
-                            <Text
-                                fontSize="sm"
-                                h="auto"
-                                fontWeight="semibold"
-                                color="gray.700"
-                                mb={1}
-                                ml={1}
-                            >
-                                プロフィール
-                            </Text>
-                        </Flex>
-                        <Textarea
-                            type="text"
+        <>
+            {isOpen && (
+                <Modal isOpen={isOpen} onClose={onClose}>
+                    <ModalOverlay />
+                    <ModalContent h="600px" borderRadius="20px">
+                        <ModalHeader
+                            mx="auto"
+                            textAlign="center"
                             w="100%"
-                            h="150px"
-                            resize="none"
-                            onChange={onChangeBody}
-                            value={body}
-                            readOnly={readOnly}
-                        />
-                    </Box>
-                </ModalBody>
-                <ModalFooter>
-                    {/* 更新、閉じるボタン */}
-                    <Flex>
-                        <Button
-                            bg="orange.400"
-                            color="white"
-                            onClick={() => {}}
-                            mr="20px"
-                            display={update}
-                        >
-                            更新する
-                        </Button>
-                        <Button
                             bgGradient={gradationGreen}
-                            color="white"
-                            onClick={onClose}
+                            py="15px"
+                            borderRadius="20px 20px 0 0"
+                            boxShadow="xs"
                         >
-                            Close
-                        </Button>
-                    </Flex>
-                </ModalFooter>
-            </ModalContent>
-        </Modal>
+                            <Flex h="130px">
+                                {/* ユーザーアイコン＋フォローボタン */}
+                                <Box w="140px" my="auto">
+                                    <Avatar
+                                        bg="gray.400"
+                                        size="xl"
+                                        src={""}
+                                        mb="5px"
+                                    />
+                                    <Button
+                                        size="xs"
+                                        colorScheme="whiteAlpha"
+                                        display={canFollow}
+                                    >
+                                        フォローする
+                                    </Button>
+                                </Box>
+                                {/* フォロー関係の値表示部分 */}
+                                <Flex my="auto">
+                                    <Box ml="30px" mt="10px">
+                                        <Text color="white" fontSize="25px">
+                                            999
+                                        </Text>
+                                        <Text color="white" fontSize="20px">
+                                            follows
+                                        </Text>
+                                    </Box>
+                                    <Box ml="60px" mt="10px">
+                                        <Text color="white" fontSize="25px">
+                                            999
+                                        </Text>
+                                        <Text color="white" fontSize="20px">
+                                            follower
+                                        </Text>
+                                    </Box>
+                                </Flex>
+                            </Flex>
+                        </ModalHeader>
+                        {/* 各プロフィール情報 */}
+                        <ModalBody>
+                            <Box h="10px" />
+                            <Form
+                                value={name}
+                                fontWeight="semibold"
+                                onChange={onChangeName}
+                                readOnly={readOnly}
+                            >
+                                名前
+                            </Form>
+                            <Box h="20px" />
+                            <Form
+                                value={job}
+                                fontWeight="semibold"
+                                onChange={onChangeJob}
+                                readOnly={readOnly}
+                            >
+                                職業・肩書
+                            </Form>
+                            <Box h="20px" />
+                            <Box>
+                                <Flex>
+                                    <Text
+                                        fontSize="sm"
+                                        h="auto"
+                                        fontWeight="semibold"
+                                        color="gray.700"
+                                        mb={1}
+                                        ml={1}
+                                    >
+                                        プロフィール
+                                    </Text>
+                                </Flex>
+                                <Textarea
+                                    type="text"
+                                    w="100%"
+                                    h="150px"
+                                    resize="none"
+                                    onChange={onChangeBody}
+                                    value={body}
+                                    readOnly={readOnly}
+                                />
+                            </Box>
+                        </ModalBody>
+                        <ModalFooter>
+                            {/* 更新、閉じるボタン */}
+                            <Flex>
+                                <Button
+                                    bg="orange.400"
+                                    color="white"
+                                    onClick={() => {}}
+                                    mr="20px"
+                                    display={update}
+                                >
+                                    更新する
+                                </Button>
+                                <Button
+                                    bgGradient={gradationGreen}
+                                    color="white"
+                                    onClick={onClose}
+                                >
+                                    Close
+                                </Button>
+                            </Flex>
+                        </ModalFooter>
+                    </ModalContent>
+                </Modal>
+            )}
+        </>
     );
 };
