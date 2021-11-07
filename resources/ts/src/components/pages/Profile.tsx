@@ -3,6 +3,7 @@ import { ChangeEvent, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { useGetUser } from "../../hooks/api/useGetUser";
+import { usePostUpdateProfile } from "../../hooks/api/usePostUpdateProfile";
 import { homeState } from "../../store/homeState";
 import { meState } from "../../store/meState";
 
@@ -24,16 +25,23 @@ export const Profile = () => {
     const [job, setJob] = useState<string | undefined>();
     const [body, setBody] = useState<string | undefined>();
 
+    const setProfile = (
+        name: string | undefined,
+        job: string | undefined,
+        body: string | undefined
+    ) => {
+        setName(name);
+        setJob(job);
+        setBody(body);
+    };
+
     const { getUser, user, loading } = useGetUser();
 
     // 自分のprofileを表示する場合は、recoilから参照
     // 他人の場合は、apiから取得する
     useEffect(() => {
         if (id === "me") {
-            setName(me.name);
-            setJob(me.job);
-            setBody(me.body);
-
+            setProfile(me.name, me.job, me.body);
             setReadOnly(false);
             setCanFollow("none");
         } else {
@@ -46,29 +54,37 @@ export const Profile = () => {
     // 自分以外のprofileのレスポンスが返り次第、stateの変更を行う
     useEffect(() => {
         if (user) {
-            setName(user.name);
-            setJob(user.job);
-            setBody(user.body);
+            setProfile(user.name, user.job, user.body);
         }
     }, [user]);
+
+    // name, job, bodyのいずれかがrecoilのデータと違う場合は更新ボタンを表示
+    useEffect(() => {
+        {
+            (name !== me.name || job !== me.job || body !== me.body) &&
+                setUpdate("inline");
+        }
+    }, [name, job, body]);
 
     // フォローボタンの表示、フォームの書き換え、更新ボタンの表示を管理
     const [readOnly, setReadOnly] = useState<boolean>();
     const [canFollow, setCanFollow] = useState<"none" | "inline">("inline");
     const [update, setUpdate] = useState<"none" | "inline">("none");
 
-    // 書き換え処理（どれか一つでも書き換えられたら、更新ボタンが表示される）
+    // 書き換え処理
     const onChangeName = (e: ChangeEvent<HTMLInputElement>) => {
         setName(e.target.value);
-        setUpdate("inline");
     };
     const onChangeJob = (e: ChangeEvent<HTMLInputElement>) => {
         setJob(e.target.value);
-        setUpdate("inline");
     };
     const onChangeBody = (e: ChangeEvent<HTMLTextAreaElement>) => {
         setBody(e.target.value);
-        setUpdate("inline");
+    };
+
+    const { postUpdateProfile } = usePostUpdateProfile();
+    const onClickUpdateButton = () => {
+        postUpdateProfile(name, job, body);
     };
 
     return (
@@ -188,7 +204,7 @@ export const Profile = () => {
                             mt="10px"
                             bg="orange.400"
                             color="white"
-                            onClick={() => {}}
+                            onClick={onClickUpdateButton}
                             display={update}
                         >
                             更新する
