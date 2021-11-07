@@ -79,7 +79,7 @@ export const ProfileModal: VFC<Props> = (props) => {
             setJob(profile.title);
             setBody(profile.body);
         }
-    }, [id]);
+    }, []);
 
     // 書き換え処理
     const onChangeName = (e: ChangeEvent<HTMLInputElement>) =>
