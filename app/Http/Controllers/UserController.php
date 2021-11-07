@@ -27,7 +27,7 @@ class UserController extends Controller
             'name' => $user->name,
             'email' => $user->email,
             'image' => '',
-            'title' => '学生',
+            'job' => '学生',
             'body' => 'あああ'
         ];
     }
@@ -40,7 +40,7 @@ class UserController extends Controller
             'id' => $other->id,
             'name' => $other->name,
             'image' => '',
-            'title' => '学生',
+            'job' => '学生',
             'body' => 'あああ'
         ];
     }
