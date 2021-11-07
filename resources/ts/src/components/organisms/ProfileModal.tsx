@@ -40,28 +40,30 @@ export const ProfileModal: VFC<Props> = (props) => {
     const [body, setBody] = useState<string | undefined>();
 
     // フォローボタンの表示、フォームの書き換え、更新ボタンの表示を管理
-    const [readOnly, setReadOnly] = useState<boolean>(true);
-    const [canFollow, setCanFollow] = useState<"none" | "inline">("inline");
-    const [update, setUpdate] = useState<"none" | "inline">("none");
+    const [readOnly, setReadOnly] = useState<boolean>();
+    const [canFollow, setCanFollow] = useState<"none" | "inline">();
+    const [update, setUpdate] = useState<"none" | "inline">();
 
     // もし、親コンポーネントから受け取ったidがログインしているユーザーのidと同じ場合は、
     // リクエストを行わずにグローバルstateから参照し、プロフィールの編集を許可する
     useEffect(() => {
         {
-            // getUser(id)による戻り値を展開
-            getUser(id);
-            if (user) {
-                if (user.id === me.id) {
-                    // 書き換え可、フォローボタン非表示、更新ボタン表示
-                    setReadOnly(false);
-                    setCanFollow("none");
-                    setUpdate("inline");
-                } else {
-                    // 書き換え不可、フォローボタン表示、更新ボタン非表示
-                    setReadOnly(true);
-                    setCanFollow("inline");
-                    setUpdate("none");
-                }
+            if (me.id === id) {
+                // グローバル変数のmeを展開
+                setName(me.name);
+                setJob(me.job);
+                setBody(me.body);
+                // 書き換え可、フォローボタン非表示、更新ボタン表示
+                setReadOnly(false);
+                setCanFollow("none");
+                setUpdate("inline");
+            } else {
+                // getUser(id)による戻り値を展開
+                getUser(id);
+                // 書き換え不可、フォローボタン表示、更新ボタン非表示
+                setReadOnly(true);
+                setCanFollow("inline");
+                setUpdate("none");
             }
         }
     }, []);
