@@ -26,6 +26,9 @@ class UserController extends Controller
             'id' => $user->id,
             'name' => $user->name,
             'email' => $user->email,
+            'image' => '',
+            'title' => '学生',
+            'body' => 'あああ'
         ];
     }
     
@@ -36,6 +39,9 @@ class UserController extends Controller
         return [
             'id' => $other->id,
             'name' => $other->name,
+            'image' => '',
+            'title' => '学生',
+            'body' => 'あああ'
         ];
     }
     
