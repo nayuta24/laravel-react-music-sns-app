@@ -20,7 +20,7 @@ export const useLogout = () => {
             {
                 localStorage.removeItem( "auth" );
                 setIsLogin( { isLogin: false } );
-                setMe( {id:undefined, name:undefined, email:undefined, title:undefined, image: undefined, body:undefined} );
+                setMe( {id:undefined, name:undefined, email:undefined, job:undefined, image: undefined, body:undefined} );
                 history.push( "/login" );
                 showMessage( { title: "ログアウトしました", status: "success" } );
             } ).catch( res =>

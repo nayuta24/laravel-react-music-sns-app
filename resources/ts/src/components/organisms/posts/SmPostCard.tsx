@@ -63,7 +63,7 @@ export const SmPostCard: VFC<Props> = memo((props) => {
                             user={{
                                 id: user.id,
                                 name: user.name,
-                                title: user.job,
+                                job: user.job,
                                 image: user.img,
                             }}
                             m="auto"

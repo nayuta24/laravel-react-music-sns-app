@@ -24,7 +24,7 @@ export const useGetMe = () =>
             )
             .catch( () =>
             {
-                setMe( {id:undefined, name:undefined, email:undefined, title:undefined, image: undefined, body:undefined} );
+                setMe( {id:undefined, name:undefined, email:undefined, job:undefined, image: undefined, body:undefined} );
                 setIsLogin( { isLogin:false } );
             })
     }, []);

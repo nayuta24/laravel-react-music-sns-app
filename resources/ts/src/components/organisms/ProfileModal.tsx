@@ -36,15 +36,15 @@ export const ProfileModal: VFC<Props> = (props) => {
         id: undefined,
         name: undefined,
         email: undefined,
-        title: undefined,
+        job: undefined,
         image: undefined,
         body: undefined,
     });
 
-    // ログインしているユーザー自身以外の情報を取得するためのhooks
-    const { getUser } = useGetUser();
+    // 取得したいユーザー情報が自身のもの以外の場合のhooks
+    const { getUser, user } = useGetUser();
 
-    // profileオブジェクトから、stateに割り振り、書き換えを可能とする（imageに関しては、一旦直接使用）
+    // profileオブジェクトからstateに割り振り、書き換えを可能とする（imageに関しては、一旦直接使用）
     const [name, setName] = useState<string | undefined>();
     const [job, setJob] = useState<string | undefined>();
     const [body, setBody] = useState<string | undefined>();
@@ -60,14 +60,16 @@ export const ProfileModal: VFC<Props> = (props) => {
         {
             if (me.id === id) {
                 // グローバル変数のmeを展開
-                setProfile(Object.assign({}, me));
+                setName(me.name);
+                setJob(me.job);
+                setBody(me.body);
                 // 書き換え可、フォローボタン非表示、更新ボタン表示
                 setReadOnly(false);
                 setCanFollow("none");
                 setUpdate("inline");
             } else {
                 // getUser(id)による戻り値を展開
-                setProfile(Object.assign({}, getUser(id)));
+                getUser(id);
                 // 書き換え不可、フォローボタン表示、更新ボタン非表示
                 setReadOnly(true);
                 setCanFollow("inline");
@@ -76,12 +78,14 @@ export const ProfileModal: VFC<Props> = (props) => {
         }
     }, []);
 
-    // profileの取得が終了したと同時にでstateの変更を行う
+    // profileの取得が終了したと同時にstateの変更を行う
     useEffect(() => {
-        setName(profile.name);
-        setJob(profile.title);
-        setBody(profile.body);
-    }, [profile]);
+        if (user) {
+            setName(user.name);
+            setJob(user.job);
+            setBody(user.body);
+        }
+    }, [user]);
 
     // 書き換え処理
     const onChangeName = (e: ChangeEvent<HTMLInputElement>) =>
@@ -191,7 +195,8 @@ export const ProfileModal: VFC<Props> = (props) => {
                     {/* 更新、閉じるボタン */}
                     <Flex>
                         <Button
-                            colorScheme="orange"
+                            bg="orange.400"
+                            color="white"
                             onClick={() => {}}
                             mr="20px"
                             display={update}

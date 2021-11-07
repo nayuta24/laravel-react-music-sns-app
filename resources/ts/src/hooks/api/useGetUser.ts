@@ -19,8 +19,7 @@ export const useGetUser = () =>
             {
 
             } )
-        return ( user );
     }, []);
 
-    return { getUser };
+    return { getUser, user };
 };

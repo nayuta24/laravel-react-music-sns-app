@@ -33,7 +33,7 @@ export const DetailBox: VFC<Props> = (props) => {
     const user: UserData = {
         id: userId,
         name: userName,
-        title: userTitle,
+        job: userTitle,
         image: userImg,
     };
 
