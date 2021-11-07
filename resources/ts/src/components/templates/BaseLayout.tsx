@@ -9,10 +9,10 @@ type Props = {
     children: ReactNode;
 };
 
-export const HomeLayout: VFC<Props> = memo((props) => {
+export const BaseLayout: VFC<Props> = memo((props) => {
     const { children } = props;
     const { isOpen, onOpen, onClose } = useDisclosure();
-    // ログインしたユーザーの情報を取得してグローバルStateで保持
+    // ログイン済みの場合、ユーザーの情報を取得してグローバルStateで保持(Cookieでログインしたとき用)
     const { getMe } = useGetMe();
     useEffect(() => getMe(), [getMe]);
 

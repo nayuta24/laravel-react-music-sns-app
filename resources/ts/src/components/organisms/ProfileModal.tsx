@@ -20,7 +20,7 @@ import { UserData } from "../../type/api/UserDataType";
 import { gradationGreen } from "../atoms/color/gradationGreen";
 import { Form } from "../molecules/Form";
 
-// 親コンポーネントからはidのみを受け取り、modalコンポーネント内でuser情報を取得する
+// 親コンポーネントからはidのみを受け取り、modalコンポーネント内でuser情報をリクエストする
 type Props = {
     isOpen: boolean;
     onClose: () => void;
@@ -41,7 +41,7 @@ export const ProfileModal: VFC<Props> = (props) => {
         body: undefined,
     });
 
-    // ログインしているユーザー以外の情報を取得するためのhooks
+    // ログインしているユーザー自身以外の情報を取得するためのhooks
     const { getUser } = useGetUser();
 
     // profileオブジェクトから、stateに割り振り、書き換えを可能とする（imageに関しては、一旦直接使用）

@@ -2,7 +2,7 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 
 import { homeRoutes } from "./HomeRoutes";
-import { HomeLayout } from "../components/templates/BaseLayout";
+import { BaseLayout } from "../components/templates/BaseLayout";
 import { Page404 } from "../components/pages/Page404";
 import { Login } from "../components/pages/Login";
 import { loginState } from "../store/loginState";
@@ -18,7 +18,7 @@ export const Router = () => {
             </Route>
             {/* 未ログインの場合は「AuthGuard」によってログイン画面へリダイレクトされる */}
             <AuthGuard>
-                <HomeLayout>
+                <BaseLayout>
                     <Switch>
                         <Route
                             path="/"
@@ -37,7 +37,7 @@ export const Router = () => {
                             )}
                         />
                     </Switch>
-                </HomeLayout>
+                </BaseLayout>
             </AuthGuard>
             <Route path="*">
                 <Page404 />
