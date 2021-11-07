@@ -31,7 +31,7 @@ export const ProfileModal: VFC<Props> = (props) => {
     const { isOpen, onClose, id } = props;
     const me = useRecoilValue(meState);
 
-    // オブジェクトとしてuser情報を保持する器
+    // オブジェクトとしてuser情報を受け止めるためのstate
     const [profile, setProfile] = useState<UserData>({
         id: undefined,
         name: undefined,
@@ -74,7 +74,7 @@ export const ProfileModal: VFC<Props> = (props) => {
                 setCanFollow("inline");
                 setUpdate("none");
             }
-            // 書く専用stateに格納
+            // 各専用stateに格納
             setName(profile.name);
             setJob(profile.title);
             setBody(profile.body);
