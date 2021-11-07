@@ -20,8 +20,7 @@ export const useGetMe = () =>
             {
                 setMe( res.data );
                 setIsLogin( { isLogin:true } );
-            }
-            )
+            })
             .catch( () =>
             {
                 setMe( {id:undefined, name:undefined, email:undefined, job:undefined, image: undefined, body:undefined} );

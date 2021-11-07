@@ -48,27 +48,25 @@ export const ProfileModal: VFC<Props> = (props) => {
     // リクエストを行わずにグローバルstateから参照し、プロフィールの編集を許可する
     useEffect(() => {
         {
-            if (me.id === id) {
-                // グローバル変数のmeを展開
-                setName(me.name);
-                setJob(me.job);
-                setBody(me.body);
-                // 書き換え可、フォローボタン非表示、更新ボタン表示
-                setReadOnly(false);
-                setCanFollow("none");
-                setUpdate("inline");
-            } else {
-                // getUser(id)による戻り値を展開
-                getUser(id);
-                // 書き換え不可、フォローボタン表示、更新ボタン非表示
-                setReadOnly(true);
-                setCanFollow("inline");
-                setUpdate("none");
+            // getUser(id)による戻り値を展開
+            getUser(id);
+            if (user) {
+                if (user.id === me.id) {
+                    // 書き換え可、フォローボタン非表示、更新ボタン表示
+                    setReadOnly(false);
+                    setCanFollow("none");
+                    setUpdate("inline");
+                } else {
+                    // 書き換え不可、フォローボタン表示、更新ボタン非表示
+                    setReadOnly(true);
+                    setCanFollow("inline");
+                    setUpdate("none");
+                }
             }
         }
     }, []);
 
-    // profileの取得が終了したと同時にstateの変更を行う
+    // profileの取得が終了し次第、stateの変更を行う
     useEffect(() => {
         if (user) {
             setName(user.name);
