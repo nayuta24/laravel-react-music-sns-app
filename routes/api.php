@@ -15,10 +15,10 @@ use Illuminate\Http\Request;
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     // ログインしているユーザー自身の情報を返す
-    Route::get('/user/me', MeController::class);
+    Route::get('/user/me', 'UserController@me');
     
     // idに応じてユーザー自身の情報を返す
-    Route::get('/user/{id}', MeController::class);
+    Route::get('/user/{id}', 'UserController@other');
     
     // 最新の投稿一覧を返す
     Route::get('/posts/recent', 'PostController@posts');
@@ -32,6 +32,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
 // 新規ユーザー登録、ログイン、ログアウト
 Route::post('/register', 'RegisterUserController@register');
-Route::post('/login', 'MeController@login');
-Route::post('/logout', 'MeController@logout');
+Route::post('/login', 'LoginController@login');
+Route::post('/logout', 'LoginController@logout');
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\User;
 
 class UserController extends Controller
 {
@@ -17,8 +18,25 @@ class UserController extends Controller
         $this->middleware('auth');
     }
     
-    public function user_profile(User $user, $id){
-        
+    public function me(Request $request)
+    {
+        $user = $request->user();
+
+        return [
+            'id' => $user->id,
+            'name' => $user->name,
+            'email' => $user->email,
+        ];
+    }
+    
+    public function other(User $user, $id)
+    {
+        $other = User::find($id);
+
+        return [
+            'id' => $other->id,
+            'name' => $other->name,
+        ];
     }
     
 }
