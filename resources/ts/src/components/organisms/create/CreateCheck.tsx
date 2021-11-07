@@ -44,7 +44,7 @@ export const CreateCheck: VFC<Props> = (props) => {
             <DetailBox
                 userId={me.id}
                 userName={me.name}
-                userTitle={me.title}
+                userTitle={me.job}
                 userImg={me.image}
                 rating={rate}
                 title={title}

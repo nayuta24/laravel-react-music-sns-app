@@ -3,6 +3,6 @@ export type UserData = {
     name: string | undefined
     email?: string | undefined
     image: string | undefined
-    title: string | undefined
+    job: string | undefined
     body?: string | undefined
 }

@@ -12,7 +12,7 @@ type Props = {
 
 export const UserInfoBox: VFC<Props> = memo((props) => {
     const { user, m } = props;
-    const { id, name, image, title } = user;
+    const { id, name, image, job } = user;
 
     const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -45,7 +45,7 @@ export const UserInfoBox: VFC<Props> = memo((props) => {
                     {name}
                 </ShortText>
                 <ShortText fontSize="13px" color="gray">
-                    {title}
+                    {job}
                 </ShortText>
             </Flex>
             <ProfileModal isOpen={isOpen} onClose={onClose} id={id} />
