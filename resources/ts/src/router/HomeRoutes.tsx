@@ -4,6 +4,7 @@ import { Popular } from "../components/pages/posts/Popular";
 import { PostDetail } from "../components/pages/Detail";
 import { Create } from "../components/pages/Create";
 import { Page404 } from "../components/pages/Page404";
+import { Profile } from "../components/pages/Profile";
 
 export const homeRoutes = [
     {
@@ -32,6 +33,11 @@ export const homeRoutes = [
         path: "create_post",
         exact: false,
         children: <Create />,
+    },
+    {
+        path: "profile/:id",
+        exact: false,
+        children: <Profile />,
     },
     {
         path: "page404",
