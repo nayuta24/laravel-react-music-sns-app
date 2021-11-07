@@ -15,7 +15,10 @@ use Illuminate\Http\Request;
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     // ログインしているユーザー自身の情報を返す
-    Route::get('/me', MeController::class);
+    Route::get('/user/me', MeController::class);
+    
+    // idに応じてユーザー自身の情報を返す
+    Route::get('/user/{id}', MeController::class);
     
     // 最新の投稿一覧を返す
     Route::get('/posts/recent', 'PostController@posts');

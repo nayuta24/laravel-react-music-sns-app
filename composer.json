@@ -13,7 +13,6 @@
         "fruitcake/laravel-cors": "^2.0",
         "goldspecdigital/laravel-eloquent-uuid": "^6.0",
         "guzzlehttp/guzzle": "^7.4",
-        "jwilsson/spotify-web-api-php": "^5.0",
         "laravel/framework": "^6.20.26",
         "laravel/sanctum": "^2.12",
         "laravel/tinker": "^2.5",

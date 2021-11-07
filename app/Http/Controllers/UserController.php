@@ -16,14 +16,9 @@ class UserController extends Controller
     {
         $this->middleware('auth');
     }
-
-    /**
-     * 現在ログインしているユーザ情報取得
-     *
-     * @return \App\User|null
-     */
-    public function show()
-    {
-        return Auth::user();
+    
+    public function user_profile(User $user, $id){
+        
     }
+    
 }
