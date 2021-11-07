@@ -3,7 +3,9 @@ import { Flex, Avatar, useDisclosure } from "@chakra-ui/react";
 
 import { ShortText } from "../atoms/typography/ShortText";
 import { UserData } from "../../type/api/UserDataType";
-import { ProfileModal } from "../organisms/ProfileModal";
+import { useHistory } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { meState } from "../../store/meState";
 
 type Props = {
     user: UserData;
@@ -13,8 +15,15 @@ type Props = {
 export const UserInfoBox: VFC<Props> = memo((props) => {
     const { user, m } = props;
     const { id, name, image, job } = user;
+    const me = useRecoilValue(meState);
 
-    const { isOpen, onOpen, onClose } = useDisclosure();
+    const history = useHistory();
+
+    const onClick = () => {
+        id === me.id
+            ? history.push("/profile/me")
+            : history.push(`/profile/${id}`);
+    };
 
     return (
         <Flex
@@ -22,7 +31,7 @@ export const UserInfoBox: VFC<Props> = memo((props) => {
             mt="auto"
             ml="auto"
             m={m}
-            onClick={onOpen}
+            onClick={onClick}
             cursor="pointer"
             _hover={{ bg: "gray.200" }}
         >
@@ -48,7 +57,6 @@ export const UserInfoBox: VFC<Props> = memo((props) => {
                     {job}
                 </ShortText>
             </Flex>
-            <ProfileModal isOpen={isOpen} onClose={onClose} id={id} />
         </Flex>
     );
 });

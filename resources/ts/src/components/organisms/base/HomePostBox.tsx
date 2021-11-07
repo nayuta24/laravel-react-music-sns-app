@@ -49,7 +49,7 @@ export const HomePostBox: VFC<Props> = memo((props) => {
                         <HomePostTitle>人気の投稿</HomePostTitle>
                     ) : topic === "create" ? (
                         <HomePostTitle>投稿する</HomePostTitle>
-                    ) : (
+                    ) : topic === "detail" ? (
                         <Flex>
                             <IconButton
                                 icon={<HiArrowNarrowLeft />}
@@ -62,6 +62,20 @@ export const HomePostBox: VFC<Props> = memo((props) => {
                                 boxSize={{ base: "29px", md: "36px" }}
                             />
                             <HomePostTitle>スレッド</HomePostTitle>
+                        </Flex>
+                    ) : (
+                        <Flex>
+                            <IconButton
+                                icon={<HiArrowNarrowLeft />}
+                                aria-label="Back home"
+                                bg="none"
+                                mr={2}
+                                fontSize="25px"
+                                onClick={onBackHome}
+                                mt="auto"
+                                boxSize={{ base: "29px", md: "36px" }}
+                            />
+                            <HomePostTitle>プロフィール</HomePostTitle>
                         </Flex>
                     )}
                 </Box>
