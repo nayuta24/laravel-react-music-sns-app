@@ -19,7 +19,7 @@ export const Form: VFC<Props> = (props) => {
         inputType = "text",
         fontSize = "sm",
         fontWeight = "normal",
-        readOnly = true,
+        readOnly = false,
     } = props;
 
     return (
