@@ -1,9 +1,9 @@
 import axios from "axios";
-import { useCallback, useState } from "react"
+import { useCallback} from "react"
 import { useHistory } from "react-router";
 import { useSetRecoilState } from "recoil";
-import apiClient from "../../client/apiClient";
 import { loginState } from "../../store/loginState";
+import { meState } from "../../store/meState";
 import { useMessage} from "../message/useMessage";
 
 
@@ -11,6 +11,7 @@ export const useLogout = () => {
     const { showMessage } = useMessage();
     const history = useHistory();
     const setIsLogin = useSetRecoilState( loginState );
+    const setMe = useSetRecoilState( meState );
 
     const logout = useCallback( ( ) =>
     {
@@ -18,7 +19,8 @@ export const useLogout = () => {
             .then( res =>
             {
                 localStorage.removeItem( "auth" );
-                setIsLogin( { isLogin:false});
+                setIsLogin( { isLogin: false } );
+                setMe( {id:undefined, name:undefined, email:undefined, title:undefined, image: undefined, body:undefined} );
                 history.push( "/login" );
                 showMessage( { title: "ログアウトしました", status: "success" } );
             } ).catch( res =>

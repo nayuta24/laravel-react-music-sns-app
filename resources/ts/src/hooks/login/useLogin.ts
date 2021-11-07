@@ -4,6 +4,7 @@ import { useHistory } from "react-router";
 import { useSetRecoilState } from "recoil";
 import apiClient from "../../client/apiClient";
 import { loginState } from "../../store/loginState";
+import { useGetMe } from "../api/useGetMe";
 import { useMessage} from "../message/useMessage";
 
 
@@ -13,6 +14,8 @@ export const useLogin = () => {
 
     const [ user, setUser ] = useState();
     const setIsLogin = useSetRecoilState( loginState );
+    const { getMe } = useGetMe();
+
 
     const login = useCallback( (mail: string, password: string ) =>
     {
@@ -26,7 +29,8 @@ export const useLogin = () => {
                     .then( res =>
                     {
                         showMessage( { title: "ログインしました", status: "success" } );
-                        setIsLogin( { isLogin:true});
+                        setIsLogin( { isLogin: true } );
+                        getMe();
                         history.push( "/" );
                     } ).catch( error =>
                     {
