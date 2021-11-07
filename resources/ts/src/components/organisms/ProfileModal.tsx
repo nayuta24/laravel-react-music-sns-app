@@ -65,6 +65,10 @@ export const ProfileModal: VFC<Props> = (props) => {
                 setCanFollow("inline");
                 setUpdate("none");
             }
+            console.log(id);
+            console.log(name);
+            console.log(job);
+            console.log(body);
         }
     }, []);
 
