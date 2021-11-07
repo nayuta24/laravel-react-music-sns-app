@@ -31,16 +31,6 @@ export const ProfileModal: VFC<Props> = (props) => {
     const { isOpen, onClose, id } = props;
     const me = useRecoilValue(meState);
 
-    // オブジェクトとしてuser情報を受け止めるためのstate
-    const [profile, setProfile] = useState<UserData>({
-        id: undefined,
-        name: undefined,
-        email: undefined,
-        job: undefined,
-        image: undefined,
-        body: undefined,
-    });
-
     // 取得したいユーザー情報が自身のもの以外の場合のhooks
     const { getUser, user } = useGetUser();
 
@@ -111,12 +101,7 @@ export const ProfileModal: VFC<Props> = (props) => {
                     <Flex h="130px">
                         {/* ユーザーアイコン＋フォローボタン */}
                         <Box w="140px" my="auto">
-                            <Avatar
-                                bg="gray.400"
-                                size="xl"
-                                src={profile.image}
-                                mb="5px"
-                            />
+                            <Avatar bg="gray.400" size="xl" src={""} mb="5px" />
                             <Button
                                 size="xs"
                                 colorScheme="whiteAlpha"

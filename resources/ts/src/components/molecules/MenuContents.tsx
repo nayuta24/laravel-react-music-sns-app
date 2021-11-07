@@ -76,7 +76,14 @@ export const MenuContents: VFC<Props> = memo((props) => {
                 </PrimaryButton>
             </Box>
             <Box mt="auto" mb="15%" textAlign="left">
-                <UserInfoBox user={me} />
+                <UserInfoBox
+                    user={{
+                        id: me.id,
+                        name: me.name,
+                        job: me.job,
+                        image: undefined,
+                    }}
+                />
                 <Button
                     fontSize={{ sm: "10px", base: "5px" }}
                     colorScheme="red"
