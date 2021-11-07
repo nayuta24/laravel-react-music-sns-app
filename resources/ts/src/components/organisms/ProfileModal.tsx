@@ -55,8 +55,7 @@ export const ProfileModal: VFC<Props> = (props) => {
     const [update, setUpdate] = useState<"none" | "inline">("none");
 
     // もし、親コンポーネントから受け取ったidがログインしているユーザーのidと同じ場合は、
-    // リクエストを行わずにグローバルstateから参照する
-    // また、プロフィールの編集を許可する
+    // リクエストを行わずにグローバルstateから参照し、プロフィールの編集を許可する
     useEffect(() => {
         {
             if (me.id === id) {
@@ -74,12 +73,15 @@ export const ProfileModal: VFC<Props> = (props) => {
                 setCanFollow("inline");
                 setUpdate("none");
             }
-            // 各専用stateに格納
-            setName(profile.name);
-            setJob(profile.title);
-            setBody(profile.body);
         }
     }, []);
+
+    // profileの取得が終了したと同時にでstateの変更を行う
+    useEffect(() => {
+        setName(profile.name);
+        setJob(profile.title);
+        setBody(profile.body);
+    }, [profile]);
 
     // 書き換え処理
     const onChangeName = (e: ChangeEvent<HTMLInputElement>) =>
